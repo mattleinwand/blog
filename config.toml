@@ -1,0 +1,4 @@
+baseURL = "https://blog.predictivegrid.io/"
+languageCode = "en-us"
+title = "PingThings Blog"
+theme = "ananke"
