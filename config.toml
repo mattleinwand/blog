@@ -1,4 +1,28 @@
-baseURL = "https://blog.predictivegrid.io/"
+baseURL = "http://blog.predictivegrid.io/"
 languageCode = "en-us"
 title = "PingThings Blog"
 theme = "ananke"
+
+[deployment]
+order = [".jpg$", ".gif$"]
+
+[[deployment.targets]]
+name = "s3blog"
+URL = "s3://blog.predictivegrid.io?region=us-east-1"
+
+[[deployment.matchers]]
+# Cache static assets for 6 months and compress
+pattern = "^.+\\.(js|css|svg|ttf)$"
+cacheControl = "max-age=15770000, no-transform, public"
+gzip = true
+
+[[deployment.matchers]]
+# Cache images for 6 months but do not compress
+pattern = "^.+\\.(png|jpg)$"
+cacheControl = "max-age=15770000, no-transform, public"
+gzip = false
+
+[[deployment.matchers]]
+# Compress text files
+pattern = "^.+\\.(html|xml|json)$"
+gzip = true
