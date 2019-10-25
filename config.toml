@@ -38,7 +38,7 @@ order = [".jpg$", ".gif$"]
 
 [[deployment.targets]]
 name = "s3blog"
-URL = "s3://blog.predictivegrid.io?region=us-east-1"
+URL = "s3://blog.ni4ai.org?region=us-east-1"
 
 [[deployment.matchers]]
 # Cache static assets for 6 months and compress
