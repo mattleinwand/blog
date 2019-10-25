@@ -1,0 +1,7 @@
+<section class="col-lg-8 navbar-mobile">
+  <nav class="nav nav-navbar mx-auto">
+    {{ range.Site.Menus.main }}
+    <a class="nav-link" href="{{ .URL }}" title="{{ .Name }}">{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</section>
