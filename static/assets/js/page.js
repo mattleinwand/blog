@@ -21074,13 +21074,16 @@ window.AOS = __webpack_require__(13);
     $('.constellation').each(function(){
       var canvas = $(this),
           color  = canvas.dataAttr( 'color', 'rgba(255, 255, 255, .8)' ),
-          length = canvas.dataAttr( 'length', 150 ),
-          radius = canvas.dataAttr( 'radius', 150 );
+          length = canvas.dataAttr( 'length', 50 ),
+          radius = canvas.dataAttr( 'radius', 100 );
 
       if ( color == 'dark' ) {
         color = 'rgba(0, 0, 0, .6)';
-      }
-	  const dims = canvas.getBoundingClientRect();
+	  }
+
+	  const domNode = canvas.get()[0];
+	  const dims = domNode && domNode.getBoundingClientRect();
+	  if (!dims) return;
       canvas.constellation({
         distance: distance,
         length: length,
