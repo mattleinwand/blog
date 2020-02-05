@@ -1,5 +1,5 @@
-#baseURL = "http://blog.ni4ai.org/"
-baseURL = "/"
+baseURL = "http://blog.ni4ai.org/"
+#baseURL = "/"
 languageCode = "en-us"
 title = "NI4AI Blog"
 theme = "ananke"
