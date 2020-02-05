@@ -2,7 +2,7 @@
 date: 2020-02-04T16:46:23-05:00
 title: "Training General Linear Models with the PredictiveGrid™"
 description: "A brief overview of training linear models with btrdb data"
-tags: ["btrdb", "timeseries", "analytics", "database"]
+tags: ["btrdb", "distributed computing", "regression", "general linear models"]
 ---
 
 ## Linear Modeling Process Overview
