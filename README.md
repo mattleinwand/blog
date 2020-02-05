@@ -14,7 +14,7 @@ To create a new post run:
 
     $ hugo new posts/my-permalink.md
 
-This will create your post in `content/posts/my-permalink.md` which you can then begin to edit. Run `hugo server -D` to run a local development server to view your post, then when ready mark draft as false so that the post will be deployed.
+This will create your post in `content/post/my-permalink.md` which you can then begin to edit. Run `hugo server -D` to run a local development server to view your post, then when ready mark draft as false so that the post will be deployed.
 
 ### Deploying the Site
 
