@@ -14,8 +14,8 @@
 }
 
 .image-bio-section div>img {
-  height: 200px;
-  width: unset;
+  padding-right: 16px;
+  padding-top: 8px;
 }
 
 .custom-section.author-bio.mid-gray {
@@ -31,6 +31,10 @@
 @media (max-width: 575.98px) {
   .custom-section.author-bio {
     width: 95%;
+  }
+
+  .image-bio-section div>img {
+    padding-bottom: 16px;
   }
 }
 
