@@ -3,6 +3,7 @@ title: "NI4AI Webinar"
 date: 2020-04-07T09:20:37-0400
 description: "This panel will introduce the ARPA-E funded NI4AI effort, built on PingThings' PredictiveGrid platform."
 tags: ["NASPI", "NI4AI", "webinar", "annoucement"]
+author: "jeff"
 ---
 
 **This webinar is hosted by the North American Synchrophasor Initiative (NASPI)**

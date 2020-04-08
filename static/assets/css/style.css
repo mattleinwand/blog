@@ -1,3 +1,41 @@
 .section-header.about-pingthings p {
   text-align: left;
 }
+
+.custom-section.author-bio {
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 8px;
+  width: 70%;
+}
+
+.image-bio-section {
+  display: flex;
+}
+
+.image-bio-section div>img {
+  height: 200px;
+  width: unset;
+}
+
+.custom-section.author-bio.mid-gray {
+  border: 1px solid #555;
+}
+
+@media (min-width: 992px) {
+  .custom-section.author-bio {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .custom-section.author-bio {
+    width: 95%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .image-bio-section {
+    flex-direction: column;
+  }
+}
