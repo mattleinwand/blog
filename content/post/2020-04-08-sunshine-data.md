@@ -154,7 +154,7 @@ Now that we're in a pandas Series object, we can use our familiar `plot()` metho
 series.plot()
 ```
 
-![basic visualization](/assets/img/post-sunshine-data/sunshine-plot-1.png)
+![basic visualization](/media/post/2020-04-08-sunshine-data/sunshine-plot-1.png)
 
 
 Of course, we can always pull in the `matplotlib` library to get more fine grained control over our visualization.
@@ -176,7 +176,7 @@ plt.title("Sunshine PMU3 L1MAG Voltage")
 plt.show()
 ```
 
-![improved visualization](/assets/img/post-sunshine-data/sunshine-plot-2.png)
+![improved visualization](/media/post/2020-04-08-sunshine-data/sunshine-plot-2.png)
 
 ## Wrapping It Up
 

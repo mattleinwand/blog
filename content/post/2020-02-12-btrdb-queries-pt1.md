@@ -47,7 +47,7 @@ Trees are constructed with `Node` objects that have a label, children, and a par
 
 Consider the following example tree with size=11 and depth=3 that we will use throughout the rest of the post:
 
-![An example tree with size=11 and depth=3](/assets/img/example_tree.png)
+![An example tree with size=11 and depth=3](/media/post/2020-02-12-btrdb-queries-pt1/example_tree.png)
 
 Creating this tree using a Python function is as follows:
 

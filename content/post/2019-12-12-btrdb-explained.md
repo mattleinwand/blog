@@ -32,7 +32,7 @@ Measured on a 4-node cluster (large EC2 nodes):
 
 In under _200ms_, it can query a year of data at nanosecond-precision (2.1 trillion points) at any desired window—returning statistical summary points at any desired resolution (containing a min/max/mean per point).
 
-![zoom](/assets/img/ui_zoom.gif)
+![zoom](/media/post/2019-12-12-btrdb-explained/ui_zoom.gif)
 
 **High compression**
 

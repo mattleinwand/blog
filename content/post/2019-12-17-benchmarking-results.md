@@ -13,37 +13,37 @@ Using the [benchmarking codebase](https://github.com/PingthingsIO/time-series-be
 
 In the below plot, FullParallelInsert.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.
 
-![FullParallelInsert.MPPS plot](/assets/img/ni4ai-reports/2019-12-17/FullParallelInsert.MPPS.png)
+![FullParallelInsert.MPPS plot](/media/post//2019-12-17-benchmarking-results/FullParallelInsert.MPPS.png)
 
 ## Insert
 
 In the below plot, Insert.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.
 
-![Insert.MPPS plot](/assets/img/ni4ai-reports/2019-12-17/Insert.MPPS.png)
+![Insert.MPPS plot](/media/post/2019-12-17-benchmarking-results/Insert.MPPS.png)
 
 ## Full Parallel Sequential Read
 
 In the below plot, FullParallelSequentialRead.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.
 
-![FullParallelSequentialRead.MPPS plot](/assets/img/ni4ai-reports/2019-12-17/FullParallelSequentialRead.MPPS.png)
+![FullParallelSequentialRead.MPPS plot](/media/post/2019-12-17-benchmarking-results/FullParallelSequentialRead.MPPS.png)
 
 ## Sequential Read
 
 In the below plot, SequentialRead.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.
 
-![SequentialRead.MPPS plot](/assets/img/ni4ai-reports/2019-12-17/SequentialRead.MPPS.png)
+![SequentialRead.MPPS plot](/media/post/2019-12-17-benchmarking-results/SequentialRead.MPPS.png)
 
 ## Single Stream Sequential Read
 
 In the below plot, SingleStreamSequentialRead.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.
 
-![SingleStreamSequentialRead.MPPS plot](/assets/img/ni4ai-reports/2019-12-17/SingleStreamSequentialRead.MPPS.png)
+![SingleStreamSequentialRead.MPPS plot](/media/post/2019-12-17-benchmarking-results/SingleStreamSequentialRead.MPPS.png)
 
 ## Stream Creation
 
 In the below plot, StreamCreation (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.
 
-![StreamCreation plot](/assets/img/ni4ai-reports/2019-12-17/StreamCreation.png)
+![StreamCreation plot](/media/post/2019-12-17-benchmarking-results/StreamCreation.png)
 
 ## Conclusion
 
