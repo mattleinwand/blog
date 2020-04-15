@@ -160,6 +160,7 @@ series.plot()
 Of course, we can always pull in the `matplotlib` library to get more fine grained control over our visualization.
 
 ```python
+import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 fig, ax = plt.subplots(figsize=(7,5))
