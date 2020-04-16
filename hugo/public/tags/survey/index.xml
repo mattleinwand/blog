@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>survey on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/survey/</link>
+    <description>Recent content in survey on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 Nov 2019 15:05:10 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/survey/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Language Bindings Survey</title>
+      <link>http://blog.ni4ai.org/post/2019-11-06-language-bindings-survey/</link>
+      <pubDate>Wed, 06 Nov 2019 15:05:10 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2019-11-06-language-bindings-survey/</guid>
+      <description>We need your help to select the next languages to implement BTrDB bindings in! Please give us your feedback on this very short survey (it should take no more than 5 minutes):
+BTrDB Analytics Language Bindings Survey.
+At the core of the NI4AI PredictiveGrid platform is the BTrDB database - a timeseries database that has been designed from the ground up for dense or high volume telemetry analytics produced by sensors like syncrhophasors that monitor the grid.</description>
+    </item>
+    
+  </channel>
+</rss>

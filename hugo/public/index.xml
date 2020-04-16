@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NI4AI on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/</link>
+    <description>Recent content in NI4AI on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Apr 2020 00:02:12 -0700</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Voltage Sag Safari: Exploring Voltage Sags with BTrDB</title>
+      <link>http://blog.ni4ai.org/post/2020-04-15-voltage-sags/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-04-15-voltage-sags/</guid>
+      <description>Voltage sags are significant transient dips in the network voltage, lasting for less than a cycle to several seconds. They can be caused by faults, motor starts, equipment misoperation, or fast reclosing operation of circuit breakers and are relatively common events in distribution and transmission networks. Large, long, or frequent voltage sags can be problematic for utilities, as they can cause sensitive loads to turn off, motors to stall, or solar photovoltaic inverters to trip offline.</description>
+    </item>
+    
+    <item>
+      <title>NI4AI Webinar</title>
+      <link>http://blog.ni4ai.org/post/2020-04-07-ni4ai-webinar/</link>
+      <pubDate>Tue, 07 Apr 2020 09:20:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-04-07-ni4ai-webinar/</guid>
+      <description>This webinar is hosted by the North American Synchrophasor Initiative (NASPI)
+April 15 - 8:00am PDT / 11:00am EDT (1.5 hrs)
+National Infrastructure for Artificial Intelligence on the Grid (NI4AI)
+https://www.naspi.org/node/821
+Moderated by Prof. Sascha von Meier from UC Berkeley, this panel will introduce the ARPA-E funded NI4AI effort, built on PingThings’ PredictiveGrid platform. Use case examples involving different types of data analytics from academia and utility practice will highlight the role of geographic scope, heterogeneity, and real vs.</description>
+    </item>
+    
+    <item>
+      <title>Sunshine uPMU Data</title>
+      <link>http://blog.ni4ai.org/post/2020-04-08-sunshine-data/</link>
+      <pubDate>Mon, 30 Mar 2020 12:30:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-04-08-sunshine-data/</guid>
+      <description>The primary synchrophasor dataset that is currently available in the NI4AI platform is from 6 topologically related uPMUs measuring data intermittently from 2015-2017. The dataset was collected for academic power engineering research and has been anonymized to remove sensitive and location-specific information. Because it was the first dataset to be made public on the platform, we&amp;rsquo;ve named it the &amp;ldquo;sunshine&amp;rdquo; dataset and it can be found in the sunshine/ collection in the plotter.</description>
+    </item>
+    
+    <item>
+      <title>Memory Efficient BTrDB Queries: Part 2</title>
+      <link>http://blog.ni4ai.org/post/2020-02-14-btrdb-queries-pt2/</link>
+      <pubDate>Fri, 14 Feb 2020 16:55:21 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-02-14-btrdb-queries-pt2/</guid>
+      <description>In Part I we introduced the tree data structure and discussed the two main algorithms for traversing them: depth-first and breadth-first. It is highly recommended that you review that post if these concepts are new to you, as Part II will build on them with more complicated examples using the Berkeley Tree Database (BTrDB).
+In this post we will review three multi-query approaches for memory safety. First, we will explore chunked queries that allow us to scan across the database, loading fixed size chunks of memory at a time.</description>
+    </item>
+    
+    <item>
+      <title>Memory Efficient BTrDB Queries: Part 1</title>
+      <link>http://blog.ni4ai.org/post/2020-02-12-btrdb-queries-pt1/</link>
+      <pubDate>Wed, 12 Feb 2020 10:20:38 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-02-12-btrdb-queries-pt1/</guid>
+      <description>The Berkeley Tree Database (BTrDB) provides effective distributed storage of dense scalar-valued telemetry data. It can store data with nanosecond precision, and it supports reading and writing more than 10 million points per second per node. As a result it is an excellent tool for analyzing historical high-frequency (usually 30-240 Hz) sensor readings that produce gigabytes of data an hour.
+When working with such large amounts of data, it is important to conduct queries in a manner that efficiently utilizes the main memory of your machine.</description>
+    </item>
+    
+    <item>
+      <title>Training General Linear Models with the PredictiveGrid™</title>
+      <link>http://blog.ni4ai.org/post/2020-02-04-linear-models-overview/</link>
+      <pubDate>Tue, 04 Feb 2020 16:46:23 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-02-04-linear-models-overview/</guid>
+      <description>Linear Modeling Process Overview BTrDB (the Berkeley Tree Database) is the core of the PredictiveGrid™ and implements a time series database API that is extremely effective for distributed analytics including the training of general linear models. To efficiently distribute storage to accommodate a high rate of data ingest from multiple sensors, data is stored in independent streams. As a result, univariate forecasting models are very easy to construct since, unlike querying a database table, queries are directly to measurement streams.</description>
+    </item>
+    
+    <item>
+      <title>Time Series Benchmarking Results</title>
+      <link>http://blog.ni4ai.org/post/2019-12-17-benchmarking-results/</link>
+      <pubDate>Tue, 17 Dec 2019 17:21:41 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2019-12-17-benchmarking-results/</guid>
+      <description>There are many time series databases on the market at the moment and they each have their own strengths and weaknesses. Some of these characteristics are qualitative or can be quantified without an experiment for example &amp;ldquo;this database can scale out to a cluster&amp;rdquo; or &amp;ldquo;this database supports query X&amp;rdquo;. Others need an experiment run on controlled hardware in order to quantify the differences.
+Using the benchmarking codebase, we evaluate a number of scenarios to model real world performance.</description>
+    </item>
+    
+    <item>
+      <title>BTrDB Explained</title>
+      <link>http://blog.ni4ai.org/post/2019-12-12-btrdb-explained/</link>
+      <pubDate>Thu, 12 Dec 2019 19:42:13 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2019-12-12-btrdb-explained/</guid>
+      <description>BTrDB is a next-gen timeseries database for high-precision, dense telemetry.
+ The Berkeley Tree DataBase (BTrDB) is pronounced &amp;ldquo;Better DB&amp;quot;.
+ Problem: Existing timeseries databases are poorly equipped for a new generation of ultra-fast sensor telemetry. Specifically, millions of high-precision power meters are to be deployed throughout the power grid to help analyze and prevent blackouts. Thus, new software must be built to facilitate the storage and analysis of its data.</description>
+    </item>
+    
+    <item>
+      <title>Language Bindings Survey</title>
+      <link>http://blog.ni4ai.org/post/2019-11-06-language-bindings-survey/</link>
+      <pubDate>Wed, 06 Nov 2019 15:05:10 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2019-11-06-language-bindings-survey/</guid>
+      <description>We need your help to select the next languages to implement BTrDB bindings in! Please give us your feedback on this very short survey (it should take no more than 5 minutes):
+BTrDB Analytics Language Bindings Survey.
+At the core of the NI4AI PredictiveGrid platform is the BTrDB database - a timeseries database that has been designed from the ground up for dense or high volume telemetry analytics produced by sensors like syncrhophasors that monitor the grid.</description>
+    </item>
+    
+    <item>
+      <title>Project Kickoff</title>
+      <link>http://blog.ni4ai.org/post/2019-10-26-kickoff/</link>
+      <pubDate>Fri, 25 Oct 2019 12:00:00 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2019-10-26-kickoff/</guid>
+      <description>The National Infrastructure for Artificial Intelligence on the Electric Grid will be kicking off soon. You&amp;rsquo;ll be able to sign up for access to the data we host, and use the PredictiveGrid™ platform&amp;rsquo;s tooling for visualization and analysis. Watch this space for more details. If you have questions, requests, or a data set that you&amp;rsquo;d like to make more widely available, you may get in touch with us directly at info@pingthings.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="keywords"
+      content="time series, TSDB, data analysis, machine learning, deep learning, AI, IoT, energy, DOE"
+    />
+
+    <title>
+      NI4AI - National Infrastructure for AI on the Electric Grid
+    </title>
+
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+    
+    <link href="/assets/css/page.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    
+
+
+    
+    <link rel="stylesheet" href="/assets/css/page.css">
+     
+
+     
+
+   <meta property="og:title" content="Voltage Sag Safari: Exploring Voltage Sags with BTrDB" />
+<meta property="og:description" content="How to discover voltage sags with efficient BTrDB queries" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ni4ai.org/post/2020-04-15-voltage-sags/" />
+<meta property="article:published_time" content="2020-04-15T00:02:12-07:00" />
+<meta property="article:modified_time" content="2020-04-15T00:02:12-07:00" />
+<meta itemprop="name" content="Voltage Sag Safari: Exploring Voltage Sags with BTrDB">
+<meta itemprop="description" content="How to discover voltage sags with efficient BTrDB queries">
+<meta itemprop="datePublished" content="2020-04-15T00:02:12-07:00" />
+<meta itemprop="dateModified" content="2020-04-15T00:02:12-07:00" />
+<meta itemprop="wordCount" content="1929">
+
+
+
+<meta itemprop="keywords" content="btrdb,python,voltage sags,algorithms,analytics,visualization," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Voltage Sag Safari: Exploring Voltage Sags with BTrDB"/>
+<meta name="twitter:description" content="How to discover voltage sags with efficient BTrDB queries"/>
+
+    
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" href="assets/img/favicon.png" />
+
+    
+    <meta property="og:title" content="PingThings PredictiveGrid™" />
+    <meta
+      property="og:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      property="og:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+    <meta property="og:url" content="https://pingthings.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pingthingsio" />
+    <meta
+      name="twitter:title"
+      content="A comprehensive platform for data science on petabyte scale sensor data."
+    />
+    <meta
+      name="twitter:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+  </head>
+
+  <body data-aos-easing="ease" data-aos-duration="1500" data-aos-delay="0" class="">
+
+    
+   
+  <header>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="top: 0;"
+    data-navbar="sticky"
+  >
+    
+    <div class="pl5 pb3 row">
+      <div class="col-8 col-lg-2 navbar-left" style="padding-left: 0px;">
+        <button class="navbar-toggler" type="button">☰</button>
+        <a class="navbar-brand" href="/">
+          <span style="font-size: 20px; color: black;">NI4AI Blog</span>
+          
+        </a>
+      </div>
+      <section class="col-lg-8 navbar-mobile">
+  <nav class="nav nav-navbar mx-auto">
+    
+    <a class="nav-link" href="/about/" title="About">About</a>
+    
+    <a class="nav-link" href="/post/" title="Articles">Articles</a>
+    
+    <a class="nav-link" href="https://ni4ai.org" title="Project Home">
+      Project Home
+    </a>
+  </nav>
+</section>
+
+    </div>
+    
+  </nav>
+  <div style="height: 56px;"></div>
+</header>
+
+
+    
+  
+  <article class="flex-l flex-wrap justify-between pl5 pt5 mw9">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        ARTICLES
+      </p>
+      <h1 class="f1 athelas mb1">Voltage Sag Safari: Exploring Voltage Sags with BTrDB</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-04-15T00:02:12-07:00">April 15, 2020</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><em>Voltage sags</em> are significant transient dips in the network voltage, lasting for less than a cycle to several seconds. They can be caused by faults, motor starts, equipment misoperation, or fast reclosing operation of circuit breakers and are relatively common events in distribution and transmission networks. Large, long, or frequent voltage sags can be problematic for utilities, as they can cause sensitive loads to turn off, motors to stall, or solar photovoltaic inverters to trip offline. Load trips can be a serious nuisance, with substantial economic losses particularly for commercial customers. Large numbers of simultaneous inverter trips could lead to broader system instability.</p>
+<p>There are also safety implications, as a voltage sag may indicate a momentary fault that was not recognized and cleared by protection systems (also known as a high-impedance fault) — for example, momentary contact between distribution conductors and trees. Such faults can be precursors to even more dangerous conditions, such as wildfire ignition. Distribution PMU measurements, sampled at 120 Hz, give unprecedented visibility of voltage sags, capturing even the small, brief dips that would be invisible in most other measurements. BTrDB then allows us to easily find, extract, and analyze these sags from a large measurement stream to gain system insights.</p>
+<p>In this post, we use the simple BTrDB search functions introduced <a href="/post/2020-02-14-btrdb-queries-pt2/">previously</a> to find voltage sags. We then use Python&rsquo;s wonderful data visualization libraries to visually analyze and discover patterns in the sags and to share our findings. Along the way, we learn some interesting facts about voltage sags!</p>
+<h2 id="finding-voltage-sags">Finding Voltage Sags</h2>
+<p>To find voltage sags, we must recognize them. Large voltage sags are distinctly visible in BTrDB voltage measurements as sharp, long deviations from mostly flat voltage profiles:</p>
+<p><img src="/media/post/2020-04-15-voltage-sags/btrdb_sags.png" alt="Voltage sags are clearly visible in BTrDB"></p>
+<p>According to one definition, a voltage sag is &ldquo;a decrease in the rms ac voltage between 0.1 and 0.9 p.u. at the power frequency for a duration of 0.5 cycles to 1 min&rdquo; <a href="#references">[1]</a>. The magnitude and duration thresholds differ in other definitions. For flexibility, we will define a voltage sag as a drop in voltage below $\tau$, which will generally be some fraction of the nominal voltage, $V_{nom}$. The following function uses an efficient depth first search to find all voltage measurement points below $\tau$, which we term _sag points_. It is a slightly modified version of the DFS function introduced <a href="/post/2020-02-14-btrdb-queries-pt2/">previously</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_vsags_dfs</span>(
+    stream,
+    tau,
+    start<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MINIMUM_TIME,
+    end<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MAXIMUM_TIME,
+    pw<span style="color:#f92672">=</span><span style="color:#ae81ff">48</span>,
+    version<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+):
+    <span style="color:#75715e"># Ensure pw is a pointwidth object</span>
+    pw <span style="color:#f92672">=</span> pointwidth(pw)
+    <span style="color:#75715e"># Begin by collecting all stat points at the specified pointwidth</span>
+    <span style="color:#75715e"># Note that zip creates a list of windows and versions and we ignore the versions</span>
+    windows, _ <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>stream<span style="color:#f92672">.</span>aligned_windows(start, end, pw, version))
+    <span style="color:#75715e"># Traversing from left to right from the windows</span>
+    <span style="color:#66d9ef">for</span> window <span style="color:#f92672">in</span> windows:
+        <span style="color:#75715e"># Check to see if the value is in the window</span>
+        <span style="color:#66d9ef">if</span> window<span style="color:#f92672">.</span>min <span style="color:#f92672">&lt;=</span> tau:
+            <span style="color:#75715e"># Get the time range of the current window</span>
+            wstart <span style="color:#f92672">=</span> window<span style="color:#f92672">.</span>time
+            wend <span style="color:#f92672">=</span> window<span style="color:#f92672">.</span>time <span style="color:#f92672">+</span> pw<span style="color:#f92672">.</span>nanoseconds
+            <span style="color:#75715e"># If we are at a window length of a second, use values</span>
+            <span style="color:#66d9ef">if</span> pw <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">30</span>:
+                points, _ <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>stream<span style="color:#f92672">.</span>values(wstart, wend, version))
+            <span style="color:#75715e"># Otherwise, traverse the stat point children of this node</span>
+            <span style="color:#66d9ef">else</span>:
+                points <span style="color:#f92672">=</span> find_vsags_dfs(stream, tau, wstart, wend, pw<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, version)
+            <span style="color:#75715e"># Yield all points to the calling function</span>
+            <span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> points:
+                <span style="color:#66d9ef">if</span> point<span style="color:#f92672">.</span>value <span style="color:#f92672">&lt;=</span> tau:
+                    <span style="color:#66d9ef">yield</span> point
+</code></pre></div><p>The function <code>find_vsags_dfs</code> returns a <em>generator</em> which will output sag points when queried.  We can easily obtain the time series of a voltage sag by applying <code>find_vsags_dfs</code> to a stream over a short time period and then querying a window of raw measurements about the first sag point.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sags <span style="color:#f92672">=</span> find_vsags_dfs(stream, thresh, start<span style="color:#f92672">=</span>start, end<span style="color:#f92672">=</span>end)
+<span style="color:#75715e"># Get the first sag point</span>
+sag_point <span style="color:#f92672">=</span> next(sags)
+<span style="color:#75715e"># A utility function which queries a window of data around a point</span>
+sag_data <span style="color:#f92672">=</span> get_event(stream, sag_point[<span style="color:#ae81ff">0</span>])
+<span style="color:#75715e"># Plot the results</span>
+plt<span style="color:#f92672">.</span>figure(); plt<span style="color:#f92672">.</span>plot(sag_data)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Sample Voltage Sag&#39;</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Time Index&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Voltage Magnitude&#39;</span>)
+</code></pre></div><p>The resulting voltage sag is shown below:</p>
+<p><img src="/media/post/2020-04-15-voltage-sags/example_sag.png" alt="Example voltage sag"></p>
+<h2 id="counting-voltage-sags">Counting Voltage Sags</h2>
+<p>The generator returns every sag point, but several of these points will belong to a single voltage sag. We write another function, <code>sag_survey</code>, which processes the points returned by the generator to determine the starting time, the duration, and the minimum magnitude of every voltage sag in the time period of interest. We choose 1 s. to be the minimum separation between distinct voltage sags.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sag_survey</span>(sags, verbose<span style="color:#f92672">=</span>False, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>):
+    <span style="color:#75715e"># Initialize sag information</span>
+    starts <span style="color:#f92672">=</span> []
+    durations <span style="color:#f92672">=</span> []
+    magnitudes <span style="color:#f92672">=</span> []
+    <span style="color:#75715e"># Get the first sag</span>
+    sag <span style="color:#f92672">=</span> safe_next(sags)
+    <span style="color:#66d9ef">if</span> sag<span style="color:#f92672">==</span>None:
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;No voltage sags found.&#34;</span>)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">if</span> verbose: <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Voltage sag found!&#34;</span>)
+        start, mag <span style="color:#f92672">=</span> sag
+        dur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+    count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">while</span> sag:
+        sag <span style="color:#f92672">=</span> safe_next(sags)
+        <span style="color:#75715e"># If we are on the last sag</span>
+        <span style="color:#66d9ef">if</span> (sag <span style="color:#f92672">==</span> None) <span style="color:#f92672">or</span> (count <span style="color:#f92672">&gt;</span> limit):
+            starts<span style="color:#f92672">.</span>append(start)
+            durations<span style="color:#f92672">.</span>append(dur)
+            magnitudes<span style="color:#f92672">.</span>append(mag)
+            sag <span style="color:#f92672">=</span> None
+        <span style="color:#66d9ef">else</span>:
+            sag_time, sag_value <span style="color:#f92672">=</span> sag
+            <span style="color:#75715e"># Check if this is a different sag</span>
+            <span style="color:#75715e"># More than 1 s after last sag point</span>
+            <span style="color:#66d9ef">if</span> sag_time <span style="color:#f92672">-</span> (start <span style="color:#f92672">+</span> dur) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1e9</span>:
+                <span style="color:#66d9ef">if</span> verbose: <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Voltage sag found!&#34;</span>)
+                <span style="color:#75715e"># Save last sag</span>
+                starts<span style="color:#f92672">.</span>append(start)
+                durations<span style="color:#f92672">.</span>append(dur)
+                magnitudes<span style="color:#f92672">.</span>append(mag)
+                <span style="color:#75715e"># Increment sag count</span>
+                count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#75715e"># Initialize next sag</span>
+                start <span style="color:#f92672">=</span> sag_time
+                mag <span style="color:#f92672">=</span> sag_value
+                dur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+            <span style="color:#75715e"># Otherwise update properties of this sag</span>
+            <span style="color:#66d9ef">else</span>:
+                dur <span style="color:#f92672">=</span> sag_time <span style="color:#f92672">-</span> start
+                mag <span style="color:#f92672">=</span> min(mag, sag_value)
+
+    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>array(starts), np<span style="color:#f92672">.</span>array(durations), np<span style="color:#f92672">.</span>array(magnitudes)
+<span style="color:#75715e"># A convenience for iterating through a generator</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">safe_next</span>(iterable):
+    <span style="color:#66d9ef">try</span>:
+        first <span style="color:#f92672">=</span> next(iterable)
+    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">StopIteration</span>:
+        <span style="color:#66d9ef">return</span> None
+    <span style="color:#66d9ef">return</span> first
+</code></pre></div><p>Notice the <code>safe_next</code> helper function through which we query the sag point generator. The generator will throw a <code>StopIteration</code> exception after returning the last sag point. Since we don&rsquo;t know the number of sag points apriori, <code>safe_next</code> enables us to properly handle the end of the generator and avoid an exception.</p>
+<p>We run <code>sag_survey</code> on one month of PMU measurements, choosing a sag threshold of $\tau = 0.99V_{nom}$:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Choose the stream</span>
+stream <span style="color:#f92672">=</span> streams[<span style="color:#e6db74">&#34;35bdb8dc-bf18-4523-85ca-8ebe384bd9b5&#34;</span>]
+<span style="color:#75715e"># Get nominal voltage of stream</span>
+vnom <span style="color:#f92672">=</span> get_mean_value(stream)
+<span style="color:#75715e"># Start and end times of period to study</span>
+start <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2016-11-20T00:00:00.000Z&#34;</span>
+end <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2016-12-20T00:00:00.000Z&#34;</span>
+<span style="color:#75715e"># Threshold below which data is considered a voltage sag</span>
+thresh <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.99</span> <span style="color:#f92672">*</span> vnom
+<span style="color:#75715e"># Find voltage sag data points</span>
+sags <span style="color:#f92672">=</span> find_vsags_dfs(stream, thresh, start<span style="color:#f92672">=</span>start, end<span style="color:#f92672">=</span>end)
+<span style="color:#75715e"># Get features of voltage sags</span>
+starts, durs, mags <span style="color:#f92672">=</span> sag_survey(sags, verbose<span style="color:#f92672">=</span>False)
+
+<span style="color:#75715e"># Print magnitudes of sags</span>
+<span style="color:#66d9ef">print</span>(mags)
+</code></pre></div><p>The search is over more than a 150 <em>million</em> points, and runs in 12 <em>seconds</em>! It finds seven sags with the following minimium magnitudes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">[<span style="color:#ae81ff">6769.92675781</span> <span style="color:#ae81ff">6753.34423828</span> <span style="color:#ae81ff">6851.39550781</span> <span style="color:#ae81ff">6591.23486328</span> <span style="color:#ae81ff">6911.60888672</span>
+ <span style="color:#ae81ff">6875.84033203</span> <span style="color:#ae81ff">6891.41845703</span>]
+</code></pre></div><h2 id="exploring-voltage-sags">Exploring Voltage Sags</h2>
+<p>Now we are ready to do some exploration. The most basic features of voltage sags are their size and duration. The combination of these features determines the extent of their detrimental impact on sensitive loads <a href="#references">[2]</a>. To understand the size and duration of voltage sags at one location, we use <code>sag_survey</code> to search for voltage sags across <em>three months</em> of measurements. We create a scatter plot showing the size and duration of each sag.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Find voltage sag data points</span>
+sags <span style="color:#f92672">=</span> find_vsags_dfs(stream, thresh, start<span style="color:#f92672">=</span>start, end<span style="color:#f92672">=</span>end)
+<span style="color:#75715e"># Get features of voltage sags</span>
+starts, durs, mags <span style="color:#f92672">=</span> sag_survey(sags, verbose<span style="color:#f92672">=</span>False)
+plt<span style="color:#f92672">.</span>scatter(durs <span style="color:#f92672">/</span> <span style="color:#ae81ff">1e9</span>, mags <span style="color:#f92672">/</span> vnom)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Size vs. Duration of Voltage Sags&#39;</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Durations (s.)&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Minimum magnitude (V)&#39;</span>)
+</code></pre></div><p><img src="/media/post/2020-04-15-voltage-sags/size_vs_durs.png" alt="Magnitude and duration of sags over 3 months"></p>
+<p>Smaller, shorter sags form the cluster in the top left corner and are the most frequent. We see that this location doesn&rsquo;t have any large long sags, which would show up as points in the bottom right and be the most problematic.</p>
+<p>An interesting result in the literature says that the normalized frequency of sags with magnitude $V$ will be proportional to $\frac{V}{1-V}$. This formula emerges from a highly simplified model of fault induced sags <a href="#references">[3]</a>. To see how well it applies to our empirical data, we transform our scatter plot into a histogram and overlay the appropriately scaled $\frac{V}{1-V}$ curve.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Plot a histogram of the sag magnitudes</span>
+pmags <span style="color:#f92672">=</span> mags <span style="color:#f92672">/</span> vnom
+plt<span style="color:#f92672">.</span>hist(pmags, density<span style="color:#f92672">=</span>True)
+<span style="color:#75715e"># Plot normalized V / (1-V)</span>
+x, y <span style="color:#f92672">=</span> freq_vs_size(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">0.99</span>)
+plt<span style="color:#f92672">.</span>plot(x, y, label <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{V}{1-V}$&#39;</span>)
+
+<span style="color:#75715e"># Add keys</span>
+plt<span style="color:#f92672">.</span>legend(fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Frequency vs Magnitude of Voltage Sags&#39;</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Magnitude&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Normalized Frequency&#39;</span>)
+</code></pre></div><p><img src="/media/post/2020-04-15-voltage-sags/freq_vs_voltage.png" alt="Sag frequency as a function of magnitude"></p>
+<p>The fit is pretty good!</p>
+<p>An open question in the literature is the impact of distributed generation (DG) on the size and frequency of voltage sags. There is hesitant speculation that DG may mitigate the impacts of sags by supporting the local voltage during a sag <a href="#references">[4]</a>. We can study this question on a dataset of 4 PMU measurements from a system with a PV installation. The measurements are at a common voltage level, but are not all on the same feeder. PMU 1 measures at the coupling point of a large PV array, PMU 3 is at the substation above the PV site, while PMUs 4 and 5 are at a substation some distance away.</p>
+<p><img src="/media/post/2020-04-15-voltage-sags/sag_comparison.png" alt="DG impacts on voltage sag"></p>
+<p>In the scatter plot, points indicate individual voltage sags, while stars show the average sag magnitude and duration at each PMU. We see that PMU 1, directly at the PV site, has the smallest average sag magnitude. PMU 3, at the substation above the PV site, experiences larger average sags than PMU 1, but still smaller than PMUs 4 or 5. This cursory analysis suggests that the presence of DG may indeed reduce the size of voltage sags, though of course there are a plethora of other factors they may be behind the observed differences.</p>
+<p>Voltage sag frequencies can show strong temporal dependences, such as seasonal or weekly patterns <a href="#references">[5]</a>. This reflects the temporal patterns of the underlying causes of the sags. For example, sags due to vegetation contact faults may mostly occur during windy times of year, while sags caused by the operation of certain industrial equipment may occur only on weekdays. We explore any weekly patterns in the voltage sags at PMUs 4 and 5 with the following script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> btrdb.utils.timez <span style="color:#f92672">import</span> ns_to_datetime
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_day_counts</span>(times):
+    counts <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(<span style="color:#ae81ff">7</span>)
+    <span style="color:#66d9ef">for</span> time <span style="color:#f92672">in</span> times:
+        dt <span style="color:#f92672">=</span> ns_to_datetime(time)
+        day <span style="color:#f92672">=</span> int(dt<span style="color:#f92672">.</span>weekday())
+        counts[day] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">return</span> counts
+
+daysofweek <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;M&#39;</span>, <span style="color:#e6db74">&#39;Tu&#39;</span>, <span style="color:#e6db74">&#39;W&#39;</span>, <span style="color:#e6db74">&#39;Th&#39;</span>, <span style="color:#e6db74">&#39;F&#39;</span>, <span style="color:#e6db74">&#39;Sa&#39;</span>, <span style="color:#e6db74">&#39;Su&#39;</span>]
+counts1 <span style="color:#f92672">=</span> get_day_counts(starts1)
+counts2 <span style="color:#f92672">=</span> get_day_counts(starts2)
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">7</span>))
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>)
+plt<span style="color:#f92672">.</span>bar(daysofweek, counts1, align<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;center&#39;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Sags at PMU 4&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Count&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+
+plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+plt<span style="color:#f92672">.</span>bar(daysofweek, counts2, align<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;center&#39;</span>)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Sags at PMU 5&#39;</span>)
+</code></pre></div><p>Notice in this script we use the <code>ns_to_datetime</code> function from <code>btrdb.utils.timez</code>. BTrDB deals in nanoseconds and returns timestamps as <em>nanoseconds since the epoch</em>. <code>btrdb.utils.timez</code>, documented <a href="https://btrdb.readthedocs.io/en/latest/api/utils-timez.html">here</a>, contains helpful functions to convert between these nanosecond timestamps and more human-friendly ones. The <code>ns_to_datetime</code> function returns a Python <code>datetime</code> object with many useful properties, which you can explore <a href="https://docs.python.org/3/library/datetime.html">here</a>.</p>
+<p>After running this script on several months of data with $\tau = 0.98V_{nom}$, we obtain the following bar plots.</p>
+<p><img src="/media/post/2020-04-15-voltage-sags/sags_by_day.png" alt="sag frequency by day of week"></p>
+<p>Note that our choice of $\tau$ is high, so many of these sags will be small. Yet certain days dominate in the occurrence of sags. Other explorations would be necessary to determine why this is so.</p>
+<h2 id="references">References</h2>
+<p>[1] Milanovic, J. V., Aung, M. T., &amp; Gupta, C. P. (2005). The influence of fault distribution on stochastic prediction of voltage sags. IEEE Transactions on Power Delivery, 20(1), 278-285.</p>
+<p>[2] Shen, C. C., &amp; Lu, C. N. (2007). A voltage sag index considering compatibility between equipment and supply. IEEE Transactions on Power Delivery, 22(2), 996-1002.</p>
+<p>[3] Bollen, M. H. (1996). Voltage sags: effects, mitigation and prediction. Power Engineering Journal, 10(3), 129-135.</p>
+<p>[4] McDermott, T. E., &amp; Dugan, R. C. (2002, May). Distributed generation impact on reliability and power quality indices. In 2002 Rural Electric Power Conference. Papers Presented at the 46th Annual Conference (Cat. No. 02CH37360) (pp. D3-1). IEEE.</p>
+<p>[5]Herath, H. C., &amp; McHardy, S. (2008, October). Power quality trends in energy Australia distribution network. In 2008 13th International Conference on Harmonics and Quality of Power (pp. 1-6). IEEE.</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/btrdb" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">btrdb</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/python" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/voltage-sags" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">voltage sags</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/algorithms" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">algorithms</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/analytics" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">analytics</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/visualization" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">visualization</a>
+   </li>
+  
+</ul>
+
+  
+  
+    <div class='custom-section author-bio mid-gray'>
+      <h3>About the author</h3>
+      <div class='image-bio-section'>
+        <div class='left'>
+          <img src="/assets/img/people/mohini.jpg" class="img" alt="image from Mohini Bariya">
+        </div>
+        <div class='right'>
+          <h4>Mohini Bariya</h4>
+          <p>Mohini Bariya is a PhD student in Electrical Engineering at UC Berkeley. Her work is on grid modernization and renewables integration, with a focus on using sensor measurements for system awareness to enable safer, more efficient grid operations. She hopes this blog will excite others about the electric grid and grid measurements. You can reach her at mohini@berkeley.edu.</p>
+        </div>
+      </div>
+    </div>
+  
+
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3"></p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/2020-02-14-btrdb-queries-pt2/">Memory Efficient BTrDB Queries: Part 2</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2020-02-12-btrdb-queries-pt1/">Memory Efficient BTrDB Queries: Part 1</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2020-04-08-sunshine-data/">Sunshine uPMU Data</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2019-12-12-btrdb-explained/">BTrDB Explained</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2020-02-04-linear-models-overview/">Training General Linear Models with the PredictiveGrid™</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    
+<footer class="footer">
+  <div class="container">
+    <div class="row gap-y align-items-center">
+      <div class="col-6 col-lg-3">
+        <a href="https://www.pingthings.ai"
+          ><img src="/assets/img/logo-dark.png" alt="logo"
+        /></a>
+      </div>
+
+      <div class="col-6 col-lg-3 text-right order-lg-last">
+        <div class="social">
+          <a class="social-twitter" href="https://twitter.com/pingthingsio"
+            ><i class="fa fa-twitter-square"></i
+          ></a>
+          <a
+            class="social-linkedin"
+            href="https://www.linkedin.com/company/pingthings/about/"
+            ><i class="fa fa-linkedin-square"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <small>© 2019. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+<script src="/assets/js/page.js"></script>
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: {
+          equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"]
+        }
+      }
+    });
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+
+    MathJax.Hub.Config({
+      
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  </body>
+
+
+  </body>
+</html>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>benchmarking on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/benchmarking/</link>
+    <description>Recent content in benchmarking on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Dec 2019 17:21:41 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/benchmarking/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Time Series Benchmarking Results</title>
+      <link>http://blog.ni4ai.org/post/2019-12-17-benchmarking-results/</link>
+      <pubDate>Tue, 17 Dec 2019 17:21:41 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2019-12-17-benchmarking-results/</guid>
+      <description>There are many time series databases on the market at the moment and they each have their own strengths and weaknesses. Some of these characteristics are qualitative or can be quantified without an experiment for example &amp;ldquo;this database can scale out to a cluster&amp;rdquo; or &amp;ldquo;this database supports query X&amp;rdquo;. Others need an experiment run on controlled hardware in order to quantify the differences.
+Using the benchmarking codebase, we evaluate a number of scenarios to model real world performance.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data structures on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/data-structures/</link>
+    <description>Recent content in data structures on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 14 Feb 2020 16:55:21 -0500</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Memory Efficient BTrDB Queries: Part 2</title>
+      <link>http://blog.ni4ai.org/post/2020-02-14-btrdb-queries-pt2/</link>
+      <pubDate>Fri, 14 Feb 2020 16:55:21 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-02-14-btrdb-queries-pt2/</guid>
+      <description>In Part I we introduced the tree data structure and discussed the two main algorithms for traversing them: depth-first and breadth-first. It is highly recommended that you review that post if these concepts are new to you, as Part II will build on them with more complicated examples using the Berkeley Tree Database (BTrDB).
+In this post we will review three multi-query approaches for memory safety. First, we will explore chunked queries that allow us to scan across the database, loading fixed size chunks of memory at a time.</description>
+    </item>
+    
+    <item>
+      <title>Memory Efficient BTrDB Queries: Part 1</title>
+      <link>http://blog.ni4ai.org/post/2020-02-12-btrdb-queries-pt1/</link>
+      <pubDate>Wed, 12 Feb 2020 10:20:38 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-02-12-btrdb-queries-pt1/</guid>
+      <description>The Berkeley Tree Database (BTrDB) provides effective distributed storage of dense scalar-valued telemetry data. It can store data with nanosecond precision, and it supports reading and writing more than 10 million points per second per node. As a result it is an excellent tool for analyzing historical high-frequency (usually 30-240 Hz) sensor readings that produce gigabytes of data an hour.
+When working with such large amounts of data, it is important to conduct queries in a manner that efficiently utilizes the main memory of your machine.</description>
+    </item>
+    
+  </channel>
+</rss>

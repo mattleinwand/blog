@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>annoucement on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/annoucement/</link>
+    <description>Recent content in annoucement on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Apr 2020 09:20:37 -0400</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/annoucement/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NI4AI Webinar</title>
+      <link>http://blog.ni4ai.org/post/2020-04-07-ni4ai-webinar/</link>
+      <pubDate>Tue, 07 Apr 2020 09:20:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-04-07-ni4ai-webinar/</guid>
+      <description>This webinar is hosted by the North American Synchrophasor Initiative (NASPI)
+April 15 - 8:00am PDT / 11:00am EDT (1.5 hrs)
+National Infrastructure for Artificial Intelligence on the Grid (NI4AI)
+https://www.naspi.org/node/821
+Moderated by Prof. Sascha von Meier from UC Berkeley, this panel will introduce the ARPA-E funded NI4AI effort, built on PingThings’ PredictiveGrid platform. Use case examples involving different types of data analytics from academia and utility practice will highlight the role of geographic scope, heterogeneity, and real vs.</description>
+    </item>
+    
+  </channel>
+</rss>

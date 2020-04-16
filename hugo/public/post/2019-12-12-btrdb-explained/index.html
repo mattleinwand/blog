@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="keywords"
+      content="time series, TSDB, data analysis, machine learning, deep learning, AI, IoT, energy, DOE"
+    />
+
+    <title>
+      NI4AI - National Infrastructure for AI on the Electric Grid
+    </title>
+
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+    
+    <link href="/assets/css/page.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    
+
+
+    
+    <link rel="stylesheet" href="/assets/css/page.css">
+     
+
+     
+
+   <meta property="og:title" content="BTrDB Explained" />
+<meta property="og:description" content="A brief description of the Berkeley Tree Database (BTrDB)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ni4ai.org/post/2019-12-12-btrdb-explained/" />
+<meta property="article:published_time" content="2019-12-12T19:42:13+00:00" />
+<meta property="article:modified_time" content="2019-12-12T19:42:13+00:00" />
+<meta itemprop="name" content="BTrDB Explained">
+<meta itemprop="description" content="A brief description of the Berkeley Tree Database (BTrDB)">
+<meta itemprop="datePublished" content="2019-12-12T19:42:13&#43;00:00" />
+<meta itemprop="dateModified" content="2019-12-12T19:42:13&#43;00:00" />
+<meta itemprop="wordCount" content="709">
+
+
+
+<meta itemprop="keywords" content="btrdb,timeseries,analytics,database," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BTrDB Explained"/>
+<meta name="twitter:description" content="A brief description of the Berkeley Tree Database (BTrDB)"/>
+
+    
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" href="assets/img/favicon.png" />
+
+    
+    <meta property="og:title" content="PingThings PredictiveGrid™" />
+    <meta
+      property="og:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      property="og:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+    <meta property="og:url" content="https://pingthings.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pingthingsio" />
+    <meta
+      name="twitter:title"
+      content="A comprehensive platform for data science on petabyte scale sensor data."
+    />
+    <meta
+      name="twitter:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+  </head>
+
+  <body data-aos-easing="ease" data-aos-duration="1500" data-aos-delay="0" class="">
+
+    
+   
+  <header>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="top: 0;"
+    data-navbar="sticky"
+  >
+    
+    <div class="pl5 pb3 row">
+      <div class="col-8 col-lg-2 navbar-left" style="padding-left: 0px;">
+        <button class="navbar-toggler" type="button">☰</button>
+        <a class="navbar-brand" href="/">
+          <span style="font-size: 20px; color: black;">NI4AI Blog</span>
+          
+        </a>
+      </div>
+      <section class="col-lg-8 navbar-mobile">
+  <nav class="nav nav-navbar mx-auto">
+    
+    <a class="nav-link" href="/about/" title="About">About</a>
+    
+    <a class="nav-link" href="/post/" title="Articles">Articles</a>
+    
+    <a class="nav-link" href="https://ni4ai.org" title="Project Home">
+      Project Home
+    </a>
+  </nav>
+</section>
+
+    </div>
+    
+  </nav>
+  <div style="height: 56px;"></div>
+</header>
+
+
+    
+  
+  <article class="flex-l flex-wrap justify-between pl5 pt5 mw9">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        ARTICLES
+      </p>
+      <h1 class="f1 athelas mb1">BTrDB Explained</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-12-12T19:42:13Z">December 12, 2019</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><strong>BTrDB is a next-gen timeseries database for high-precision, dense telemetry.</strong></p>
+<blockquote>
+<p>The Berkeley Tree DataBase (BTrDB) is pronounced &ldquo;<strong>Better DB</strong>&quot;.</p>
+</blockquote>
+<p><strong>Problem:</strong> Existing timeseries databases are poorly equipped for a new generation of ultra-fast sensor telemetry. Specifically, millions of high-precision power meters are to be deployed throughout the power grid to help analyze and prevent blackouts. Thus, new software must be built to facilitate the storage and analysis of its data.</p>
+<p><strong>Baseline:</strong> We need at least 1.4M inserts/s and 5x that in reads if we are to support 1000 <a href="https://arxiv.org/abs/1605.02813">micro-synchrophasors</a> per server node. No timeseries database can do this.</p>
+<h2 id="summary">Summary</h2>
+<p><strong>Goals:</strong> Develop a multi-resolution storage and query engine for many 100+ Hz streams at nanosecond precision—and operate at the full line rate of underlying network or storage infrastructure for affordable cluster sizes (less than six).</p>
+<p>Developed at The University of California Berkeley, BTrDB offers new ways to support the aforementioned high throughput demands and allows efficient querying over large ranges.</p>
+<p><strong>Fast writes/reads</strong></p>
+<p>Measured on a 4-node cluster (large EC2 nodes):</p>
+<ul>
+<li>53 million inserted values per second</li>
+<li>119 million queried values per second</li>
+</ul>
+<p><strong>Fast analysis</strong></p>
+<p>In under <em>200ms</em>, it can query a year of data at nanosecond-precision (2.1 trillion points) at any desired window—returning statistical summary points at any desired resolution (containing a min/max/mean per point).</p>
+<p><img src="/media/post/2019-12-12-btrdb-explained/ui_zoom.gif" alt="zoom"></p>
+<p><strong>High compression</strong></p>
+<p>Data is compressed by 2.93x—a significant improvement for high-precision nanosecond streams. To achieve this, a modified version of <em>run-length encoding</em> was created to encode the <em>jitter</em> of delta values rather than the delta values themselves.  Incidentally, this  outperforms the popular audio codec <a href="https://xiph.org/flac/">FLAC</a> which was the original inspiration for this technique.</p>
+<p><strong>Efficient Versioning</strong></p>
+<p>Data is version-annotated to allow queries of data as it existed at a certain time.  This allows reproducible query results that might otherwise change due to newer realtime data coming in.  Structural sharing of data between versions is done to make this process as efficient as possible.</p>
+<h2 id="the-tree-structure">The Tree Structure</h2>
+<p>BTrDB stores its data in a time-partitioned tree.</p>
+<p>All nodes represent a given time slot. A node can describe all points within its time slot at a resolution corresponding to its depth in the tree.</p>
+<p>The root node covers ~146 years. With a branching factor of 64, bottom nodes at ten levels down cover 4ns each.</p>
+<!-- raw HTML omitted -->
+<p>A node starts as a <strong>vector node</strong>, storing raw points in a vector of size 1024. This is considered a leaf node, since it does not point to any child nodes.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│                           VECTOR NODE                           │
+│                     (holds 1024 raw points)                     │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . │ &lt;- raw points
+└─────────────────────────────────────────────────────────────────┘
+</code></pre><p>Once this vector is full and more points need to be inserted into its time slot, the node is converted to a <strong>core node</strong> by time-partitioning itself into 64 &ldquo;statistical&rdquo; points.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│                            CORE NODE                            │
+│                   (holds 64 statistical points)                 │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ │ &lt;- stat points
+└─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┼─┘
+  ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼  &lt;- child node pointers
+</code></pre><p>A <strong>statistical point</strong> represents a 1/64 slice of its parent&rsquo;s time slot. It
+holds the min, max, mean, standard deviation, and count of all points inside its time slot, and points to a new node holding extra details.  When a vector node is first converted to a core node, the raw points are pushed into new vector nodes pointed to by the new statistical points.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>The sampling rate of the data at different moments will determine how deep the tree will be during those slices of time. Regardless of the depth of the actual data, the time spent querying at some higher level (lower resolution) will remain fixed (quick) due to summaries provided by parent nodes.</p>
+<h2 id="appendix">Appendix</h2>
+<p>This page is written based on the following sources:</p>
+<ul>
+<li><a href="http://btrdb.io/">Homepage</a></li>
+<li><a href="https://www.usenix.org/system/files/conference/fast16/fast16-papers-andersen.pdf">Whitepaper</a></li>
+<li><a href="https://github.com/BTrDB/btrdb-server">Code</a></li>
+</ul>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/btrdb" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">btrdb</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/timeseries" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">timeseries</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/analytics" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">analytics</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/database" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
+   </li>
+  
+</ul>
+
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    
+<footer class="footer">
+  <div class="container">
+    <div class="row gap-y align-items-center">
+      <div class="col-6 col-lg-3">
+        <a href="https://www.pingthings.ai"
+          ><img src="/assets/img/logo-dark.png" alt="logo"
+        /></a>
+      </div>
+
+      <div class="col-6 col-lg-3 text-right order-lg-last">
+        <div class="social">
+          <a class="social-twitter" href="https://twitter.com/pingthingsio"
+            ><i class="fa fa-twitter-square"></i
+          ></a>
+          <a
+            class="social-linkedin"
+            href="https://www.linkedin.com/company/pingthings/about/"
+            ><i class="fa fa-linkedin-square"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <small>© 2019. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+<script src="/assets/js/page.js"></script>
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: {
+          equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"]
+        }
+      }
+    });
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+
+    MathJax.Hub.Config({
+      
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  </body>
+
+
+  </body>
+</html>
+

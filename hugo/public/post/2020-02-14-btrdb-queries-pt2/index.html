@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="keywords"
+      content="time series, TSDB, data analysis, machine learning, deep learning, AI, IoT, energy, DOE"
+    />
+
+    <title>
+      NI4AI - National Infrastructure for AI on the Electric Grid
+    </title>
+
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+    
+    <link href="/assets/css/page.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    
+
+
+    
+    <link rel="stylesheet" href="/assets/css/page.css">
+     
+
+     
+
+   <meta property="og:title" content="Memory Efficient BTrDB Queries: Part 2" />
+<meta property="og:description" content="How to leverage the Berkeley Tree to create memory efficient queries" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ni4ai.org/post/2020-02-14-btrdb-queries-pt2/" />
+<meta property="article:published_time" content="2020-02-14T16:55:21-05:00" />
+<meta property="article:modified_time" content="2020-02-14T16:55:21-05:00" />
+<meta itemprop="name" content="Memory Efficient BTrDB Queries: Part 2">
+<meta itemprop="description" content="How to leverage the Berkeley Tree to create memory efficient queries">
+<meta itemprop="datePublished" content="2020-02-14T16:55:21-05:00" />
+<meta itemprop="dateModified" content="2020-02-14T16:55:21-05:00" />
+<meta itemprop="wordCount" content="1719">
+
+
+
+<meta itemprop="keywords" content="btrdb,python,data structures,algorithms,analytics," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Memory Efficient BTrDB Queries: Part 2"/>
+<meta name="twitter:description" content="How to leverage the Berkeley Tree to create memory efficient queries"/>
+
+    
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" href="assets/img/favicon.png" />
+
+    
+    <meta property="og:title" content="PingThings PredictiveGrid™" />
+    <meta
+      property="og:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      property="og:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+    <meta property="og:url" content="https://pingthings.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pingthingsio" />
+    <meta
+      name="twitter:title"
+      content="A comprehensive platform for data science on petabyte scale sensor data."
+    />
+    <meta
+      name="twitter:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+  </head>
+
+  <body data-aos-easing="ease" data-aos-duration="1500" data-aos-delay="0" class="">
+
+    
+   
+  <header>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="top: 0;"
+    data-navbar="sticky"
+  >
+    
+    <div class="pl5 pb3 row">
+      <div class="col-8 col-lg-2 navbar-left" style="padding-left: 0px;">
+        <button class="navbar-toggler" type="button">☰</button>
+        <a class="navbar-brand" href="/">
+          <span style="font-size: 20px; color: black;">NI4AI Blog</span>
+          
+        </a>
+      </div>
+      <section class="col-lg-8 navbar-mobile">
+  <nav class="nav nav-navbar mx-auto">
+    
+    <a class="nav-link" href="/about/" title="About">About</a>
+    
+    <a class="nav-link" href="/post/" title="Articles">Articles</a>
+    
+    <a class="nav-link" href="https://ni4ai.org" title="Project Home">
+      Project Home
+    </a>
+  </nav>
+</section>
+
+    </div>
+    
+  </nav>
+  <div style="height: 56px;"></div>
+</header>
+
+
+    
+  
+  <article class="flex-l flex-wrap justify-between pl5 pt5 mw9">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        ARTICLES
+      </p>
+      <h1 class="f1 athelas mb1">Memory Efficient BTrDB Queries: Part 2</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-02-14T16:55:21-05:00">February 14, 2020</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>In Part I we introduced the tree data structure and discussed the two main algorithms for traversing them: depth-first and breadth-first. It is highly recommended that you review that post if these concepts are new to you, as Part II will build on them with more complicated examples using <a href="http://btrdb.io/">the Berkeley Tree Database (BTrDB)</a>.</p>
+<p>In this post we will review three multi-query approaches for memory safety. First, we will explore chunked queries that allow us to scan across the database, loading fixed size chunks of memory at a time. Then, using this as a building block, we will explore tree based queries that execute at higher levels of time granularity (higher in the tree), only querying at lower levels when needed.</p>
+<h2 id="chunked-queries">Chunked Queries</h2>
+<p>Consider the problem where you would like to conduct an analysis over a month of data. At a 120 Hz sample rate, this query will collect 313,632,000 points of data, which at roughly 16 bytes per point is a total query size of 5.02 GB. Although most modern laptops can easily hold this in memory at a given time, consider that many computations may double or triple the memory requirements to produce a result, and if the computation takes a long time, holding a database cursor open for that long may lead to in-process failures which require restarting the whole computation.</p>
+<p>One solution is to query only a week or a day at a time, yielding the materialized data to the computation before issuing the next query. This is a fairly simple function to write in Python:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> btrdb.utils.timez <span style="color:#f92672">import</span> ns_delta, to_nanoseconds
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chunked_values</span>(stream, start, end, chunk<span style="color:#f92672">=</span>ns_delta(days<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>), version<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+    <span style="color:#75715e"># Convert start and end to nanoseconds to make range math easier.</span>
+    start, end <span style="color:#f92672">=</span> to_nanoseconds(start), to_nanoseconds(end)
+
+    <span style="color:#75715e"># Range over the chunk start times using the chunk step</span>
+    <span style="color:#66d9ef">for</span> time <span style="color:#f92672">in</span> range(start, end, chunk):
+        <span style="color:#75715e"># Perform the database query and yield it</span>
+        <span style="color:#66d9ef">yield</span> stream<span style="color:#f92672">.</span>values(time, time<span style="color:#f92672">+</span>chunk, version<span style="color:#f92672">=</span>version)
+
+<span style="color:#75715e"># Use the function to issue 4 queries</span>
+start <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2020-01-01T00:00:00.000Z&#34;</span>
+end <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2020-01-31T00:00:00.000Z&#34;</span>
+<span style="color:#66d9ef">for</span> result <span style="color:#f92672">in</span> chunked_values(stream, start, end, ns_delta(weeks<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)):
+    <span style="color:#66d9ef">for</span> point, _ <span style="color:#f92672">in</span> result:
+        <span style="color:#75715e"># use point</span>
+</code></pre></div><p>Similar functions can be written for <code>windows</code> and <code>aligned_windows</code> as well.</p>
+<p>There is a trade-off to using this function, although you are using a quarter of the memory than you would have by materializing an entire month of data, you do so at the increased latency of issuing 3 more queries to the database. Balance between the amount of data loaded per query and the number of queries issued is very important; when computing across a month of data you would only want to query no less than a few days at a time. Using this basic building block of issuing multiple queries across specific ranges of time, we will explore more complex queries that directly leverage the Berkeley Tree to only access data required for the computation, pruning away unnecessary queries.</p>
+<h2 id="tree-traversal-queries-in-btrdb">Tree Traversal Queries in BTrDB</h2>
+<p>BTrDB is a tree data structure that is not dissimilar from the tree structure saw in Part I. It&rsquo;s root and interior nodes are composed of <code>StatPoints</code> that describe a window of time with statistical aggregates and it&rsquo;s leaf nodes can be thought of as individual points. Although you cannot directly query the children of a stat point in the tree, a similar effect is possible using <code>windows</code> and <code>aligned_windows</code> queries where the <code>depth</code> and <code>pointwidth</code> arguments specify the level of the tree that is being traversed and the time range specified by the query can be directly fetched from the parent node (which is also true for <code>values</code> queries).</p>
+<p>To demonstrate this, let&rsquo;s take a toy example where we want to find the <em>time of the minimum value</em> in a stream. We will explore both depth-first and breadth-first traversal strategies to see which is more efficient. To start, note that it is very fast to get the <em>minimum value</em> of a stream:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_minimum_value</span>(stream, version<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+    <span style="color:#75715e"># Get all of the stat points at the highest level of the tree as possible</span>
+    windows <span style="color:#f92672">=</span> stream<span style="color:#f92672">.</span>aligned_windows(
+        start<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MINIMUM_TIME, end<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MAXIMUM_TIME, pointwidth<span style="color:#f92672">=</span><span style="color:#ae81ff">60</span>, version<span style="color:#f92672">=</span>version
+    )
+
+    <span style="color:#75715e"># Unless you have decades of data, this will likely only be one stat point</span>
+    values <span style="color:#f92672">=</span> [window<span style="color:#f92672">.</span>min <span style="color:#66d9ef">for</span> window, _ <span style="color:#f92672">in</span> windows]
+    <span style="color:#66d9ef">return</span> min(values)
+</code></pre></div><p>This function collects the root node of the tree by performing an <code>aligned_windows</code> query at <code>pointwidth=60</code>, which should return only one stat point unless you have decades of data stored in the database (for completeness, we still take the minimum of all returned windows if more than one is returned). Because a stat point is returned, we can directly fetch the minimum value from the point. However, what if we wanted to know <em>when</em> that minimum value occurred?</p>
+<p>Here is an example of how to answer that question with a depth-first approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> btrdb.utils.general <span style="color:#f92672">import</span> pointwidth
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_points_dfs</span>(
+    stream,
+    value,
+    start<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MINIMUM_TIME,
+    end<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MAXIMUM_TIME,
+    pw<span style="color:#f92672">=</span><span style="color:#ae81ff">48</span>,
+    version<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+):
+    <span style="color:#75715e"># Ensure pw is a pointwidth object</span>
+    pw <span style="color:#f92672">=</span> pointwidth(pw)
+
+    <span style="color:#75715e"># Begin by collecting all stat points at the specified pointwidth</span>
+    <span style="color:#75715e"># Note that zip creates a list of windows and versions and we ignore the versions</span>
+    windows, _ <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>stream<span style="color:#f92672">.</span>aligned_windows(start, end, pw, version))
+
+    <span style="color:#75715e"># Traversing from left to right from the windows</span>
+    <span style="color:#66d9ef">for</span> window <span style="color:#f92672">in</span> windows:
+        <span style="color:#75715e"># Check to see if the value is in the window</span>
+        <span style="color:#66d9ef">if</span> window<span style="color:#f92672">.</span>min <span style="color:#f92672">&lt;=</span> value <span style="color:#f92672">&lt;=</span> window<span style="color:#f92672">.</span>max:
+            <span style="color:#75715e"># Get the time range of the current window</span>
+            wstart <span style="color:#f92672">=</span> window<span style="color:#f92672">.</span>time
+            wend <span style="color:#f92672">=</span> window<span style="color:#f92672">.</span>time <span style="color:#f92672">+</span> pw<span style="color:#f92672">.</span>nanoseconds
+
+            <span style="color:#66d9ef">if</span> pw <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">30</span>:
+                <span style="color:#75715e"># If we are at a window length of a second, use values</span>
+                points, _ <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>stream<span style="color:#f92672">.</span>values(wstart, wend, version))
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#75715e"># Otherwise, traverse the stat point children of this node</span>
+                points <span style="color:#f92672">=</span> find_points_dfs(stream, value, wstart, wend, pw<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, version)
+
+            <span style="color:#75715e"># Yield all points to the calling function</span>
+            <span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> points:
+                <span style="color:#66d9ef">if</span> point<span style="color:#f92672">.</span>value <span style="color:#f92672">==</span> value:
+                    <span style="color:#66d9ef">yield</span> point
+
+<span style="color:#75715e"># Find the time of of the smallest value in the stream</span>
+value <span style="color:#f92672">=</span> get_minimum_value(stream)
+<span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> find_points_dfs(stream, value):
+    <span style="color:#66d9ef">print</span>(point)
+</code></pre></div><p>The <code>find_points_dfs()</code> function starts by performing an <code>aligned_windows</code> query to retrieve <code>StatPoints</code>, which are aggregated points from BTrDB at the provided pointwidth. It then iterates through each retrieved window and checks to see if it contains the desired minimum value. If it does, it either conducts another <code>aligned_windows()</code> query to move down one level in the tree (<code>pw</code> - 1) and recursively calls <code>find_points()</code>, or performs a <code>values()</code> query to return raw values which are iterated through in search of the minimum value. It is important to note that it is not necessary to traverse one pointwidth at a time, and in fact it may be a better strategy to skip multiple levels to reduce the latency by minimizing the number of calls to the database. This idea relates back to the trade-off between number of queries and amount of data returned from each query that we discussed earlier in this post. Once raw values are returned from the <code>values()</code> query, the function iterates through them and yields those that match the minimum value.</p>
+<h3 id="breadth-first-example">Breadth-First Example</h3>
+<p>To compare the two approaches, we can look at an example of how we would solve the same problem of finding the time of our minimum value using a breadth-first approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> namedtuple
+
+<span style="color:#75715e">#Instantiating our namedtuple that will contain our aggregated windows</span>
+Window <span style="color:#f92672">=</span> namedtuple(<span style="color:#e6db74">&#34;Window&#34;</span>, <span style="color:#e6db74">&#34;time,min,max,pw&#34;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">query_windows</span>(stream, start, end<span style="color:#f92672">=</span>None, pw<span style="color:#f92672">=</span><span style="color:#ae81ff">48</span>, version<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Returns a list of named tuples that contain agggregated windows to be added to our list of windows to traverse
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> end <span style="color:#f92672">is</span> None:
+        end <span style="color:#f92672">=</span> start <span style="color:#f92672">+</span> pointwidth(pw)<span style="color:#f92672">.</span>nanoseconds
+
+    points, _ <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>stream<span style="color:#f92672">.</span>aligned_windows(start, end, pointwidth(pw<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), version))
+
+    <span style="color:#66d9ef">return</span> [
+        Window(point<span style="color:#f92672">.</span>time, point<span style="color:#f92672">.</span>min, point<span style="color:#f92672">.</span>max, pointwidth(pw<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))
+        <span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> points
+    ]
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_points_bfs</span>(
+    stream,
+    value,
+    start<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MINIMUM_TIME,
+    end<span style="color:#f92672">=</span>btrdb<span style="color:#f92672">.</span>MAXIMUM_TIME,
+    pw<span style="color:#f92672">=</span><span style="color:#ae81ff">48</span>,
+    min_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>,
+    version<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+):
+    <span style="color:#75715e"># Set up the bfs recursive call</span>
+    windows <span style="color:#f92672">=</span> query_windows(stream, start, end, pw, version)
+    <span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> _find_points_bfs_recursive(stream, value, windows, min_depth, version):
+        <span style="color:#66d9ef">yield</span> point
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_find_points_bfs_recursive</span>(
+    stream,
+    value,
+    windows,
+    min_depth,
+    version,
+):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    This function implements recursive breadth-first traversal to find all points with the matching value.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#75715e"># Stopping condition 1</span>
+    <span style="color:#66d9ef">if</span> len(windows) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span>
+
+    current <span style="color:#f92672">=</span> windows[<span style="color:#ae81ff">0</span>]
+
+    <span style="color:#66d9ef">if</span> isinstance(current, Window):
+
+        <span style="color:#75715e"># Check if the value we&#39;re looking for is in the window</span>
+        <span style="color:#66d9ef">if</span> current<span style="color:#f92672">.</span>min <span style="color:#f92672">&lt;=</span> value <span style="color:#f92672">&lt;=</span> current<span style="color:#f92672">.</span>max:
+
+            <span style="color:#75715e"># Append the child nodes to the traversal windows</span>
+            <span style="color:#66d9ef">if</span> current<span style="color:#f92672">.</span>pw <span style="color:#f92672">&gt;</span> min_depth:
+                windows<span style="color:#f92672">.</span>extend(query_windows(stream, current<span style="color:#f92672">.</span>time, pw<span style="color:#f92672">=</span>current<span style="color:#f92672">.</span>pw, version<span style="color:#f92672">=</span>version))
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#75715e"># Append raw points to the windows if we&#39;ve reached the minimum pontwidth</span>
+                points, _ <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>stream<span style="color:#f92672">.</span>values(current<span style="color:#f92672">.</span>time, current<span style="color:#f92672">.</span>time<span style="color:#f92672">+</span>current<span style="color:#f92672">.</span>pw<span style="color:#f92672">.</span>nanoseconds, version))
+                windows<span style="color:#f92672">.</span>extend(points)
+
+        <span style="color:#75715e"># Recurse into the children, omitting current</span>
+        <span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> _find_points_bfs_recursive(stream, value, windows[<span style="color:#ae81ff">1</span>:], min_depth, version):
+            <span style="color:#66d9ef">yield</span> point
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#75715e"># Stopping condition 2: every point from hereafter is going to be a raw point</span>
+        <span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> windows:
+            <span style="color:#66d9ef">if</span> point<span style="color:#f92672">.</span>value <span style="color:#f92672">==</span> value:
+                <span style="color:#66d9ef">yield</span> point
+
+<span style="color:#75715e"># Using the function from the last example to get the minimum value in the stream</span>
+value <span style="color:#f92672">=</span> get_minimum_value(stream)
+<span style="color:#66d9ef">for</span> point <span style="color:#f92672">in</span> find_points_bfs(stream, value):
+    <span style="color:#66d9ef">print</span>(point)
+</code></pre></div><p>There are a couple of important differences between this function and the depth-first approach. The first is that once it identifies a window that contains the desired value, it issues another <code>aligned_windows()</code> query and adds the resulting windows to the <em>end</em> of the list of windows to traverse before recursively calling <code>find_points_bfs()</code>, rather than immediately jumping down a level in the tree, as you would with depth-first. The second difference is that with this approach it is important to track the pointwidth of each window as the function progresses so we know when to issue a <code>values()</code> query and examine raw values once we reach our <code>max_depth</code> (poinwidth of 30 in this case). This is done by storing each window as a tuple that contains the statpoint and the pointwidth that was used to retreive that statpoint. The end of the function looks similar though; once it receives raw values it iterates through them and yields those that match our criteria.</p>
+<h2 id="concluson">Concluson</h2>
+<p>The question of which approach is better largely depends on the problem that you are trying to solve. Depth-first is generally preferred when you are searching for a single value, as we were in our toy example, while breadth-first is more suitable for tasks such as finding all values below a certain threshold, or within a certain range of values.</p>
+<p>The key concept to understand is that both <code>find_points_dfs()</code> and <code>find_points_bfs()</code> only traverse to child nodes when their parents contain the target minimum value, while ignoring those that do not. This allows us to prune away unnecessary data and conduct memory efficient and better performing queries.</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/btrdb" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">btrdb</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/python" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/data-structures" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">data structures</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/algorithms" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">algorithms</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/analytics" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">analytics</a>
+   </li>
+  
+</ul>
+
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3"></p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/2020-02-12-btrdb-queries-pt1/">Memory Efficient BTrDB Queries: Part 1</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2019-12-12-btrdb-explained/">BTrDB Explained</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2020-02-04-linear-models-overview/">Training General Linear Models with the PredictiveGrid™</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    
+<footer class="footer">
+  <div class="container">
+    <div class="row gap-y align-items-center">
+      <div class="col-6 col-lg-3">
+        <a href="https://www.pingthings.ai"
+          ><img src="/assets/img/logo-dark.png" alt="logo"
+        /></a>
+      </div>
+
+      <div class="col-6 col-lg-3 text-right order-lg-last">
+        <div class="social">
+          <a class="social-twitter" href="https://twitter.com/pingthingsio"
+            ><i class="fa fa-twitter-square"></i
+          ></a>
+          <a
+            class="social-linkedin"
+            href="https://www.linkedin.com/company/pingthings/about/"
+            ><i class="fa fa-linkedin-square"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <small>© 2019. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+<script src="/assets/js/page.js"></script>
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: {
+          equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"]
+        }
+      }
+    });
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+
+    MathJax.Hub.Config({
+      
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  </body>
+
+
+  </body>
+</html>
+

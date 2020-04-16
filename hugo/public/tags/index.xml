@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/</link>
+    <description>Recent content in Tags on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Apr 2020 00:02:12 -0700</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>algorithms</title>
+      <link>http://blog.ni4ai.org/tags/algorithms/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>analytics</title>
+      <link>http://blog.ni4ai.org/tags/analytics/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/analytics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>btrdb</title>
+      <link>http://blog.ni4ai.org/tags/btrdb/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/btrdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>http://blog.ni4ai.org/tags/python/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visualization</title>
+      <link>http://blog.ni4ai.org/tags/visualization/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>voltage sags</title>
+      <link>http://blog.ni4ai.org/tags/voltage-sags/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/voltage-sags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>annoucement</title>
+      <link>http://blog.ni4ai.org/tags/annoucement/</link>
+      <pubDate>Tue, 07 Apr 2020 09:20:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/annoucement/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NASPI</title>
+      <link>http://blog.ni4ai.org/tags/naspi/</link>
+      <pubDate>Tue, 07 Apr 2020 09:20:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/naspi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NI4AI</title>
+      <link>http://blog.ni4ai.org/tags/ni4ai/</link>
+      <pubDate>Tue, 07 Apr 2020 09:20:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/ni4ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>webinar</title>
+      <link>http://blog.ni4ai.org/tags/webinar/</link>
+      <pubDate>Tue, 07 Apr 2020 09:20:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/webinar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sunshine data</title>
+      <link>http://blog.ni4ai.org/tags/sunshine-data/</link>
+      <pubDate>Mon, 30 Mar 2020 12:30:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/sunshine-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>synchrophasor</title>
+      <link>http://blog.ni4ai.org/tags/synchrophasor/</link>
+      <pubDate>Mon, 30 Mar 2020 12:30:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/synchrophasor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>timeseries</title>
+      <link>http://blog.ni4ai.org/tags/timeseries/</link>
+      <pubDate>Mon, 30 Mar 2020 12:30:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/timeseries/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>upmu</title>
+      <link>http://blog.ni4ai.org/tags/upmu/</link>
+      <pubDate>Mon, 30 Mar 2020 12:30:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/upmu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data structures</title>
+      <link>http://blog.ni4ai.org/tags/data-structures/</link>
+      <pubDate>Fri, 14 Feb 2020 16:55:21 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/data-structures/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>distributed computing</title>
+      <link>http://blog.ni4ai.org/tags/distributed-computing/</link>
+      <pubDate>Tue, 04 Feb 2020 16:46:23 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/distributed-computing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>general linear models</title>
+      <link>http://blog.ni4ai.org/tags/general-linear-models/</link>
+      <pubDate>Tue, 04 Feb 2020 16:46:23 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/general-linear-models/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>regression</title>
+      <link>http://blog.ni4ai.org/tags/regression/</link>
+      <pubDate>Tue, 04 Feb 2020 16:46:23 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>benchmarking</title>
+      <link>http://blog.ni4ai.org/tags/benchmarking/</link>
+      <pubDate>Tue, 17 Dec 2019 17:21:41 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/benchmarking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>database</title>
+      <link>http://blog.ni4ai.org/tags/database/</link>
+      <pubDate>Thu, 12 Dec 2019 19:42:13 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>news</title>
+      <link>http://blog.ni4ai.org/tags/news/</link>
+      <pubDate>Wed, 06 Nov 2019 15:05:10 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/news/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>survey</title>
+      <link>http://blog.ni4ai.org/tags/survey/</link>
+      <pubDate>Wed, 06 Nov 2019 15:05:10 +0000</pubDate>
+      
+      <guid>http://blog.ni4ai.org/tags/survey/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="keywords"
+      content="time series, TSDB, data analysis, machine learning, deep learning, AI, IoT, energy, DOE"
+    />
+
+    <title>
+      NI4AI - National Infrastructure for AI on the Electric Grid
+    </title>
+
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+    
+    <link href="/assets/css/page.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    
+
+
+    
+    <link rel="stylesheet" href="/assets/css/page.css">
+     
+
+     
+
+   <meta property="og:title" content="Time Series Benchmarking Results" />
+<meta property="og:description" content="A brief report on recent benchmarking results across time series databases" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ni4ai.org/post/2019-12-17-benchmarking-results/" />
+<meta property="article:published_time" content="2019-12-17T17:21:41+00:00" />
+<meta property="article:modified_time" content="2019-12-17T17:21:41+00:00" />
+<meta itemprop="name" content="Time Series Benchmarking Results">
+<meta itemprop="description" content="A brief report on recent benchmarking results across time series databases">
+<meta itemprop="datePublished" content="2019-12-17T17:21:41&#43;00:00" />
+<meta itemprop="dateModified" content="2019-12-17T17:21:41&#43;00:00" />
+<meta itemprop="wordCount" content="415">
+
+
+
+<meta itemprop="keywords" content="benchmarking," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Time Series Benchmarking Results"/>
+<meta name="twitter:description" content="A brief report on recent benchmarking results across time series databases"/>
+
+    
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" href="assets/img/favicon.png" />
+
+    
+    <meta property="og:title" content="PingThings PredictiveGrid™" />
+    <meta
+      property="og:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      property="og:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+    <meta property="og:url" content="https://pingthings.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pingthingsio" />
+    <meta
+      name="twitter:title"
+      content="A comprehensive platform for data science on petabyte scale sensor data."
+    />
+    <meta
+      name="twitter:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+  </head>
+
+  <body data-aos-easing="ease" data-aos-duration="1500" data-aos-delay="0" class="">
+
+    
+   
+  <header>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="top: 0;"
+    data-navbar="sticky"
+  >
+    
+    <div class="pl5 pb3 row">
+      <div class="col-8 col-lg-2 navbar-left" style="padding-left: 0px;">
+        <button class="navbar-toggler" type="button">☰</button>
+        <a class="navbar-brand" href="/">
+          <span style="font-size: 20px; color: black;">NI4AI Blog</span>
+          
+        </a>
+      </div>
+      <section class="col-lg-8 navbar-mobile">
+  <nav class="nav nav-navbar mx-auto">
+    
+    <a class="nav-link" href="/about/" title="About">About</a>
+    
+    <a class="nav-link" href="/post/" title="Articles">Articles</a>
+    
+    <a class="nav-link" href="https://ni4ai.org" title="Project Home">
+      Project Home
+    </a>
+  </nav>
+</section>
+
+    </div>
+    
+  </nav>
+  <div style="height: 56px;"></div>
+</header>
+
+
+    
+  
+  <article class="flex-l flex-wrap justify-between pl5 pt5 mw9">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        ARTICLES
+      </p>
+      <h1 class="f1 athelas mb1">Time Series Benchmarking Results</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-12-17T17:21:41Z">December 17, 2019</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>There are many time series databases on the market at the moment and they each have their own strengths and weaknesses. Some of these characteristics are qualitative or can be quantified without an experiment for example &ldquo;this database can scale out to a cluster&rdquo; or &ldquo;this database supports query X&rdquo;. Others need an experiment run on controlled hardware in order to quantify the differences.</p>
+<p>Using the <a href="https://github.com/PingthingsIO/time-series-benchmarks">benchmarking codebase</a>, we evaluate a number of scenarios to model real world performance.  Below you will find the results of our most recent round of benchmarking.</p>
+<h2 id="parallel-inserts">Parallel Inserts</h2>
+<p>In the below plot, FullParallelInsert.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.</p>
+<p><img src="/media/post//2019-12-17-benchmarking-results/FullParallelInsert.MPPS.png" alt="FullParallelInsert.MPPS plot"></p>
+<h2 id="insert">Insert</h2>
+<p>In the below plot, Insert.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.</p>
+<p><img src="/media/post/2019-12-17-benchmarking-results/Insert.MPPS.png" alt="Insert.MPPS plot"></p>
+<h2 id="full-parallel-sequential-read">Full Parallel Sequential Read</h2>
+<p>In the below plot, FullParallelSequentialRead.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.</p>
+<p><img src="/media/post/2019-12-17-benchmarking-results/FullParallelSequentialRead.MPPS.png" alt="FullParallelSequentialRead.MPPS plot"></p>
+<h2 id="sequential-read">Sequential Read</h2>
+<p>In the below plot, SequentialRead.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.</p>
+<p><img src="/media/post/2019-12-17-benchmarking-results/SequentialRead.MPPS.png" alt="SequentialRead.MPPS plot"></p>
+<h2 id="single-stream-sequential-read">Single Stream Sequential Read</h2>
+<p>In the below plot, SingleStreamSequentialRead.MPPS (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.</p>
+<p><img src="/media/post/2019-12-17-benchmarking-results/SingleStreamSequentialRead.MPPS.png" alt="SingleStreamSequentialRead.MPPS plot"></p>
+<h2 id="stream-creation">Stream Creation</h2>
+<p>In the below plot, StreamCreation (shown along the x axis) is compared across the databases: influx, predictivegrid, and timescale. The parameters: SequentialReadParallelNum, InsertNumStreams, InsertSpanSeconds, Insert32Bit, InsertSubsample, InsertTSJitter, and InsertBatchSize were controlled for and are given along the y axis.</p>
+<p><img src="/media/post/2019-12-17-benchmarking-results/StreamCreation.png" alt="StreamCreation plot"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>These results highlight a few interesting points:</p>
+<ul>
+<li>We need to use a larger dataset to ensure that queries don&rsquo;t get served from caches (otherwise this is not representative of the performance you would expect with large datasets).</li>
+<li>We may need to invalidate caches between insert and query</li>
+<li>We need to do more testing of different types of workloads (instead of just sequential)</li>
+<li>We need to add more databases (such as InfluxDB 2.0 Alpha)</li>
+</ul>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/benchmarking" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">benchmarking</a>
+   </li>
+  
+</ul>
+
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    
+<footer class="footer">
+  <div class="container">
+    <div class="row gap-y align-items-center">
+      <div class="col-6 col-lg-3">
+        <a href="https://www.pingthings.ai"
+          ><img src="/assets/img/logo-dark.png" alt="logo"
+        /></a>
+      </div>
+
+      <div class="col-6 col-lg-3 text-right order-lg-last">
+        <div class="social">
+          <a class="social-twitter" href="https://twitter.com/pingthingsio"
+            ><i class="fa fa-twitter-square"></i
+          ></a>
+          <a
+            class="social-linkedin"
+            href="https://www.linkedin.com/company/pingthings/about/"
+            ><i class="fa fa-linkedin-square"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <small>© 2019. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+<script src="/assets/js/page.js"></script>
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: {
+          equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"]
+        }
+      }
+    });
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+
+    MathJax.Hub.Config({
+      
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  </body>
+
+
+  </body>
+</html>
+

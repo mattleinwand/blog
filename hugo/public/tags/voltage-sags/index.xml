@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>voltage sags on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/voltage-sags/</link>
+    <description>Recent content in voltage sags on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Apr 2020 00:02:12 -0700</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/voltage-sags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Voltage Sag Safari: Exploring Voltage Sags with BTrDB</title>
+      <link>http://blog.ni4ai.org/post/2020-04-15-voltage-sags/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:12 -0700</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-04-15-voltage-sags/</guid>
+      <description>Voltage sags are significant transient dips in the network voltage, lasting for less than a cycle to several seconds. They can be caused by faults, motor starts, equipment misoperation, or fast reclosing operation of circuit breakers and are relatively common events in distribution and transmission networks. Large, long, or frequent voltage sags can be problematic for utilities, as they can cause sensitive loads to turn off, motors to stall, or solar photovoltaic inverters to trip offline.</description>
+    </item>
+    
+  </channel>
+</rss>

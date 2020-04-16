@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>distributed computing on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/distributed-computing/</link>
+    <description>Recent content in distributed computing on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Feb 2020 16:46:23 -0500</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/distributed-computing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Training General Linear Models with the PredictiveGrid™</title>
+      <link>http://blog.ni4ai.org/post/2020-02-04-linear-models-overview/</link>
+      <pubDate>Tue, 04 Feb 2020 16:46:23 -0500</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-02-04-linear-models-overview/</guid>
+      <description>Linear Modeling Process Overview BTrDB (the Berkeley Tree Database) is the core of the PredictiveGrid™ and implements a time series database API that is extremely effective for distributed analytics including the training of general linear models. To efficiently distribute storage to accommodate a high rate of data ingest from multiple sensors, data is stored in independent streams. As a result, univariate forecasting models are very easy to construct since, unlike querying a database table, queries are directly to measurement streams.</description>
+    </item>
+    
+  </channel>
+</rss>

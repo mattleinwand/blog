@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="keywords"
+      content="time series, TSDB, data analysis, machine learning, deep learning, AI, IoT, energy, DOE"
+    />
+
+    <title>
+      NI4AI - National Infrastructure for AI on the Electric Grid
+    </title>
+
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+    
+    <link href="/assets/css/page.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    
+
+
+    
+    <link rel="stylesheet" href="/assets/css/page.css">
+     
+
+     
+
+   <meta property="og:title" content="Sunshine uPMU Data" />
+<meta property="og:description" content="A brief walkthrough of the Sunshine uPMU dataset" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ni4ai.org/post/2020-04-08-sunshine-data/" />
+<meta property="article:published_time" content="2020-03-30T12:30:37-04:00" />
+<meta property="article:modified_time" content="2020-03-30T12:30:37-04:00" />
+<meta itemprop="name" content="Sunshine uPMU Data">
+<meta itemprop="description" content="A brief walkthrough of the Sunshine uPMU dataset">
+<meta itemprop="datePublished" content="2020-03-30T12:30:37-04:00" />
+<meta itemprop="dateModified" content="2020-03-30T12:30:37-04:00" />
+<meta itemprop="wordCount" content="1076">
+
+
+
+<meta itemprop="keywords" content="btrdb,timeseries,python,sunshine data,upmu,synchrophasor," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sunshine uPMU Data"/>
+<meta name="twitter:description" content="A brief walkthrough of the Sunshine uPMU dataset"/>
+
+    
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" href="assets/img/favicon.png" />
+
+    
+    <meta property="og:title" content="PingThings PredictiveGrid™" />
+    <meta
+      property="og:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      property="og:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+    <meta property="og:url" content="https://pingthings.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pingthingsio" />
+    <meta
+      name="twitter:title"
+      content="A comprehensive platform for data science on petabyte scale sensor data."
+    />
+    <meta
+      name="twitter:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+  </head>
+
+  <body data-aos-easing="ease" data-aos-duration="1500" data-aos-delay="0" class="">
+
+    
+   
+  <header>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="top: 0;"
+    data-navbar="sticky"
+  >
+    
+    <div class="pl5 pb3 row">
+      <div class="col-8 col-lg-2 navbar-left" style="padding-left: 0px;">
+        <button class="navbar-toggler" type="button">☰</button>
+        <a class="navbar-brand" href="/">
+          <span style="font-size: 20px; color: black;">NI4AI Blog</span>
+          
+        </a>
+      </div>
+      <section class="col-lg-8 navbar-mobile">
+  <nav class="nav nav-navbar mx-auto">
+    
+    <a class="nav-link" href="/about/" title="About">About</a>
+    
+    <a class="nav-link" href="/post/" title="Articles">Articles</a>
+    
+    <a class="nav-link" href="https://ni4ai.org" title="Project Home">
+      Project Home
+    </a>
+  </nav>
+</section>
+
+    </div>
+    
+  </nav>
+  <div style="height: 56px;"></div>
+</header>
+
+
+    
+  
+  <article class="flex-l flex-wrap justify-between pl5 pt5 mw9">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        ARTICLES
+      </p>
+      <h1 class="f1 athelas mb1">Sunshine uPMU Data</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-03-30T12:30:37-04:00">March 30, 2020</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>The primary synchrophasor dataset that is currently available in the NI4AI platform is from 6 topologically related uPMUs measuring data intermittently from 2015-2017. The dataset was collected for academic power engineering research and has been anonymized to remove sensitive and location-specific information. Because it was the first dataset to be made public on the platform, we&rsquo;ve named it the &ldquo;sunshine&rdquo; dataset and it can be found in the <code>sunshine/</code> collection in the plotter.</p>
+<p>In this post, we&rsquo;ll go over how to access the dataset using the <a href="https://btrdb.readthedocs.io/en/latest/">btrdb-python bindings</a> and prepare to do power engineering analytics on it.</p>
+<h2 id="lets-explore-the-data">Let&rsquo;s Explore the Data</h2>
+<p>Each uPMU&rsquo;s streams are stored in a PMU-specific collection, <code>sunshine/PMU1</code> through <code>sunshine/PMU6</code>. The best way to explore the data is to go to the <a href="https://plot.ni4ai.org/">plotter</a> and enter <code>sunshine</code> into the &ldquo;collection&rdquo; filter. Each PMU is comprised of 13 related streams: the three phase voltage and current angle and magnitudes and a state stream. For example, here are the <a href="https://plot.ni4ai.org/permalink/PnpvDZpOl">3 voltage magnitude streams for sunhine/PMU3</a>.</p>
+<p>The stream names look like &ldquo;L1MAG&rdquo; or &ldquo;C3ANG&rdquo;. Here L refers to voltage and C to current, 1-3 refers to the phase, and MAG/ANG refers to if this is a magnitude or an angle stream. Units are either volts or amps for magnitudes or deg for &ldquo;degrees&rdquo; for angles. Each uPMU also has an LSTATE stream whose unit is &ldquo;mask&rdquo; that describes the state of the PMU over time. After you get started visually exploring the streams in the plotter, we can begin to access the data via Python and the btrdb-python bindings.</p>
+<h3 id="library-imports">Library Imports</h3>
+<p>To begin with, let&rsquo;s import all of the libraries we may want to use.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">from</span> btrdb <span style="color:#f92672">import</span> connect
+<span style="color:#f92672">from</span> btrdb.utils.timez <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">from</span> tabulate <span style="color:#f92672">import</span> tabulate
+</code></pre></div><p>The <code>connect</code> function will be used to create a handle to our database and the <code>btrdb.utils.timez</code> module contains a lot of useful convenience functions for working with datetimes in various formats.</p>
+<p>We also import the <code>tabulate</code> function which we will use to create nicely formatted reports as well as the pandas library so we can turn the data into a <code>pandas.Series</code> object. Note that neither pandas nor tabulate are part of the Python standard library and will need to be installed with <code>pip</code> or <code>conda</code> to use them.</p>
+<h3 id="establishing-a-connection">Establishing a Connection</h3>
+<p>As usual when working with BTrDB, we will use the connect function to create a handle to our database.  The <code>info()</code> method can be called to verify you are able to communicate with the database.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">db <span style="color:#f92672">=</span> connect(<span style="color:#e6db74">&#34;api.ni4ai.org:4411&#34;</span>, apikey<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;XXXXXXXXXXXXXXXXXXXXXX&#34;</span>)
+db<span style="color:#f92672">.</span>info()
+</code></pre></div><pre><code>{'majorVersion': 5, 'build': '5.7.2', 'proxy': {'proxyEndpoints': []}}
+</code></pre><h3 id="viewing-the-collections">Viewing the Collections</h3>
+<p>Data streams are organized into a hierarchichal tree of collections, so let&rsquo;s view the collections available for the Sunshine dataset using the <code>list_collections</code> method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">db<span style="color:#f92672">.</span>list_collections(<span style="color:#e6db74">&#34;sunshine&#34;</span>)
+</code></pre></div><pre><code>['sunshine/PMU1', 'sunshine/PMU2', 'sunshine/PMU3', 'sunshine/PMU4', 'sunshine/PMU5', 'sunshine/PMU6']
+</code></pre><h3 id="choosing-streams">Choosing Streams</h3>
+<p>Now let&rsquo;s assume we want to view the data in the <code>sunshine/PMU3</code> collection.  We can use the <code>streams_in_collection()</code> method to return all of the available streams (or we can use arguments to the method to return only specific streams).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">streams <span style="color:#f92672">=</span> db<span style="color:#f92672">.</span>streams_in_collection(<span style="color:#e6db74">&#39;sunshine/PMU3&#39;</span>)
+streams
+</code></pre></div><pre><code>[&lt;Stream collection=sunshine/PMU3 name=C2ANG&gt;, &lt;Stream collection=sunshine/PMU3 name=C3MAG&gt;, &lt;Stream collection=sunshine/PMU3 name=L1ANG&gt;, &lt;Stream collection=sunshine/PMU3 name=C2MAG&gt;, &lt;Stream collection=sunshine/PMU3 name=C1ANG&gt;, &lt;Stream collection=sunshine/PMU3 name=L2ANG&gt;, &lt;Stream collection=sunshine/PMU3 name=L1MAG&gt;, &lt;Stream collection=sunshine/PMU3 name=C3ANG&gt;, &lt;Stream collection=sunshine/PMU3 name=C1MAG&gt;, &lt;Stream collection=sunshine/PMU3 name=L3ANG&gt;, &lt;Stream collection=sunshine/PMU3 name=L2MAG&gt;, &lt;Stream collection=sunshine/PMU3 name=L3MAG&gt;, &lt;Stream collection=sunshine/PMU3 name=LSTATE&gt;]
+</code></pre><p>This provides a nice array of <a href="https://btrdb.readthedocs.io/en/latest/api/streams.html">Stream</a> objects.  Just for display purposes, let&rsquo;s use the <code>tabulate</code> function to view formatted details about each stream.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">describe_streams</span>(streams):
+    table <span style="color:#f92672">=</span> [[<span style="color:#e6db74">&#34;Index&#34;</span>, <span style="color:#e6db74">&#34;Collection&#34;</span>, <span style="color:#e6db74">&#34;Name&#34;</span>, <span style="color:#e6db74">&#34;Units&#34;</span>, <span style="color:#e6db74">&#34;UUID&#34;</span>]]
+    <span style="color:#66d9ef">for</span> idx, stream <span style="color:#f92672">in</span> enumerate(streams):
+        tags <span style="color:#f92672">=</span> stream<span style="color:#f92672">.</span>tags()
+        table<span style="color:#f92672">.</span>append([
+            idx, stream<span style="color:#f92672">.</span>collection, stream<span style="color:#f92672">.</span>name, tags[<span style="color:#e6db74">&#34;unit&#34;</span>], stream<span style="color:#f92672">.</span>uuid
+        ])
+    <span style="color:#66d9ef">return</span> tabulate(table, headers<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;firstrow&#34;</span>)
+
+<span style="color:#66d9ef">print</span>(describe_streams(streams))
+</code></pre></div><pre><code>  Index  Collection     Name    Units    UUID
+-------  -------------  ------  -------  ------------------------------------
+      0  sunshine/PMU3  C2ANG   deg      c71f34d1-3cba-4959-b4b9-032ec078c66d
+      1  sunshine/PMU3  C3MAG   amps     cd6d2be2-6b7b-4c46-be1e-8432990ef23c
+      2  sunshine/PMU3  L1ANG   deg      bc73226c-c877-438a-ab37-7a6703cbfbce
+      3  sunshine/PMU3  C2MAG   amps     47da9f9a-f8d9-4955-9e87-9c17dabde298
+      4  sunshine/PMU3  C1ANG   deg      bc9d458c-9b54-4ad2-b837-53170a4d7331
+      5  sunshine/PMU3  L2ANG   deg      f4b400e1-26f4-4ca9-b301-c2fbb7d77e87
+      6  sunshine/PMU3  L1MAG   volts    0295f80f-6776-4384-b563-4582f7256600
+      7  sunshine/PMU3  C3ANG   deg      b3ca2159-8fa7-4341-801d-d1228af675b7
+      8  sunshine/PMU3  C1MAG   amps     1e641edc-d95a-494f-99f3-cbb991ef05bf
+      9  sunshine/PMU3  L3ANG   deg      fabd1511-f6f8-4670-b336-7fbfe412e4a2
+     10  sunshine/PMU3  L2MAG   volts    38d62795-6341-4069-96d3-fe74bffcac67
+     11  sunshine/PMU3  L3MAG   volts    37539589-88aa-48b7-8cb4-1ea2f32c9e8d
+     12  sunshine/PMU3  LSTATE  mask     b50e8372-6a6e-405a-a366-832f4c9b98f0
+</code></pre><h3 id="retrieving-stream-data">Retrieving Stream Data</h3>
+<p>Now let&rsquo;s imagine we&rsquo;d like to view some of the data in the <code>L1MAG</code> stream.  We can query for the the raw values using the Stream object&rsquo;s <code>values()</code> method and send in the start and end times for the query.  BTrDB naturally works at nanosecond precision (one billionth of a second or 10<!-- raw HTML omitted -->-9<!-- raw HTML omitted -->) so it will always ask for times in <a href="https://en.wikipedia.org/wiki/Unix_time">epoch</a> nanoseconds.  However we don&rsquo;t have to convert datetime objects to nanoseconds manually as the <code>timez</code> module has the <code>to_nanoseconds</code> function that we can use.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">start <span style="color:#f92672">=</span> to_nanoseconds(<span style="color:#e6db74">&#39;2015-08-15 3:42:00&#39;</span>)
+end <span style="color:#f92672">=</span> to_nanoseconds(<span style="color:#e6db74">&#39;2015-08-15 3:47:00&#39;</span>)
+</code></pre></div><p>Now let&rsquo;s get the values from that Stream.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s <span style="color:#f92672">=</span> streams[<span style="color:#ae81ff">6</span>]
+data <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>values(start, end)
+data[:<span style="color:#ae81ff">2</span>]
+</code></pre></div><pre><code>[(RawPoint(1439610120008333333, 7301.33935546875), 122091), (RawPoint(1439610120016666666, 7301.66796875), 122091)]
+</code></pre><p>We can see that this method returns a list of tuples.  Each tuple contains a <code>RawPoint</code> as well as the version number of the stream at this time.  As a reminder, the data in each BTrDB stream is versioned and by querying for data without specifying an explicit version we were given the latest version at this time.</p>
+<p>Each <code>RawPoint</code> is similar to a Python namedtuple and so we can easily split out its two properties: <code>time</code> and <code>value</code>.  In the code below we will split out the points and discard the version data, then split each RawPoint into an array of times and an array of values.  Finally we will create a new pandas <code>Series</code> using these two arrays.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">points, _ <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>data)
+times, values <span style="color:#f92672">=</span> zip(<span style="color:#f92672">*</span>points)
+series <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series(values, index<span style="color:#f92672">=</span>times)
+</code></pre></div><pre><code>1439610120008333333    7301.339355
+1439610120016666666    7301.667969
+1439610120024999999    7302.258789
+1439610120033333332    7302.352539
+1439610120041666665    7302.297852
+                          ...
+1439610419966666628    7288.075195
+1439610419974999961    7288.063965
+1439610419983333294    7288.255859
+1439610419991666627    7288.071777
+1439610419999999960    7287.898438
+Length: 36000, dtype: float64
+</code></pre><h3 id="visualizing-the-data">Visualizing the Data</h3>
+<p>Now that we&rsquo;re in a pandas Series object, we can use our familiar <code>plot()</code> method to visualize the data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">series<span style="color:#f92672">.</span>plot()
+</code></pre></div><p><img src="/media/post/2020-04-08-sunshine-data/sunshine-plot-1.png" alt="basic visualization"></p>
+<p>Of course, we can always pull in the <code>matplotlib</code> library to get more fine grained control over our visualization.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> matplotlib.dates <span style="color:#f92672">as</span> mdates
+
+fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">5</span>))
+ax<span style="color:#f92672">.</span>xaxis<span style="color:#f92672">.</span>set_major_formatter(mdates<span style="color:#f92672">.</span>DateFormatter(<span style="color:#e6db74">&#39;%H:%M:%S&#39;</span>))
+fig<span style="color:#f92672">.</span>autofmt_xdate()
+
+ax<span style="color:#f92672">.</span>plot(pd<span style="color:#f92672">.</span>to_datetime(series<span style="color:#f92672">.</span>index), series<span style="color:#f92672">.</span>values, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;values&#34;</span>)
+ax<span style="color:#f92672">.</span>axhline(series<span style="color:#f92672">.</span>mean(), label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mean&#34;</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;m&#34;</span>)
+ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#34;volts&#34;</span>)
+ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#34;time&#34;</span>)
+ax<span style="color:#f92672">.</span>legend()
+
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;Sunshine PMU3 L1MAG Voltage&#34;</span>)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/media/post/2020-04-08-sunshine-data/sunshine-plot-2.png" alt="improved visualization"></p>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>We&rsquo;ve seen how we can view collections, streams, and data but there is much more you can do with BTrDB and Python!  Check out our <a href="https://btrdb.readthedocs.io/en/latest/working.html">tutorials and walkthroughs</a> to see more. In upcoming posts we&rsquo;ll discuss how to perform standard power engineering computations on these streams using Python and the bindings to query data directly from the platform.</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/btrdb" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">btrdb</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/timeseries" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">timeseries</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/python" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/sunshine-data" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">sunshine data</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/upmu" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">upmu</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/synchrophasor" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">synchrophasor</a>
+   </li>
+  
+</ul>
+
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3"></p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/2020-02-14-btrdb-queries-pt2/">Memory Efficient BTrDB Queries: Part 2</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2020-02-12-btrdb-queries-pt1/">Memory Efficient BTrDB Queries: Part 1</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2019-12-12-btrdb-explained/">BTrDB Explained</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/2020-02-04-linear-models-overview/">Training General Linear Models with the PredictiveGrid™</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    
+<footer class="footer">
+  <div class="container">
+    <div class="row gap-y align-items-center">
+      <div class="col-6 col-lg-3">
+        <a href="https://www.pingthings.ai"
+          ><img src="/assets/img/logo-dark.png" alt="logo"
+        /></a>
+      </div>
+
+      <div class="col-6 col-lg-3 text-right order-lg-last">
+        <div class="social">
+          <a class="social-twitter" href="https://twitter.com/pingthingsio"
+            ><i class="fa fa-twitter-square"></i
+          ></a>
+          <a
+            class="social-linkedin"
+            href="https://www.linkedin.com/company/pingthings/about/"
+            ><i class="fa fa-linkedin-square"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <small>© 2019. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+<script src="/assets/js/page.js"></script>
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: {
+          equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"]
+        }
+      }
+    });
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+
+    MathJax.Hub.Config({
+      
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  </body>
+
+
+  </body>
+</html>
+

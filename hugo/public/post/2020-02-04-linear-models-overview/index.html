@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="keywords"
+      content="time series, TSDB, data analysis, machine learning, deep learning, AI, IoT, energy, DOE"
+    />
+
+    <title>
+      NI4AI - National Infrastructure for AI on the Electric Grid
+    </title>
+
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+    
+    <link href="/assets/css/page.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    
+
+
+    
+    <link rel="stylesheet" href="/assets/css/page.css">
+     
+
+     
+
+   <meta property="og:title" content="Training General Linear Models with the PredictiveGrid™" />
+<meta property="og:description" content="A brief overview of training linear models with btrdb data" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.ni4ai.org/post/2020-02-04-linear-models-overview/" />
+<meta property="article:published_time" content="2020-02-04T16:46:23-05:00" />
+<meta property="article:modified_time" content="2020-02-04T16:46:23-05:00" />
+<meta itemprop="name" content="Training General Linear Models with the PredictiveGrid™">
+<meta itemprop="description" content="A brief overview of training linear models with btrdb data">
+<meta itemprop="datePublished" content="2020-02-04T16:46:23-05:00" />
+<meta itemprop="dateModified" content="2020-02-04T16:46:23-05:00" />
+<meta itemprop="wordCount" content="673">
+
+
+
+<meta itemprop="keywords" content="btrdb,distributed computing,regression,general linear models," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Training General Linear Models with the PredictiveGrid™"/>
+<meta name="twitter:description" content="A brief overview of training linear models with btrdb data"/>
+
+    
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" href="assets/img/favicon.png" />
+
+    
+    <meta property="og:title" content="PingThings PredictiveGrid™" />
+    <meta
+      property="og:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      property="og:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+    <meta property="og:url" content="https://pingthings.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pingthingsio" />
+    <meta
+      name="twitter:title"
+      content="A comprehensive platform for data science on petabyte scale sensor data."
+    />
+    <meta
+      name="twitter:description"
+      content="PingThings' PredictiveGrid™ platform offers a time series database purpose built for industrial scale deployments of high rate sensors (1Khz+). It includes all the tools necessary to ingest, store, visualize, analyze, and perform machine learning or deep learning on your data."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pingthings.io/assets/img/logo-light.png"
+    />
+  </head>
+
+  <body data-aos-easing="ease" data-aos-duration="1500" data-aos-delay="0" class="">
+
+    
+   
+  <header>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="top: 0;"
+    data-navbar="sticky"
+  >
+    
+    <div class="pl5 pb3 row">
+      <div class="col-8 col-lg-2 navbar-left" style="padding-left: 0px;">
+        <button class="navbar-toggler" type="button">☰</button>
+        <a class="navbar-brand" href="/">
+          <span style="font-size: 20px; color: black;">NI4AI Blog</span>
+          
+        </a>
+      </div>
+      <section class="col-lg-8 navbar-mobile">
+  <nav class="nav nav-navbar mx-auto">
+    
+    <a class="nav-link" href="/about/" title="About">About</a>
+    
+    <a class="nav-link" href="/post/" title="Articles">Articles</a>
+    
+    <a class="nav-link" href="https://ni4ai.org" title="Project Home">
+      Project Home
+    </a>
+  </nav>
+</section>
+
+    </div>
+    
+  </nav>
+  <div style="height: 56px;"></div>
+</header>
+
+
+    
+  
+  <article class="flex-l flex-wrap justify-between pl5 pt5 mw9">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        ARTICLES
+      </p>
+      <h1 class="f1 athelas mb1">Training General Linear Models with the PredictiveGrid™</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-02-04T16:46:23-05:00">February 4, 2020</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="linear-modeling-process-overview">Linear Modeling Process Overview</h2>
+<p><a href="http://sdb.cs.berkeley.edu/sdb/btrdb.php#">BTrDB (the Berkeley Tree Database)</a> is the core of the PredictiveGrid™ and implements a time series database API that is extremely effective for distributed analytics including the training of general linear models. To efficiently distribute storage to accommodate a high rate of data ingest from multiple sensors, data is stored in independent streams. As a result, univariate forecasting models are very easy to construct since, unlike querying a database table, queries are directly to measurement streams. Multivariate modeling usually takes two forms: either the expansion of features from a single stream (usually via FFT) or via an in-memory join of multiple streams that are time-aligned by the database.</p>
+<p>The API supports raw values queries but also queries at arbitrary levels of time granularity with constant time aggregation. Moreover, the database has native support for windowing and time alignment queries, minimizing the work needed for pre-model data wrangling. We have bindings in multiple languages including <a href="https://pingthingsio.github.io/BTrDB.jl/v5.6/">Julia</a> and <a href="https://btrdb.readthedocs.io/en/latest/">Python</a>. Queries in Python return data as NumPy arrays or pandas Series or DataFrames. These formats are well suited for immediate use by the SciPy stack including basic time series analysis with lag means, cumulative series, ARIMA, or other seasonality based forecasting methods. Linear models can be easily implemented with either <a href="https://www.statsmodels.org/stable/index.html">StatsModels</a> or <a href="https://scikit-learn.org/stable/">scikit-learn.</a> Generally, we’ve found that non-parametric models such as random forest or gradient boosting perform best with the random walk-like voltage and current measurements we typically work on. However, data returned from a query can be easily funneled into any pipeline that exposes the scikit-learn API including logistic or polynomial regressions, stochastic gradient descent, SVMs, etc.</p>
+<p>To provide ease of use for these types of low-density, in-memory computations, the platform is deployed with a standard <a href="https://jupyterhub.readthedocs.io/en/stable/">JupyterHub</a> environment that is pre-configured with database connection details. Our JupyterHub is deployed using <a href="https://kubernetes.io/">Kubernetes</a>, so user pods can be variably sized to different compute and memory requirements and all user pods are isolated from other users. JupyterHub also allows us to provide a user interface to distributed computing environments such as <a href="https://rise.cs.berkeley.edu/projects/ray/">Ray</a> and <a href="https://www.tensorflow.org/">TensorFlow.</a></p>
+<p>For distributed analytics, we tend to prefer Ray, TensorFlow, and <a href="https://escholarship.org/content/qt61w8z66w/qt61w8z66w.pdf">DISTIL</a>, but have support for other distributed analytics frameworks such as Spark. Ray is a project currently in development at the UC Berkeley RISE Lab as a successor to <a href="https://spark.apache.org/">Spark.</a> We parallelize data in two ways to Ray and Spark executor nodes. The first method is to use <a href="https://arrow.apache.org/">Apache Arrow</a> and <a href="https://modin.readthedocs.io/en/latest/">Modin</a> to distribute a DataFrame across executors a cluster, this method ensures that the user has complete control of the data parallelization but creates a bottleneck at the user notebook. The second way is to partition the query, typically by time range, so that each executor independently queries the database for its shard, allowing parallel data loading from the database. In Spark, this is handled with a custom RDD type and in Ray using a special query decorator.</p>
+<p>We have also found that deep learning time series methods such as RNNs and LSTMS are also effective for linear models on the data we have used. We have implemented a BTrDB-specific Dataset that extends the TensorFlow 2.0 Dataset to allow ease of batching and graph parallelization. Currently, the Dataset also parallelizes data with a bottleneck at the notebook because generated code is required to extend the SQLDataset type. Because this type is experimental, we’ve opted for simpler, NumPy-based streaming with batch queries. However, because TensorFlow epochs are generally longer than data loading time, this loader hasn’t been a major blocker to our deep learning modeling efforts.</p>
+<p>Finally, we’ve implemented a novel, platform-specific distributed computation system called DISTIL. DISTIL is used to apply idempotent computations on real-time data as its ingested and to historical data as fast as system resources will allow. DISTIL is able to take handle out-of-order and out-of-time data and acts similarly to micro-batch systems such as Spark Streaming. DISTIL is primarily used for large scale pre-computation of features that will be used to train linear models, or to apply a linear model in real-time for just-in-time forecasting.</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/btrdb" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">btrdb</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/distributed-computing" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">distributed computing</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/regression" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">regression</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/general-linear-models" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">general linear models</a>
+   </li>
+  
+</ul>
+
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3"></p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/2019-12-12-btrdb-explained/">BTrDB Explained</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    
+<footer class="footer">
+  <div class="container">
+    <div class="row gap-y align-items-center">
+      <div class="col-6 col-lg-3">
+        <a href="https://www.pingthings.ai"
+          ><img src="/assets/img/logo-dark.png" alt="logo"
+        /></a>
+      </div>
+
+      <div class="col-6 col-lg-3 text-right order-lg-last">
+        <div class="social">
+          <a class="social-twitter" href="https://twitter.com/pingthingsio"
+            ><i class="fa fa-twitter-square"></i
+          ></a>
+          <a
+            class="social-linkedin"
+            href="https://www.linkedin.com/company/pingthings/about/"
+            ><i class="fa fa-linkedin-square"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <small>© 2019. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+<script src="/assets/js/page.js"></script>
+<script src="/assets/js/script.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        TeX: {
+          equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"]
+        }
+      }
+    });
+    MathJax.Hub.Queue(function () {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+
+    MathJax.Hub.Config({
+      
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  </body>
+
+
+  </body>
+</html>
+

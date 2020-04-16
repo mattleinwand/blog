@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/algorithms/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/analytics/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/btrdb/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/python/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/visualization/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2020-04-15-voltage-sags/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/voltage-sags/</loc>
+    <lastmod>2020-04-15T00:02:12-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/annoucement/</loc>
+    <lastmod>2020-04-07T09:20:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/naspi/</loc>
+    <lastmod>2020-04-07T09:20:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/ni4ai/</loc>
+    <lastmod>2020-04-07T09:20:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2020-04-07-ni4ai-webinar/</loc>
+    <lastmod>2020-04-07T09:20:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/webinar/</loc>
+    <lastmod>2020-04-07T09:20:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/sunshine-data/</loc>
+    <lastmod>2020-03-30T12:30:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2020-04-08-sunshine-data/</loc>
+    <lastmod>2020-03-30T12:30:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/synchrophasor/</loc>
+    <lastmod>2020-03-30T12:30:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/timeseries/</loc>
+    <lastmod>2020-03-30T12:30:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/upmu/</loc>
+    <lastmod>2020-03-30T12:30:37-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/data-structures/</loc>
+    <lastmod>2020-02-14T16:55:21-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2020-02-14-btrdb-queries-pt2/</loc>
+    <lastmod>2020-02-14T16:55:21-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2020-02-12-btrdb-queries-pt1/</loc>
+    <lastmod>2020-02-12T10:20:38-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/distributed-computing/</loc>
+    <lastmod>2020-02-04T16:46:23-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/general-linear-models/</loc>
+    <lastmod>2020-02-04T16:46:23-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/regression/</loc>
+    <lastmod>2020-02-04T16:46:23-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2020-02-04-linear-models-overview/</loc>
+    <lastmod>2020-02-04T16:46:23-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/benchmarking/</loc>
+    <lastmod>2019-12-17T17:21:41+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2019-12-17-benchmarking-results/</loc>
+    <lastmod>2019-12-17T17:21:41+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2019-12-12-btrdb-explained/</loc>
+    <lastmod>2019-12-12T19:42:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/database/</loc>
+    <lastmod>2019-12-12T19:42:13+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2019-11-06-language-bindings-survey/</loc>
+    <lastmod>2019-11-06T15:05:10+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/news/</loc>
+    <lastmod>2019-11-06T15:05:10+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/tags/survey/</loc>
+    <lastmod>2019-11-06T15:05:10+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/2019-10-26-kickoff/</loc>
+    <lastmod>2019-10-25T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/post/</loc>
+    <lastmod>2017-03-02T12:00:00-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ni4ai.org/categories/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>

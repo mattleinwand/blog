@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sunshine data on NI4AI Blog</title>
+    <link>http://blog.ni4ai.org/tags/sunshine-data/</link>
+    <description>Recent content in sunshine data on NI4AI Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Mar 2020 12:30:37 -0400</lastBuildDate>
+    
+	<atom:link href="http://blog.ni4ai.org/tags/sunshine-data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sunshine uPMU Data</title>
+      <link>http://blog.ni4ai.org/post/2020-04-08-sunshine-data/</link>
+      <pubDate>Mon, 30 Mar 2020 12:30:37 -0400</pubDate>
+      
+      <guid>http://blog.ni4ai.org/post/2020-04-08-sunshine-data/</guid>
+      <description>The primary synchrophasor dataset that is currently available in the NI4AI platform is from 6 topologically related uPMUs measuring data intermittently from 2015-2017. The dataset was collected for academic power engineering research and has been anonymized to remove sensitive and location-specific information. Because it was the first dataset to be made public on the platform, we&amp;rsquo;ve named it the &amp;ldquo;sunshine&amp;rdquo; dataset and it can be found in the sunshine/ collection in the plotter.</description>
+    </item>
+    
+  </channel>
+</rss>
