@@ -1,20 +1,22 @@
-const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = require.resolve(`./src/templates/blog-post.js`)
+  const article = require.resolve(`./src/templates/article.js`)
+  const articles = require.resolve(`./src/templates/articles.js`)
   const result = await graphql(
     `
       {
         allMarkdownRemark(
+          filter: { fields: { category: { eq: "post" } } }
           sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
         ) {
           edges {
             node {
               fields {
+                category
                 slug
               }
               frontmatter {
@@ -24,15 +26,39 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-    `
-  )
+    `);
 
   if (result.errors) {
     throw result.errors
   }
 
-  // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges.filter(item => !item.node.fields.slug.includes('/about'))
+  const posts = result.data.allMarkdownRemark.edges.filter(item => !item.node.fields.slug.includes('/about') && !item.node.fields.slug.includes('/author'))
+
+  console.log(result.data.allMarkdownRemark.edges)
+
+  const postsPerPage = 5
+  const numPages = Math.ceil(posts.length / postsPerPage)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    const limit = postsPerPage;
+    const skip = i * postsPerPage;
+    let path = '/articles';
+
+    if (i > 0) {
+      path = `${path}/${i + 1}`
+    }
+
+    createPage({
+      path,
+      component: articles,
+      context: {
+        limit,
+        skip,
+        numPages,
+        currentPage: i + 1,
+      },
+    })
+  })
 
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
@@ -40,7 +66,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     createPage({
       path: post.node.fields.slug,
-      component: blogPost,
+      component: article,
       context: {
         slug: post.node.fields.slug,
         previous,
@@ -55,32 +81,46 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
+
+    createNodeField({
+      name: 'category',
+      node,
+      value: getNode(node.parent).sourceInstanceName
+    })
+    
     createNodeField({
       name: 'slug',
       node,
-      value,
+      value
     })
   }
 }
 
-exports.sourceNodes = ({ boundActionCreators, getNodes, getNode }) => {
+exports.sourceNodes = ({ boundActionCreators, getNodes }) => {
   const { createNodeField } = boundActionCreators
-  
+
   getNodes()
     .filter(node => node.internal.type === `MarkdownRemark`)
     .forEach(node => {
       if (node.frontmatter.author) {
         const authorNode = getNodes().find(
-          item =>
-            item.internal.type === `MarkdownRemark` &&
+          item => item.internal.type === `MarkdownRemark` &&
             item.frontmatter.id === node.frontmatter.author
         )
 
         if (authorNode) {
+          node.category = 'author'
+
+          createNodeField({
+            name: `category`,
+            node,
+            value: 'author'
+          })
+          
           createNodeField({
             node,
             name: `author`,
-            value: authorNode.frontmatter,
+            value: authorNode.frontmatter
           })
         }
       }

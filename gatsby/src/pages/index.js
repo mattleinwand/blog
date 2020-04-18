@@ -1,6 +1,6 @@
-import React from "react"
+import { Layout } from "../components/Layout"
 import { Link, graphql } from "gatsby"
-import Layout from "../components/Layout"
+import React from "react"
 
 const Homepage = ({ data, location }) => {
   const posts = data.allMarkdownRemark.edges.filter(item => !item.node.fields.slug.includes('/about') && !item.node.fields.slug.includes('/authors'))
@@ -37,7 +37,10 @@ export default Homepage
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      filter: { fields: { category: { eq: "post" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      ) {
       edges {
         node {
           excerpt

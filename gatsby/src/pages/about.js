@@ -1,5 +1,5 @@
+import  { Layout } from "../components/Layout"
 import { graphql } from "gatsby"
-import Layout from "../components/Layout"
 import React from "react"
 
 const About = ({ data, location }) => {
@@ -16,7 +16,7 @@ export default About
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(filter: { fields: { slug: { eq: "/about/" }}}) {
+    allMarkdownRemark(filter: { fields: { category: { eq: "about" } } }) {
       edges {
         node {
           html

@@ -3,9 +3,22 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        ignore: 'authors/',
-        path: `${__dirname}/content`,
-        name: `blog`,
+        path: `${__dirname}/content/about`,
+        name: `about`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/authors`,
+        name: `authors`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/post`,
+        name: `post`,
       },
     },
     {

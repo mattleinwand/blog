@@ -7,7 +7,7 @@ export const Footer = () => {
         <div className="row gap-y align-items-center">
           <div className="col-6 col-lg-3">
             <a href="https://www.pingthings.ai"
-            ><img src="/assets/img/logo-dark.png" alt="logo"
+            ><img src="/assets/images/logo-dark.png" alt="logo"
               /></a>
           </div>
 

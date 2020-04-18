@@ -1,6 +1,6 @@
+import { Layout } from "../components/Layout"
 import { Link, graphql } from "gatsby"
 import React from "react"
-import Layout from "../components/Layout"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
@@ -63,7 +63,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt
