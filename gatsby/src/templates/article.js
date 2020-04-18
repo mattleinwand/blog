@@ -6,7 +6,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const { previous, next } = pageContext
 
-  console.log(post)
 
   return (
     <Layout location={location}>

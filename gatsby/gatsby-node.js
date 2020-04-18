@@ -32,9 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors
   }
 
-  const posts = result.data.allMarkdownRemark.edges.filter(item => !item.node.fields.slug.includes('/about') && !item.node.fields.slug.includes('/author'))
-
-  console.log(result.data.allMarkdownRemark.edges)
+  const posts = result.data.allMarkdownRemark.edges;
 
   const postsPerPage = 5
   const numPages = Math.ceil(posts.length / postsPerPage)
@@ -109,14 +107,6 @@ exports.sourceNodes = ({ boundActionCreators, getNodes }) => {
         )
 
         if (authorNode) {
-          node.category = 'author'
-
-          createNodeField({
-            name: `category`,
-            node,
-            value: 'author'
-          })
-          
           createNodeField({
             node,
             name: `author`,
