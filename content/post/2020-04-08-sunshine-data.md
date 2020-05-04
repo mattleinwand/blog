@@ -5,7 +5,32 @@ description: "A brief walkthrough of the Sunshine uPMU dataset"
 tags: ["btrdb", "timeseries", "python", "sunshine data", "upmu", "synchrophasor"]
 ---
 
-The primary synchrophasor dataset that is currently available in the NI4AI platform is from 6 topologically related uPMUs measuring data intermittently from 2015-2017. The dataset was collected for academic power engineering research and has been anonymized to remove sensitive and location-specific information. Because it was the first dataset to be made public on the platform, we've named it the "sunshine" dataset and it can be found in the `sunshine/` collection in the plotter.
+The “Sunshine” dataset comes from a distribution system in a sunny climate with significant solar PV generation. The data were collected with micro-PMUs during an early research deployment. There are gaps in the data which correspond to outages as the team was experimenting with different system configurations and wireless communications. When fully connected, each PMU reports data at 120 frames per second on twelve channels: three-phase voltage and current, giving root-mean-square magnitude and phase angle for each.
+
+The six sensor locations correspond to three substation buses, one large PV array, and two university buildings. While all six are within the same city, there are three separate distribution circuits, equipped with two sensors each:
+
+```
+PMU1 - PV array
+PMU3 - Substation where this PV array is connected
+```
+
+```
+PMU6 - Building
+PMU4 - Substation where this building is connected
+The impedance between PMUs 4 and 6 is estimated at
+Pos seq 0.76 + j0.463
+Neg seq 1.782 + j1.234
+```
+
+```
+PMU2 - Building
+PMU5 - Substation where this building is connected
+The impedance between PMUs 2 and 5 is estimated at
+Pos seq 0.489 + j0.59
+Neg seq 0.971 + j1.476
+```
+
+The dataset was collected for academic power engineering research and has been anonymized to remove sensitive and location-specific information and it can be found in the `sunshine/` collection in the plotter.
 
 In this post, we'll go over how to access the dataset using the [btrdb-python bindings](https://btrdb.readthedocs.io/en/latest/) and prepare to do power engineering analytics on it.
 
