@@ -18,6 +18,10 @@
   padding-top: 8px;
 }
 
+.image-bio-section > .left {
+  flex-basis: 200%;
+}
+
 .custom-section.author-bio.mid-gray {
   border: 1px solid #555;
 }
