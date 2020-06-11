@@ -73,7 +73,7 @@ export const Posts = ({ posts }) => (
         ...node.frontmatter,
         author,
         image: node.frontmatter.featuredImage,
-        subtitle: node.excerpt
+        subtitle: node.frontmatter.description
       }
 
       return (

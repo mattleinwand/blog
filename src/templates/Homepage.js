@@ -90,7 +90,7 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
     ...first.node.frontmatter,
     author,
     image: first.node.frontmatter.featuredImage,
-    subtitle: first.node.excerpt
+    subtitle: first.node.frontmatter.description
   }
 
   if (isMobile) {
@@ -123,7 +123,7 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
             ...node.frontmatter,
             author,
             image: node.frontmatter.featuredImage,
-            subtitle: node.excerpt
+            subtitle: node.frontmatter.description
           }
 
           return (
