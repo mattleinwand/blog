@@ -51,6 +51,7 @@ const ArticleItem = styled(BaseLink)`
 
       > div {
         > :not(:first-child) {
+          height: unset;
           padding-bottom: 0;
         }
       }

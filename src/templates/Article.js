@@ -132,6 +132,7 @@ const RelatedPost = styled.a`
 
       > :not(:first-child) {
         > div {
+          height: unset;
           padding-bottom: 0;
         }
       }

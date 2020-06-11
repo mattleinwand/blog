@@ -36,6 +36,7 @@ const ArticleItem = styled(Link)`
     css`
       > div {
         > :not(:first-child) {
+          height: unset;
           padding-bottom: 0;
         }
       }
