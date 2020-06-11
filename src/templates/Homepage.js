@@ -1,9 +1,16 @@
-import { Link as BaseLink, graphql, navigate } from "gatsby"
-import { Excerpt as BaseExcerpt, Pagination } from 'frontend-components'
-import { Layout } from "./Layout"
-import { get } from 'lodash'
 import React from "react"
+
+import {
+  Excerpt as BaseExcerpt,
+  Pagination,
+  lightTheme,
+  useWindowSize
+} from 'frontend-components'
+import { get } from 'lodash'
+import { Link as BaseLink, graphql, navigate } from "gatsby"
 import styled, { css, down, up } from '@xstyled/styled-components'
+
+import { Layout } from "./Layout"
 
 const Link = styled(BaseLink)`
   text-decoration: none;
@@ -51,51 +58,13 @@ const ArticleItem = styled(BaseLink)`
   )}
 `;
 
-const MainExcerpt = styled(BaseExcerpt)`
-  > :not(:first-child) {
-    padding: 64px 24px;
-
-    > :first-child {
-      text-align: center;
-    }
-
-    > :not(:first-child) {
-      width: 100%;
-    }
-  }
-
-  ${down('md',
-    css`
-      > :not(:first-child) {
-        padding: 0 24px;
-
-        > :first-child {
-          text-align: left;
-
-          p {
-            &:first-child {
-              font-size: 36px;
-              line-height: 44px;
-            }
-
-            &:not(:first-child) {
-              font-size: 20px;
-              line-height: 28px;
-            }
-          }
-        }
-      }
-    `
-  )}
-`;
 
 const Homepage = ({ data, location, pageContext, ...props }) => {
   const { currentPage, numPages } = pageContext
-  const [first, ...posts] = data.allMarkdownRemark.edges;
+  let [first, ...posts] = data.allMarkdownRemark.edges;
 
   const onChangePage = item => {
     const path = item === 1 ? '/articles' : `/articles/${item}`
-
     navigate(path)
   }
 
@@ -110,18 +79,32 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
     author = { ...author, avatar }
    }
 
-  const firstPost = {
+  const windowSize = useWindowSize()
+  const isMobile = (
+    windowSize &&
+    windowSize.width &&
+    windowSize.width < lightTheme.breakpoints.md
+  )
+
+  let firstPost = {
     ...first.node.frontmatter,
     author,
     image: first.node.frontmatter.featuredImage,
     subtitle: first.node.excerpt
   }
 
+  if (isMobile) {
+    firstPost = null
+    posts = [first, ...posts]
+  }
+
   return (
     <Layout location={location}>
-      <Link to={get(first, 'node.fields.slug')}>
-        <MainExcerpt {...firstPost} layout='extended' />
-      </Link>
+      { firstPost && (
+        <Link to={get(first, 'node.fields.slug')}>
+          <BaseExcerpt {...firstPost} layout='extended' />
+        </Link>
+      )}
 
       <ArticleList>
         {posts.map(({ node }, index) => {

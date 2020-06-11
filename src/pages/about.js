@@ -23,7 +23,7 @@ const Media = styled(BaseMedia)`
 
 const Title = styled.p`
   ${th('typography.display2')};
-  color: neutral8;
+  color: foreground3;
 `
 
 const Subtitle = styled.p`

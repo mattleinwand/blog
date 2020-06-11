@@ -129,6 +129,12 @@ const RelatedPost = styled.a`
       & + div {
         margin-left: 0;
       }
+
+      > :not(:first-child) {
+        > div {
+          padding-bottom: 0;
+        }
+      }
     `
   )}
 `
@@ -158,8 +164,8 @@ const TagContainer = styled.div`
 `
 
 const Subtitle = styled.p`
-  ${th('typography.display1')};
-  color: neutral5;
+  ${th('typography.label4')};
+  color: foreground0;
   line-height: 30px;
   margin-bottom: 32px;
   margin-top: 12px;
@@ -174,7 +180,7 @@ const Subtitle = styled.p`
 
 const Title = styled.h1`
   ${th('typography.display4')};
-  color: neutral8;
+  color: foreground3;
   line-height: 56px;
   margin: 0;
 

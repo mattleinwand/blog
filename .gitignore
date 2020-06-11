@@ -12,3 +12,4 @@ $RECYCLE.BIN/
 
 *.env
 node_modules
+.cache

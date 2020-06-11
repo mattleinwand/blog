@@ -53,7 +53,7 @@ const NavigationContainer = styled.div`
 `
 
 const Wrapper = styled.div`
-  background-color: ${th('colors.white')};
+  background-color: ${th('colors.background')};
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   height: 64px;

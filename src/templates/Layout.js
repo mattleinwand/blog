@@ -1,6 +1,6 @@
 import { NavigationItem } from '../components/NavigationItem'
 import { Header } from '../components/Header'
-import { ThemeProvider, theme } from 'frontend-components'
+import { ThemeProvider, lightTheme } from 'frontend-components'
 import { menuItems } from '../lib/menu-items'
 import React, { useState } from "react"
 import styled, { createGlobalStyle, css, keyframes, up } from '@xstyled/styled-components'
@@ -65,7 +65,7 @@ export const Layout = ({ children, location }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={lightTheme}>
       <Helmet>
         <meta charSet="utf-8" />
         <meta
