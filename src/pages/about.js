@@ -10,6 +10,8 @@ const Container = styled.div`
   flex: 1;
   flex-direction: column;
   margin-top: 64px;
+  max-width: 1500px;
+  padding: 0 24px;
 `
 
 const Content = styled.div`
