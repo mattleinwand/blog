@@ -9,3 +9,6 @@ $RECYCLE.BIN/
 
 # OSX Crumbs
 .DS_Store
+
+*.env
+node_modules
