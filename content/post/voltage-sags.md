@@ -17,7 +17,7 @@ _Voltage sags_ are significant transient dips in the network voltage, lasting fo
 
 There are also safety implications, as a voltage sag may indicate a momentary fault that was not recognized and cleared by protection systems (also known as a high-impedance fault) — for example, momentary contact between distribution conductors and trees. Such faults can be precursors to even more dangerous conditions, such as wildfire ignition. Distribution PMU measurements, sampled at 120 Hz, give unprecedented visibility of voltage sags, capturing even the small, brief dips that would be invisible in most other measurements. BTrDB then allows us to easily find, extract, and analyze these sags from a large measurement stream to gain system insights.
 
-In this post, we use the simple BTrDB search functions introduced [previously](/post/btrdb-queries-pt2/) to find voltage sags. We then use Python's wonderful data visualization libraries to visually analyze and discover patterns in the sags and to share our findings. Along the way, we learn some interesting facts about voltage sags!
+In this post, we use the simple BTrDB search functions introduced [previously](/post/2020-02-14-btrdb-queries-pt2/) to find voltage sags. We then use Python's wonderful data visualization libraries to visually analyze and discover patterns in the sags and to share our findings. Along the way, we learn some interesting facts about voltage sags!
 
 ## Finding Voltage Sags
 

@@ -17,7 +17,7 @@ The analytics challenge for handling this data is that modeling is not necessari
 
 ## Stream Selection
 
-In this post we will work with the [sunshine dataset](/post/2020-04-08-sunshine-data/), focusing on a minutes worth of data from the phase 1 current of PMU1:
+In this post we will work with the [sunshine dataset](/post/2020-03-30-sunshine-data/), focusing on a minutes worth of data from the phase 1 current of PMU1:
 
 ```python
 %matplotlib notebook
