@@ -1,5 +1,5 @@
 ---
-title: Blog Demo 1 “Sure I can log in but Now What?”
+title: Demo 1 “Sure I can log in but Now What?”
 date: '2020-07-27T02:03:03+00:00'
 description: This page is dedicated to new users. WELCOME to the NI4AI platform
 featuredImage: '/assets/images/post/blog-demo-1/ni4ai-login.png'
