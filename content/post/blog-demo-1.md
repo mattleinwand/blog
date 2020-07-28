@@ -47,9 +47,9 @@ You can also interact with the data directly through the Python API to do analys
 
 ![Jupyter](/assets/images/post/blog-demo-1/Jupyter.gif)
 
-You will need to install BTrDB package to access BTrDB database, and you can find more information here. 
+You will need to install BTrDB package to access BTrDB database, and you can find more information [here](https://btrdb.readthedocs.io/en/latest/installing.html). 
 
 
-Useful tips and code samples are available on our blogs and in the BTrDB docs .
+Useful tips and code samples are available on our blogs and in the [BTrDB docs](https://btrdb.readthedocs.io/en/latest/quick-start.html) .
 
 Stay tuned for more demos, and happy analyzing! 
