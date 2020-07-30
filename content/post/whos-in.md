@@ -46,6 +46,6 @@ A lot of utilities hesitate to share data for security concerns. It is much safe
 
 Publicly available datasets can lead to infinite possibilities. Academia and students can use data to research, for example, innovative new technologies, wildfire indications and train future engineers. Data scientists or software engineers can play with data to build tools.
 
-Here CEO Sean breaks down the NI4AI concept in the presentation at NASPI [here](https://drive.google.com/drive/u/0/folders/1X947SFKtx8CfkdIqhthS5LGJAHExyZEO). Or reach out to us at [NI4AI@info.io](NI4AI@info.io)
+Here CEO Sean breaks down the NI4AI concept in the presentation at NASPI [here](https://youtu.be/sCbG0Am1e-4). Or reach out to us at [NI4AI@info.io](NI4AI@info.io)
 
 Happy Analyzing!
