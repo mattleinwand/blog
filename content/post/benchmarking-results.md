@@ -7,12 +7,11 @@ tags:
 - NI4AI
 - BTrDB
 - Computing
-
 title: Time Series Benchmarking Results
 author: michael
 ---
 
-There are many time series databases on the market at the moment and they each have their own strengths and weaknesses. Some of these characteristics are qualitative or can be quantified without an experiment for example "this database can scale out to a cluster" or "this database supports query X". Others need an experiment run on controlled hardware in order to quantify the differences.
+There are many time series databases on the market at the moment and they each have their own strengths and weaknesses. Some of the differences are qualitative or can be quantified without an experiment for example "this database can scale out to a cluster" or "this database supports query X". Others need experiments run on controlled hardware in order to quantify the differences.
 
 Using the [benchmarking codebase](https://github.com/PingthingsIO/time-series-benchmarks), we evaluate a number of scenarios to model real world performance.  Below you will find the results of our most recent round of benchmarking.
 
