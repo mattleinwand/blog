@@ -2,7 +2,7 @@
 date: 2020-03-30T12:30:37-0400
 description: A brief walkthrough of the Sunshine uPMU dataset
 featuredImage: '/assets/images/post/sunshine-data/sunshine-plot-1.png'
-tags: ["btrdb", "timeseries", "python", "sunshine data", "upmu", "synchrophasor", "dataset"]
+tags: ["Data Descriptions", "NI4AI-data", "Analytics", "Sunshine Data"]
 title: A brief walkthrough of the Sunshine uPMU dataset
 author: sascha
 ---

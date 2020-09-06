@@ -3,7 +3,7 @@ title: "Expertise for Experts: What do you need to know about PMU data?"
 date: '2020-07-31T07:12:06+0000'
 description: NI4AI is building bridges between different areas of expertise.
 featuredImage: '/assets/images/post/expertise-for-expert/chalkboard.jpg'
-tags: ["ni-4-ai", "ai", "python", "data-analysis", "visualization", "btrdb"]
+tags: ["Conversations", "NI4AI-community", "NI4AI-events"]
 author: laurel
 ---
 
