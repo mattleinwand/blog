@@ -3,7 +3,7 @@ title: Visualizing Phasor Timeseries with matplotlib
 date: 2020-04-25T07:45:15-0400
 description: How to discover voltage sags with efficient BTrDB queries
 featuredImage: '/assets/images/post/visualizing-phasor-timeseries/gallery.png'
-tags: ["matplotlib", "phasors", "timeseries", "visualization"]
+tags: ["Explainers", "Visualization", "Use-cases", "Sunshine Data"]
 author: ben
 ---
 

@@ -4,12 +4,10 @@ date: '2020-07-30T02:13:47+0000'
 description: Working with PMU Angle Data
 featuredImage: '/assets/images/post/what-is-angle-2/angle1.png'
 tags:
-- btrdb
-- python
-- voltage sags
-- algorithms
-- analytics
-- visualization
+- Explainers
+- Analytics
+- NI4AI-Community
+
 title: 'What’s the Angle? (Part 2)'
 ---
 

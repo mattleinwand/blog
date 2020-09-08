@@ -1,9 +1,9 @@
 ---
-title: Demo 1 “Sure I can log in but Now What?”
+title: Demo 1 “Sure I can log in but What's Next?”
 date: '2020-07-28T00:26:38+0000'
 description: This page is dedicated to new users. WELCOME to the NI4AI platform
 featuredImage: '/assets/images/post/blog-demo-1/ni4ai-login.png'
-tags: ["ni-4-ai", "ai", "python", "data-analysis", "visualization", "btrdb"]
+tags: ["Set-up", "Visualization", "NI4AI-platform"]
 author: nica
 ---
 

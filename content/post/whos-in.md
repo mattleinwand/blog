@@ -3,7 +3,7 @@ title: "NI4AI: Who's in?"
 date: '2020-07-29T15:21:53+0000'
 description: NI4AI is looking for collaborators willing to contribute data and host sensors that could catalyze the next generation of grid analytics.
 featuredImage: '/assets/images/post/whos-in/map.png'
-tags: ["ni-4-ai", "ai", "python", "data-analysis", "visualization", "btrdb"]
+tags: ["Conversations", "NI4AI-community"]
 author: nica
 ---
 
@@ -46,6 +46,6 @@ A lot of utilities hesitate to share data for security concerns. It is much safe
 
 Publicly available datasets can lead to infinite possibilities. Academia and students can use data to research, for example, innovative new technologies, wildfire indications and train future engineers. Data scientists or software engineers can play with data to build tools.
 
-Here CEO Sean breaks down the NI4AI concept in the presentation at NASPI [here](https://youtu.be/sCbG0Am1e-4). Or reach out to us at [NI4AI@info.io](NI4AI@info.io)
+Here CEO Sean breaks down the NI4AI concept in the presentation at NASPI [here](https://youtu.be/sCbG0Am1e-4). Or reach out to us at [info@ni4ai.org](info@ni4ai.org)
 
 Happy Analyzing!

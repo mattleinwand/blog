@@ -3,7 +3,7 @@ title: "Demo 2: When NI４AI meets your Jupytr Notebook..."
 date: '2020-07-30T02:13:47+0000'
 description: This page is for users interested in exporting the data from the NI4AI platform to Jupyter Notebook or Python script for further analysis.
 featuredImage: '/assets/images/post/demo-2/feature.png'
-tags: ["ni-4-ai", "ai", "python", "data-analysis", "visualization", "btrdb"]
+tags: ["Set-up", "Visualization", "NI4AI-platform", "Sunshine Data"]
 author: nica
 ---
 
