@@ -3,7 +3,7 @@ title: EKG Data
 date: '2020-05-06T09:27:32-0400'
 description: Exploring EKG data in the PredictiveGrid
 featuredImage: '/assets/images/post/ekg-data/ekg.png'
-tags: ["Data Descriptions", "NI4AI-data", "Visualization", "EKG Data"]
+tags: ["data-descriptions", "ni4ai-data", "visualization", "ekg-data"]
 author: sascha
 ---
 

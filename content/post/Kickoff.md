@@ -2,10 +2,10 @@
 date: '2019-10-25T12:00:00-00:00'
 description: Project Kickoff
 tags:
-- Conversations
-- NI4AI-platform
-- NI4AI-community
-- Announcement
+- conversations
+- ni4ai-platform
+- ni4ai-community
+- announcement
 title: Project Kickoff
 author: pingthings
 featuredImage: '/assets/images/post/default.jpg'

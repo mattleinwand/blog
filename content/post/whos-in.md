@@ -3,7 +3,7 @@ title: "NI4AI: Who's in?"
 date: '2020-07-29T15:21:53+0000'
 description: NI4AI is looking for collaborators willing to contribute data and host sensors that could catalyze the next generation of grid analytics.
 featuredImage: '/assets/images/post/whos-in/map.png'
-tags: ["Conversations", "NI4AI-community"]
+tags: ["conversations", "ni4ai-community"]
 author: nica
 ---
 
@@ -19,10 +19,10 @@ AMI data has led to similar transitions, and provides useful context. The [Smart
 
 ## Who is already utilizing the collected data?
 
-Some large investor owned utilities tend to have been exploring analytical tools; some of them 
+Some large investor owned utilities tend to have been exploring analytical tools; some of them
 collaborate with startups like Ping Things and universities. A lot of small municipal and cooperative utilities have or are in the process of deploying smart sensors, but data is collected mainly for billing or reduction on power usage for customers.
 
-The issue is that it is difficult, or appears daunting for small utilities, which are often run by a small workforce, to utilize data or hire data scientists. The irony is, a lot of small utilities serve rural areas especially in wildfire risk areas, and can benefit a lot from time series data. 
+The issue is that it is difficult, or appears daunting for small utilities, which are often run by a small workforce, to utilize data or hire data scientists. The irony is, a lot of small utilities serve rural areas especially in wildfire risk areas, and can benefit a lot from time series data.
 
 The NI4AI platform can fill this gap among utilities and potentially take utility management to the next level! Consumers can benefit hugely if the whole industry utilizes data to have better predictions.
 
@@ -36,13 +36,13 @@ Here are the most common concerns:
 
 ### 1) Data Analysis Knowledge, skills  and resources required?
 
-Utilities do not necessarily have huge resources or the requisite number of data scientists to participate in data analysis. Using platforms like NI4AI, makes it simple to analyze the data. Simply play around with the web based plotter where you can zoom in and out of the point you are interested in and explore any irregular streams. You can also export a csv file or export a jupyter hub for local analysis. Some coding samples, for anyone to use, are also available. 
-    
+Utilities do not necessarily have huge resources or the requisite number of data scientists to participate in data analysis. Using platforms like NI4AI, makes it simple to analyze the data. Simply play around with the web based plotter where you can zoom in and out of the point you are interested in and explore any irregular streams. You can also export a csv file or export a jupyter hub for local analysis. Some coding samples, for anyone to use, are also available.
+
 ### 2) Secure in the Cloud?
-       
+
 A lot of utilities hesitate to share data for security concerns. It is much safer than saving data locally or some hard disk as cloud storage has more professional security in place. Using Cloud also enables utilities to access cloud computing; does not limit to the ability of users’ machines.
 
-### 3) Why publish in public? 
+### 3) Why publish in public?
 
 Publicly available datasets can lead to infinite possibilities. Academia and students can use data to research, for example, innovative new technologies, wildfire indications and train future engineers. Data scientists or software engineers can play with data to build tools.
 

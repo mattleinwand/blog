@@ -3,13 +3,13 @@ title: "Expertise for Experts: What do you need to know about PMU data?"
 date: '2020-07-31T07:12:06+0000'
 description: NI4AI is building bridges between different areas of expertise.
 featuredImage: '/assets/images/post/expertise-for-expert/chalkboard.jpg'
-tags: ["Conversations", "NI4AI-community", "NI4AI-events"]
+tags: ["conversations", "ni4ai-community", "ni4ai-events"]
 author: laurel
 ---
 
-Veteran power systems engineers spend decades learning to excel in their jobs. This learning happens in school, professional training, and from real-world experience. 
+Veteran power systems engineers spend decades learning to excel in their jobs. This learning happens in school, professional training, and from real-world experience.
 
-Becoming a skilled data scientist also takes practice. Data scientists often have advanced degrees in statistics or computer science. These degrees often involve a gruelling course load and at least a few all-nighters. Given the overhead involved in becoming an in either domain - for most people it simply isn't practical to become experts in both. 
+Becoming a skilled data scientist also takes practice. Data scientists often have advanced degrees in statistics or computer science. These degrees often involve a gruelling course load and at least a few all-nighters. Given the overhead involved in becoming an in either domain - for most people it simply isn't practical to become experts in both.
 
 This blog post points you to some of our favorite resources explaining and motivating grid data analytics. We've curated two lists: one for *data scientists* and another for *power systems engineers*.
 
@@ -28,7 +28,7 @@ Read to start analyzing synchrophasor data? You can get experience working with 
 
 
 ## For power systems engineers:
-Utility analytics is a hot topic these days, and it can be hard to stay up to date. We follow the North American Synchrophasor Initiative (NASPI), a consortium of industry practitioners, vendors, and researchers geared at advancing the use of synchrophasors and other sensor technologies. 
+Utility analytics is a hot topic these days, and it can be hard to stay up to date. We follow the North American Synchrophasor Initiative (NASPI), a consortium of industry practitioners, vendors, and researchers geared at advancing the use of synchrophasors and other sensor technologies.
 
 Here are a few resources by NASPI and others that we've found to be particularly helpful.
 

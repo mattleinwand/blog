@@ -3,9 +3,9 @@ date: 2020-04-07T09:20:37-0400
 description: This panel will introduce the ARPA-E funded NI4AI effort, built on PingThings'
   PredictiveGrid platform.
 tags:
-- Conversations
-- NI4AI-events
-- NI4AI-commuinty
+- conversations
+- ni4ai-events
+- ni4ai-community
 
 
 title: NI4AI Webinar

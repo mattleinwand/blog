@@ -3,10 +3,10 @@ date: '2019-12-12T19:42:13.181361Z'
 description: A brief description of the Berkeley Tree Database (BTrDB)
 featuredImage: '/assets/images/post/btrdb-explained/ui_zoom.gif'
 tags:
-- Set-up
-- NI4AI
-- BTrDB
-- Computing
+- set-up
+- ni4ai
+- btrdb
+- computing
 
 title: BTrDB Explained
 author: pingthings
