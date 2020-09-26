@@ -1,10 +1,10 @@
 ---
 title: "Who's in?"
 date: '2020-07-29T15:21:53+0000'
-description: Our search for the utilities most likely to partner with NI4AI to pilot next-generation sensors and data-driven decision analysis tools.
+description: Our search for the utilities to pilot next-generation sensors and data-driven decision analysis tools.
 featuredImage: '/assets/images/post/whos-in/map.png'
-tags: ["Conversations", "NI4AI-community"]
-author: laurel
+tags: ["conversations", "ni4ai-community"]
+author: nica
 ---
 
 The ASCE's [infrastructure report card](https://www.infrastructurereportcard.org/cat-item/energy/) gives grid infrastructure a D+. The low score is based on a few different factors:
@@ -61,5 +61,4 @@ Finally, studies have shown that *trust* plays an important role in consumer wil
 We said earlier that greater accountability to customers means makes smaller utilities more responsive to customer needs, and the relationship goes both ways. 
 When customers feel that their utility is responsive to their needs, they are more willing to make sacrifices for the betterment of their grid. 
 Even minor changes in consumer behaviors can improve operational efficiency or reduce capital costs for utilities.
-
 

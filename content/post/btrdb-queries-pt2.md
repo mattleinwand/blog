@@ -4,11 +4,11 @@ date: '2020-02-14T16:55:21-05:00'
 description: How to leverage the Berkeley Tree to create memory efficient queries
 featuredImage: '/assets/images/post/default.jpg'
 tags:
-- Explainers
-- NI4AI
-- BTrDB
-- Data structures
-- Analytics
+- explainers
+- btrdb
+- ni4ai-platform
+- analytics
+
 title: 'Memory Efficient BTrDB Queries: Part 2'
 ---
 

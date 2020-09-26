@@ -24,9 +24,15 @@ const Container = styled.div`
   )}
 `
 
-const Logo = styled(BaseLogo)`
+const Logo = styled.p`
+  color: #757575;
   cursor: pointer;
+  font-size: 20px;
   height: 20px;
+
+  span {
+    color: #d87c35;
+  }
 `
 
 const MenuIcon = styled.div`
@@ -70,7 +76,9 @@ export const Header = ({ location, onToggleMenu }) => {
       <Container>
         <MenuIcon onClick={onToggleMenu}><Icon name="menu"></Icon></MenuIcon>
 
-        <Logo onClick={() => navigate('/')}/>
+        <Logo onClick={() => navigate('/')}>
+          Ping<span>Things</span>
+        </Logo>
 
         <NavigationContainer>
           {menuItems.map(menuItem => <NavigationItem {...menuItem} location={location} /> )}

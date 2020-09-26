@@ -3,20 +3,20 @@ title: "Connecting to the NI4AI API"
 date: '2020-07-30T02:13:47+0000'
 description: This offers a step-by-step tutorial for new users to connect to our API using Python
 featuredImage: '/assets/images/post/demo-2/feature.png'
-tags: ["Set-up", "Visualization", "NI4AI-platform", "Sunshine Data"]
+
+tags: ["set-up", "visualization", "ni4ai-platform", "sunshine-data"]
 author: nica
 ---
 
-This demo will show users how to access the NI4AI platform using a Jupyter Notebook or Python script. Getting access will allow you to borrow code posted on our blog (see blog posts [tagged analytics](https://blog.ni4ai.org/tags/analytics/)).
+Hello, welcome back to the NI4AI platform!
 
-We'll use the blog post “A brief walkthrough of the Sunshine uPMU dataset" ([here](https://blog.ni4ai.org/post/2020-03-30-sunshine-data/)) as a demonstration. 
+
+Here, we'll use the blog post “A brief walkthrough of the Sunshine uPMU dataset" ([here](https://blog.ni4ai.org/post/2020-03-30-sunshine-data/)) as a demo to show you how you can access the API. 
 
 Here, we show you how to run a jupyter notebook in Google Colaboratory, and on your own machine.
 Google Colaboratory is like a Google Doc for sharing Jupyter notebooks. 
 Colab notebooks run on a virtual machine in the cloud, which means you can run them without having install python or other packages locally. 
 You'll need a Google account to run colab notebooks in the cloud, but you can still download the notebook and run it locally without an account.
-
-## Running a Jupyter Notebook in Google Colaboratory 
 
 You can access our Colab Notebook [here](https://drive.google.com/file/d/1DAecP25WQKm9K2LDZgu-s1x8ZKKcPloU/view?usp=sharing). Select "Open with Google Colaboratory” and it'll open up a new tab allowing you to run code directly in your browser. You may need to install the Google Colaboratory add in if you haven't done so already.
 
@@ -29,14 +29,11 @@ every time you open up a new notebook server. This installs the btrdb python pac
 ![Jupyter 1](/assets/images/post/demo-2/jupyter1.gif)
 
 ## Running a Jupyter Notebook on Your Machine
-
-To run Jupyter Notebook locally, you'll need to install Jupyter notebooks and the btrdb python package.
-
 ### Step 1. Install Jupyter Notebooks
 You can install Jupyter Notebooks using Anaconda or pip (more info [here](https://jupyter.readthedocs.io/en/latest/install.html)).
 
 ### Step 2. Install the btrdb python package 
-Our database is built on [BTrDB](https://blog.ni4ai.org/post/2019-12-12-btrdb-explained/) (pronounced “Better DB”). 
+The NI4AI database is built on [BTrDB](https://blog.ni4ai.org/post/2019-12-12-btrdb-explained/) (pronounced “Better DB”). 
 You'll use the "btrdb" python library to connect to the database, and to make queries. You can find the install guide on the [btrdb website](https://btrdb.readthedocs.io/en/latest/installing.html).
 
 ### Step 3. Getting Your API Key

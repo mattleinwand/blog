@@ -4,10 +4,10 @@ date: '2020-04-15T00:02:12-0700'
 description: How to discover voltage sags with efficient BTrDB queries
 featuredImage: '/assets/images/post/voltage-sags/btrdb_sags.png'
 tags:
-- Explainers
-- Use-cases
-- NI4AI-community
-- Visualization
+- explainers
+- use-cases
+- ni4ai-community
+- visualization
 
 title: 'Voltage Sag Safari: Exploring Voltage Sags with BTrDB'
 ---

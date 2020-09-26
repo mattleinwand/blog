@@ -3,7 +3,7 @@ title: "Expertise for Experts: What do you need to know about PMU data?"
 date: '2020-07-31T07:12:06+0000'
 description: NI4AI is building bridges between different areas of expertise.
 featuredImage: '/assets/images/post/expertise-for-expert/chalkboard.jpg'
-tags: ["Conversations", "NI4AI-community", "NI4AI-events"]
+tags: ["conversations", "ni4ai-community", "ni4ai-events"]
 author: laurel
 ---
 
@@ -40,4 +40,4 @@ Synchrophasor Data by Enabling Easy Data Exploration and Rapid Use Case Prototyp
 - *Data Mining Techniques and Tools for Synchrophasor Data* ([here's the link](https://www.naspi.org/sites/default/files/reference_documents/naspi_data_mining_tech_pnnl_28218_final.pdf)) offers an overview of methods that industry practitioners have used to extract insights from PMU data. Many of the analytics presented in the report could be replicated using data hosted in NI4AI. Stay tuned for blog posts and Jupyter notebooks about analytical methods.
 
 ## For Anyone Curious to Learn More:
-For more updates about new blog posts, datasets, tutorials and events -- we encourage you to [follow us on LinkedIn](https://www.linkedin.com/company/67151405/admin/).
+For more updates about new blog posts, datasets, tutorials, and events -- we encourage you to [follow us on LinkedIn](https://www.linkedin.com/company/67151405/admin/).

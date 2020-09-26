@@ -4,16 +4,16 @@ date: '2020-07-30T02:13:47+0000'
 description: Working with PMU Angle Data
 featuredImage: '/assets/images/post/what-is-angle-2/angle1.png'
 tags:
-- Explainers
-- Analytics
-- NI4AI-Community
+- explainers
+- analytics
+- ni4ai-community
 
 title: 'What’s the Angle? (Part 2)'
 ---
 
-The angle of voltage or current phasors measured by PMUs is an important state variable of transmission and distribution networks. For background on interpreting phasor angle measurements, refer to Part 1 of this blog post. 
+The angle of voltage or current phasors measured by PMUs is an important state variable of transmission and distribution networks. For background on interpreting phasor angle measurements, refer to Part 1 of this blog post.
 
-Since the grid frequency is nominally 60Hz, the raw phase angle of idealized sinusoidal values (as measured relative to a global clock) increases at a rate of 360 degrees per second. To make this measurement more readable, the phase data is stored with the nominal rate removed,and constrained to be between 0 and 360 degrees. As you can see from the plots below, this corrupts the voltage phase derivative with extreme positive values when the angle jumps from 0 to 360. 
+Since the grid frequency is nominally 60Hz, the raw phase angle of idealized sinusoidal values (as measured relative to a global clock) increases at a rate of 360 degrees per second. To make this measurement more readable, the phase data is stored with the nominal rate removed,and constrained to be between 0 and 360 degrees. As you can see from the plots below, this corrupts the voltage phase derivative with extreme positive values when the angle jumps from 0 to 360.
 ![PMU angle 1](/assets/images/post/what-is-angle-2/angle1.png)
 ![PMU angle 2](/assets/images/post/what-is-angle-2/angle2.png)
 Before the raw phase angle data can be used for analysis of power system dynamics, it needs to be unwrapped. To unwrap the data, I have written a function, "unwrap_phase". This function checks the phase for discontinuities by checking the difference of the phase angle stream for values that exceed a predetermined threshold. In this case, a visual inspection of the corrupted derivative indicates that a good threshold would be any value below 359 degrees. However if the threshold value is too small it will trigger when the actual derivative exceeds the threshold, which would corrupt the output.

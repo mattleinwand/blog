@@ -2,10 +2,9 @@
 date: '2020-02-04T16:46:23-05:00'
 description: A brief overview of training linear models with btrdb data
 tags:
-- Explainers
-- NI4AI
-- Distributed Computing
-- Algorithms
+- explainers
+- ni4ai-platform
+- algorithms
 
 title: Training General Linear Models with the PredictiveGrid™
 author: ben
