@@ -3,9 +3,9 @@ date: '2019-11-06T15:05:10.861405Z'
 description: We need your feedback to implement BTrDB bindings in new languages!
 tags:
 - conversations
-- ni4ai
+- ni4ai-platform
+- ni4ai-community
 - btrdb
-- computing
 
 title: Language Bindings Survey
 author: ben

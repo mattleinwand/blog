@@ -1,51 +1,64 @@
 ---
-title: "NI4AI: Who's in?"
+title: "Who's in?"
 date: '2020-07-29T15:21:53+0000'
-description: NI4AI is looking for collaborators willing to contribute data and host sensors that could catalyze the next generation of grid analytics.
+description: Our search for the utilities to pilot next-generation sensors and data-driven decision analysis tools.
 featuredImage: '/assets/images/post/whos-in/map.png'
 tags: ["conversations", "ni4ai-community"]
 author: nica
 ---
 
-NI4AI is looking for collaborators willing to contribute data and host sensors that could catalyze the next generation of grid analytics. We are looking for utility partners willing to lead the pack by putting their data into the hands of skilled analysts through NI4AI.
+The ASCE's [infrastructure report card](https://www.infrastructurereportcard.org/cat-item/energy/) gives grid infrastructure a D+. The low score is based on a few different factors:
+- Infrastructure is overdue for replacement
+- Systems are operating at or near capacity
+- The grid is not ready to handle climate risks
 
-Sean, the CEO of Ping Things, explains how advancements in AI have changed how we do math and how we shop -- and how AI has begun to change the way utilities operate. He describes AI as a “Fundamental Technological Advancement.” This advancement is almost like the jump from using trigonometric tables to calculators. In addition to time and cost savings, collecting high frequency, time series data can not only pick up minor meter issues, but can provide insights that were not accessible to us before. These insights could prevent power outages or even wildfires.  One of the main objectives for this project, which also makes NI4AI innovative, is to make data ACCESSIBLE to support the development of algorithms that could make this transition happen.
+ASCE estimates that the consequences of under-performance exceeded infrastructure investments by $177 billion in 2017. 
 
-![GOAL](/assets/images/post/whos-in/goal.png)
+But these numbers do not tell the full story. Over 2000 utilities responded to the EIA's annual survey of the industry in 2019. 
+While some of these utilities are under-investing, there are others who are ahead of the curve with regards to grid innovation.
+In other words, the "investment gap" is not evenly distributed among these utilities.
 
-AMI data has led to similar transitions, and provides useful context. The [Smart Grid System Report in 2018](https://www.energy.gov/sites/prod/files/2019/02/f59/Smart%20Grid%20System%20Report%20November%202018_1.pdf) discusses how “accelerated deployment of technologies to better engage utility customers in the management of energy.” Benefits of modernized grids are not just encouraged but it has come to the point that it is not possible to meet consumers’ demands and keep the power resilience. Though the level of regulations vary by state, the map shows the AMI deployment progress status per State as of 2016.
+Differences in size, ownership, regulation, and company culture mean that every utility has slightly different priorities. 
+Best-practices for one utility may not work at all for another. 
+Characteristics that distinguish each system or customer base may lead them to seek new solutions that the rest of the industry is not quite ready for.
 
-![MAP](/assets/images/post/whos-in/map.png)
+We decided to dig into data collected via an annual survey of the industry administered by the EIA using "Form EIA-861" (data available [here](https://www.eia.gov/electricity/data/eia861/)).
+We looked at 2019 data to explore what indicators we could use to identify utilities purusing innovative solutions.
+We wanted to know: what differentiates the utilities that are leading the way?
 
-## Who is already utilizing the collected data?
 
-Some large investor owned utilities tend to have been exploring analytical tools; some of them
-collaborate with startups like Ping Things and universities. A lot of small municipal and cooperative utilities have or are in the process of deploying smart sensors, but data is collected mainly for billing or reduction on power usage for customers.
+## Show me the data
 
-The issue is that it is difficult, or appears daunting for small utilities, which are often run by a small workforce, to utilize data or hire data scientists. The irony is, a lot of small utilities serve rural areas especially in wildfire risk areas, and can benefit a lot from time series data.
+The survey asks utilities to report on metering technologies. The figure below is a histgram showing what fraction of utility customers have installed Advanced Metering Infrastructure (AMI) capable of two-way communication. The figure shows that there are more utilities with AMI than there are without. We also note that the distribution is "bi-modal", indicating that utilities tend roll out AMI to all of their customers at once. This makes sense, as meters are installed primarily for billing efficiency. A partial deployment simply wouldn't achieve the same benefits.
 
-The NI4AI platform can fill this gap among utilities and potentially take utility management to the next level! Consumers can benefit hugely if the whole industry utilizes data to have better predictions.
+![HIST](/assets/images/post/whos-in/ami_prevalence.png)
 
-![PREDICTION](/assets/images/post/whos-in/prediction.png)
+Next, we looked at differences between utilities with and without high penetration of AMI. Below, we compare the two groups of utilities on the basis of size. We see that the utilities that have not yet rolled out AMI programs tend to be smaller than those that have. Of the 10 largest utilities surveyed, all but one have rolled out meters capable of two-way (AMI) or one-way (AMR) communications.
 
-(by Sean Murphy CEO of Ping Things)
 
-## What does it take to share data?
+![AMI_SIZE](/assets/images/post/whos-in/ami_deployment.png)
 
-Here are the most common concerns:
+Finally, we examined differences among utilities with direct load control (DLC) programs. 
+DLC allows grid operators to modify set-point temperatures for devices like air conditions and water heaters, or to shut them off entirely in response to conditions on the grid. 
+The figure below shows that utilities with the highest customer participation in DLC programs tend to be small.
 
-### 1) Data Analysis Knowledge, skills  and resources required?
+![DLC_SIZE](/assets/images/post/whos-in/dlc_deployment.png)
 
-Utilities do not necessarily have huge resources or the requisite number of data scientists to participate in data analysis. Using platforms like NI4AI, makes it simple to analyze the data. Simply play around with the web based plotter where you can zoom in and out of the point you are interested in and explore any irregular streams. You can also export a csv file or export a jupyter hub for local analysis. Some coding samples, for anyone to use, are also available.
+(Side note: The technology that enables DLC is distinct from AMI. Most utilities with high participation in DLC programs, however, have also rolled out AMI to most of their customers.)
 
-### 2) Secure in the Cloud?
+## Who's setting the curve
 
-A lot of utilities hesitate to share data for security concerns. It is much safer than saving data locally or some hard disk as cloud storage has more professional security in place. Using Cloud also enables utilities to access cloud computing; does not limit to the ability of users’ machines.
+Despite less R&D funding and less capacity for in-house analytics, our analysis shows that of the utilities that have the highest enrollment in DLC programs, the vast majority are munis and co-ops.
 
-### 3) Why publish in public?
+Municipal and co-operative ownership models also make these utilities more accountable to their customers. 
+Smaller service territories mean they have fewer stakeholder groups to appease, and smaller organizational structures make it easier for successful ideas to propagate through different lines of business.
 
-Publicly available datasets can lead to infinite possibilities. Academia and students can use data to research, for example, innovative new technologies, wildfire indications and train future engineers. Data scientists or software engineers can play with data to build tools.
+This means that smaller utilities tend to be more responsive to local needs and priorities than larger utilities. 
+Where innovative solutions meet these needs better than legacy technologies, smaller utilities can afford to take risks that larger utilities would be hard pressed to do. 
+We've found that munis and co-ops are setting the curve with regards to [decarbonization](https://www.prnewswire.com/news-releases/holy-cross-energy-sets-new-70-clean-energy-and-greenhouse-gas-emissions-reduction-goals-300715666.html), [grid automation](https://www.cooperative.com/remagazine/articles/pages/co-op-tech-advancing-the-self-healing-grid.aspx), and [distributed resource management](https://www.utilitydive.com/news/green-mountain-power-turnaround-driven-by-customer-obsession-cultural-shif/565031/).
 
-Here CEO Sean breaks down the NI4AI concept in the presentation at NASPI [here](https://youtu.be/sCbG0Am1e-4). Or reach out to us at [info@ni4ai.org](info@ni4ai.org)
+Finally, studies have shown that *trust* plays an important role in consumer willingness to participate in such programs ([read more](https://www.sciencedirect.com/science/article/pii/S0306261916315458)). 
+We said earlier that greater accountability to customers means makes smaller utilities more responsive to customer needs, and the relationship goes both ways. 
+When customers feel that their utility is responsive to their needs, they are more willing to make sacrifices for the betterment of their grid. 
+Even minor changes in consumer behaviors can improve operational efficiency or reduce capital costs for utilities.
 
-Happy Analyzing!

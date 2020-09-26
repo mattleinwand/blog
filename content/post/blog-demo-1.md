@@ -1,9 +1,10 @@
 ---
-title: Demo 1 “Sure I can log in but What's Next?”
+title: Interacting with Data using "The Plotter"
 date: '2020-07-28T00:26:38+0000'
-description: This page is dedicated to new users. WELCOME to the NI4AI platform
+description: This post gives a demo for new users to learn how to interface with data in PredictiveGrid using "The Plotter"
 featuredImage: '/assets/images/post/blog-demo-1/ni4ai-login.png'
 tags: ["set-up", "visualization", "ni4ai-platform"]
+
 author: nica
 ---
 

@@ -6,7 +6,6 @@ featuredImage: '/assets/images/post/what-is-angle/pmu.png'
 tags:
 - explainers
 - analytics
-- community
 - visualization
 - ni4ai-community
 - ni4ai-platform

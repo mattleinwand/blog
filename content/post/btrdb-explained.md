@@ -4,9 +4,8 @@ description: A brief description of the Berkeley Tree Database (BTrDB)
 featuredImage: '/assets/images/post/btrdb-explained/ui_zoom.gif'
 tags:
 - set-up
-- ni4ai
 - btrdb
-- computing
+- ni4ai-platform
 
 title: BTrDB Explained
 author: pingthings

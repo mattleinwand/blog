@@ -2,7 +2,8 @@
 date: 2020-03-30T12:30:37-0400
 description: A brief walkthrough of the Sunshine uPMU dataset
 featuredImage: '/assets/images/post/sunshine-data/sunshine-plot-1.png'
-tags: ["data-descriptions", "ni4ai-data", "analytics", "sunshine-data"]
+tags: ["ni4ai-data", "analytics", "sunshine-data","data-descriptions"]
+
 title: A brief walkthrough of the Sunshine uPMU dataset
 author: sascha
 ---

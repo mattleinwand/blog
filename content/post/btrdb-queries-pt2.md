@@ -5,10 +5,10 @@ description: How to leverage the Berkeley Tree to create memory efficient querie
 featuredImage: '/assets/images/post/default.jpg'
 tags:
 - explainers
-- ni4ai
 - btrdb
-- data-structures
+- ni4ai-platform
 - analytics
+
 title: 'Memory Efficient BTrDB Queries: Part 2'
 ---
 
@@ -197,7 +197,7 @@ for point in find_points_bfs(stream, value):
 
 There are a couple of important differences between this function and the depth-first approach. The first is that once it identifies a window that contains the desired value, it issues another `aligned_windows()` query and adds the resulting windows to the _end_ of the list of windows to traverse before recursively calling `find_points_bfs()`, rather than immediately jumping down a level in the tree, as you would with depth-first. The second difference is that with this approach it is important to track the pointwidth of each window as the function progresses so we know when to issue a `values()` query and examine raw values once we reach our `max_depth` (poinwidth of 30 in this case). This is done by storing each window as a tuple that contains the statpoint and the pointwidth that was used to retreive that statpoint. The end of the function looks similar though; once it receives raw values it iterates through them and yields those that match our criteria.
 
-## Concluson
+## Conclusion
 The question of which approach is better largely depends on the problem that you are trying to solve. Depth-first is generally preferred when you are searching for a single value, as we were in our toy example, while breadth-first is more suitable for tasks such as finding all values below a certain threshold, or within a certain range of values.
 
 The key concept to understand is that both `find_points_dfs()` and `find_points_bfs()` only traverse to child nodes when their parents contain the target minimum value, while ignoring those that do not. This allows us to prune away unnecessary data and conduct memory efficient and better performing queries.

@@ -6,6 +6,7 @@ tags:
 - ni4ai-platform
 - ni4ai-community
 - announcement
+
 title: Project Kickoff
 author: pingthings
 featuredImage: '/assets/images/post/default.jpg'

@@ -3,7 +3,9 @@ title: Fire season in the Western States is just around the corner
 date: '2020-07-29T15:21:53+0000'
 description: Dry grass, wind, and high voltage are a dangerous combination, as many people and utilities are painfully aware.
 featuredImage: '/assets/images/post/fire-season/g1.png'
+
 tags: ["conversations", "use-cases","ni4ai-data"]
+
 author: sascha
 ---
 

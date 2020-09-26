@@ -1,69 +1,69 @@
 ---
-title: "Demo 2: When NI４AI meets your Jupytr Notebook..."
+title: "Connecting to the NI4AI API"
 date: '2020-07-30T02:13:47+0000'
-description: This page is for users interested in exporting the data from the NI4AI platform to Jupyter Notebook or Python script for further analysis.
+description: This offers a step-by-step tutorial for new users to connect to our API using Python
 featuredImage: '/assets/images/post/demo-2/feature.png'
+
 tags: ["set-up", "visualization", "ni4ai-platform", "sunshine-data"]
 author: nica
 ---
 
 Hello, welcome back to the NI4AI platform!
 
-This page is for users interested in exporting the data from the NI4AI platform to Jupyter Notebook or Python script for further analysis.
 
-Our engineers, data scientists and UC Berkeley team frequently publish useful information and analysis examples on our [blogs](https://blog.ni4ai.org/) for you to explore.
+Here, we'll use the blog post “A brief walkthrough of the Sunshine uPMU dataset" ([here](https://blog.ni4ai.org/post/2020-03-30-sunshine-data/)) as a demo to show you how you can access the API. 
 
-To demonstrate how to get started, I will replicate the blog “[A brief walkthrough of the Sunshine uPMU dataset](https://blog.ni4ai.org/post/2020-03-30-sunshine-data/)” by Prof. Sascha von Meier of UC Berkeley that introduced some basic visualization of the data available in the NI4AI platform (see [demo 1](https://blog.ni4ai.org/post/2020-07-27-blog-demo-1/) to find the Sunshine dataset).
+Here, we show you how to run a jupyter notebook in Google Colaboratory, and on your own machine.
+Google Colaboratory is like a Google Doc for sharing Jupyter notebooks. 
+Colab notebooks run on a virtual machine in the cloud, which means you can run them without having install python or other packages locally. 
+You'll need a Google account to run colab notebooks in the cloud, but you can still download the notebook and run it locally without an account.
 
-Let’s walk through using Jupyter Notebook.
+You can access our Colab Notebook [here](https://drive.google.com/file/d/1DAecP25WQKm9K2LDZgu-s1x8ZKKcPloU/view?usp=sharing). Select "Open with Google Colaboratory” and it'll open up a new tab allowing you to run code directly in your browser. You may need to install the Google Colaboratory add in if you haven't done so already.
 
-We will introduce two ways in this blog:
+Because colab notebooks run on virtual machines, you'll need to run: 
 
-## Jupyter Notebook via Google Colaboratory
+`!pip install btrdb` 
 
-Google Colaboratory is like a Google Doc; you can run code and share work with others. If you don’t want to have Jupyter Notebook installed on your machine, this is the way to go for you! If you have a Google account, just open our Jupyter Notebook from [this link](https://drive.google.com/file/d/1DAecP25WQKm9K2LDZgu-s1x8ZKKcPloU/view?usp=sharing) and select open with “Colaboratory,” you are ready to run code on the notebook.
-
-If this is your first time using Colaboratory, you may have to add in.
+every time you open up a new notebook server. This installs the btrdb python package (more on this later) on the new virtual machine.
 
 ![Jupyter 1](/assets/images/post/demo-2/jupyter1.gif)
 
-## Jupyter Notebook in your machine
+## Running a Jupyter Notebook on Your Machine
+### Step 1. Install Jupyter Notebooks
+You can install Jupyter Notebooks using Anaconda or pip (more info [here](https://jupyter.readthedocs.io/en/latest/install.html)).
 
-If you wish to run Jupyter Notebook locally, here is some step-by-step guidance.
-### Step 1.Install Jupyter Notebook (skip if you already have one)
-You can install via Anaconda or via Pip (more info [here](https://jupyter.readthedocs.io/en/latest/install.html)). This demo is for a Jupyter Notebook via Anaconda. Once installed on your machine, open Jupyter Notebook and create a new page.
+### Step 2. Install the btrdb python package 
+The NI4AI database is built on [BTrDB](https://blog.ni4ai.org/post/2019-12-12-btrdb-explained/) (pronounced “Better DB”). 
+You'll use the "btrdb" python library to connect to the database, and to make queries. You can find the install guide on the [btrdb website](https://btrdb.readthedocs.io/en/latest/installing.html).
 
-### Step 2. Install the btrdb package
-Our data is stored in the [BTrDB](https://blog.ni4ai.org/post/2019-12-12-btrdb-explained/) (pronounced “Better DB”) server. All you need is to install the btrdb package to access the database.
+### Step 3. Getting Your API Key
+All of the code we post on the blog has a place for you to enter your own API key. 
+Your API key is a randomly generated 24-digit alpha numberic code that lets us know who you are.
+This allows us to keep track of how many people are using the API and how often.
+It also lets us know what data you have access to.
+Any of the data you see listed in the plotter is data you can access through the API.
 
-If you are using Jupyter Notebook, simply install by entering “conda install -c pingthings btrdb”  Otherwise you can do a pip install with  “$ pip install btrdb ”
-Detailed installation guidance can be found [on the btrdb site](https://btrdb.readthedocs.io/en/latest/installing.html)
+You can find your API key by logging in at ni4ai.org. 
+It'll be listed under your "Profile" in the top right corner of the screen.
 
-### Step 3. Calling btrdb
-After installation, all you need to do is use an “import” statement to make sure that BTrDB is ready to be called in every notebook that you use going forward.
+Once you have your key, the syntax for connecting to the database looks like this:
 
-![Jupyter 2](/assets/images/post/demo-2/jupyter2.gif)
+```python 
+YOUR_API_KEY = 'copy_and_paste_your_api_key_here'
+db = btrdb.connect("api.ni4ai.org:4411", apikey=YOUR_API_KEY)
+```
 
-### Step 4. Exploring the Data
-Now let’s try out [coding from Sacha](https://blog.ni4ai.org/post/2020-03-30-sunshine-data/) to explore Sunshine Data. To save you time, [here](https://drive.google.com/file/d/1DAecP25WQKm9K2LDZgu-s1x8ZKKcPloU/view?usp=sharing) is the Jupyter Notebook with her coding.
-
-All you need to do in the notebook is:
-
-Update the API key (enter yours, shown under “profile”)
-If you have not installed the package called “tabulate”, install just like you installed “btrdb” - use this code “conda install -c conda-forge tabulate” - (for Anaconda users)
-
-API key can be found under your Profile.
 
 ![API KEY](/assets/images/post/demo-2/apikey.png)
-Once those two things are updated, click on Run.
-All the outputs should come up just as Sacha describes in her blog, Voilà!
 
-If you want to change your selection of stream, you can simply replace uuid and the appropriate information like start and end time etc
 
-## Ready for your own analysis!
+## Developing Data Analytics
+Once you have an API key and a jupyter notebook, you'll be able to copy code from any of our blog posts and run it locally on your machine.
 
-There is more interesting analysis with sample coding available here:
-[Our Blogs](https://blog.ni4ai.org/): our world class data science and UC Berkeley teams can offer you sample analysis and show you what NI4AI is capable of. Any content questions or feedback please feel free to contact us at [NI4AI@info.io](NI4AI@info.io)
-[Btrdb Documentation](https://btrdb.readthedocs.io/en/latest/quick-start.html#viewing-a-stream-s-data): How to get started with the Btrdb database and coding tips Github [btrdb-python](https://github.com/BTrDB/btrdb-python)
+For example, you can run code from Sascha's [blog post](https://blog.ni4ai.org/post/2020-03-30-sunshine-data/).
+You can download the colab notebook [here](https://drive.google.com/file/d/1DAecP25WQKm9K2LDZgu-s1x8ZKKcPloU/view?usp=sharing). 
 
-Happy Analyzing!
+These blog posts are just intended to get you started. 
+We encourage you to become familiar with the code on our blog, and then to keep exploring questions of your own.
+
+For ideas about what you can do with the data we host, we encourage you to read our blog post [here](https://blog.ni4ai.org/post/2020-07-31-expertise-for-expert/) which lists resources that will help you learn more about the grid and about the data.

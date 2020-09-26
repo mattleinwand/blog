@@ -5,10 +5,10 @@ description: How to leverage the Berkeley Tree to create memory efficient querie
 featuredImage: '/assets/images/post/default.jpg'
 tags:
 - explainers
-- ni4ai
 - btrdb
-- data-structures
 - analytics
+- ni4ai-platform
+
 title: 'Memory Efficient BTrDB Queries: Part 1'
 ---
 

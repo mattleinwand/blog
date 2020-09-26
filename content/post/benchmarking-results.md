@@ -4,9 +4,9 @@ description: A brief report on recent benchmarking results across time series da
 featuredImage: '/assets/images/post/benchmarking-results/FullParallelInsert.MPPS.png'
 tags:
 - explainers
-- ni4ai
+- ni4ai-platform
 - btrdb
-- computing
+
 title: Time Series Benchmarking Results
 author: michael
 ---
