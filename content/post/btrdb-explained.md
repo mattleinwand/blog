@@ -6,7 +6,6 @@ tags:
 - Set-up
 - NI4AI
 - BTrDB
-- Computing
 
 title: BTrDB Explained
 author: pingthings

@@ -9,7 +9,7 @@ author: laurel
 
 Veteran power systems engineers spend decades learning to excel in their jobs. This learning happens in school, professional training, and from real-world experience. 
 
-Becoming a skilled data scientist also takes practice. Data scientists often have advanced degrees in statistics or computer science. These degrees often involve a gruelling course load and at least a few all-nighters. Given the overhead involved in becoming an in either domain - for most people it simply isn't practical to become experts in both. 
+Becoming a skilled data scientist also takes practice. Data scientists often have advanced degrees in statistics or computer science. These degrees often involve a grueling course load and at least a few all-nighters. Given the overhead involved in becoming an in either domain - for most people it simply isn't practical to become experts in both. 
 
 This blog post points you to some of our favorite resources explaining and motivating grid data analytics. We've curated two lists: one for *data scientists* and another for *power systems engineers*.
 
@@ -40,4 +40,4 @@ Synchrophasor Data by Enabling Easy Data Exploration and Rapid Use Case Prototyp
 - *Data Mining Techniques and Tools for Synchrophasor Data* ([here's the link](https://www.naspi.org/sites/default/files/reference_documents/naspi_data_mining_tech_pnnl_28218_final.pdf)) offers an overview of methods that industry practitioners have used to extract insights from PMU data. Many of the analytics presented in the report could be replicated using data hosted in NI4AI. Stay tuned for blog posts and Jupyter notebooks about analytical methods.
 
 ## For Anyone Curious to Learn More:
-For more updates about new blog posts, datasets, tutorials, and events -- we encourage you to [follow us on LinkedIn](https://www.linkedin.com/company/67151405/admin/).
+For more updates about new blog posts, datasets, tutorials and events -- we encourage you to [follow us on LinkedIn](https://www.linkedin.com/company/67151405/admin/).
