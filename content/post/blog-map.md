@@ -1,10 +1,10 @@
 ---
 title: "Navigating This Blog"
-date: '2100-01-01T15:00:00+0000'
+date: "2100-01-01T15:00:00+0000"
 description: Here's a map to help you quickly find what you're looking for on the NI4AI blog.
-featuredImage: '/assets/images/post/blog-map/blog_diagram.svg'
-tags: ["conversations", "ni4ai-platform"]
+featuredImage: "/assets/images/post/blog-map/blog_diagram.svg"
 author: laurel
+tags: ["conversations", "ni4ai-platform"]
 ---
 
 # Welcome to the blog!
