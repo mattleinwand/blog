@@ -3,7 +3,7 @@ title: "Navigating This Blog"
 date: '2100-01-01T15:00:00+0000'
 description: Here's a map to help you quickly find what you're looking for on the NI4AI blog.
 featuredImage: '/assets/images/post/blog-map/blog_diagram.svg'
-tags: ["Conversations", "NI4AI-Platform"]
+tags: ["ni4ai-platform", "ni4ai-data", "ni4ai-community"]
 author: laurel
 ---
 
