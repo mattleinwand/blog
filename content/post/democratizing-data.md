@@ -1,15 +1,15 @@
 ---
 date: '2020-10-12T21:42:13.181361Z'
-title: NI4AI to be featured on industry podcast
 description: Energy Central interviews Theo Laughner about the value AI can bring to the industry
-featuredImage: '/assets/images/post/democratizing-data/project_pillars_whitespace.png'
+featuredImage: '/assets/images/post/democratizing-data/project_pillars_new.png'
 tags:
 - ni4ai-community
 - pingthings
 - in-the-news
+title: NI4AI featured on industry podcast
 author: laurel
-
 ---
+
 
 NI4AI will be featured on an Energy Central podcast as part of a series on data analytics in November. 
 The podcast will feature an interview with Theo Laughner, a veteran of the industry and NI4AI contributor has experience with real-time monitoring for power quality applications.
