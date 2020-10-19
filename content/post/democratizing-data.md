@@ -1,22 +1,23 @@
 ---
 date: '2020-10-12T21:42:13.181361Z'
-description: Energy Central interviews Theo Laughner about the value AI can bring to the industry
+description: The NI4AI team is raising awareness about how data sharing and access can benefit the industry
 featuredImage: '/assets/images/post/democratizing-data/project_pillars_new.png'
 tags:
 - ni4ai-community
 - pingthings
 - in-the-news
-title: NI4AI featured on industry podcast
+- conversations
+title: Spreading the word
 author: laurel
 ---
 
 
-NI4AI will be featured on an Energy Central podcast as part of a series on data analytics in November. 
-The podcast will feature an interview with Theo Laughner, a veteran of the industry and NI4AI contributor has experience with real-time monitoring for power quality applications.
+NI4AI will be featured on an industry podcast as part of a series on data analytics in November. 
+The podcast will feature an interview with Theo Laughner, a veteran of the industry and NI4AI contributor with expertise in power quality.
 We'll share a link to the podcast when it comes out.
 In the meantime, here's an article we wrote for the Energy Central blog.
 
-## ARPA-E funded platform NI4AI is democratizing grid data
+## ARPA-E funded platform is democratizing grid data
 The National Infrastructure for Artificial Intelligence (AI) on the Grid -- or NI4AI -- is a three-year ARPA-E initiative designed to enable breakthroughs in data analytics for the grid. 
 
 In the past, limited data access has created barriers to advancing the analytical capabilities of the industry. 
