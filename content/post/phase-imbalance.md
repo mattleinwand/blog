@@ -6,7 +6,7 @@ tags:
 - ni4ai-community
 - do-it-yourself
 title: Do it yourself - Phase imbalance
-author: pingthings
+author: ni4ai
 ---
 
 In a balanced system, voltage and current magnitudes are the same across all three phases, and phase angles are offset by 120 degrees. The sunshine and EPFL datasets both include three-phase measurements of voltage and current that can be used to study phase imbalance.

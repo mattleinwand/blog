@@ -8,7 +8,7 @@ tags:
 - in-the-news
 - conversations
 title: Spreading the word
-author: laurel
+author: pingthings
 ---
 
 
