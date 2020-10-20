@@ -9,11 +9,11 @@ title: Do it yourself - Data quality assessment
 author: ni4ai
 ---
 
-Synchrophasors measure voltage and current waveforms and reported a “compressed” representation of these waveforms using polar coordinates. 
+Synchrophasors measure voltage and current waveforms and reported a compressed representation of these waveforms using polar coordinates.
 
 This change in coordinates is founded on the premise that waveforms are approximately sinusoidal. But in practice, this is not always the case! Transients, harmonics, faults, and other conditions on the grid can cause waveforms to deviate from sinusoids. When these deviations are large enough, the phasor representation breaks down.
 
-This issue came to our attention when one of our sensors experienced a voltage sag on September 6. We found out about it because the sensor host reported a brownout. The data show a frequency deviation of about XX Hz that coincided with the event, and we started asking around to see if others had witnessed the event. Experts in phasor measurements called into question the quality of the phasors.
+This issue came to our attention when one of our sensors experienced a voltage sag on September 6. We found out about it because the sensor host reported a brownout. The data show a frequency deviation of about 1.5 Hz that coincides with the event, and we called in the experts to help track down what had happened. These experts instead called into question the quality of the phasors.
 
 ## Physical intuition saves the day
 Transient events such as faults or switching can cause the voltage or current on very short timescales -- e.g., less than a cycle. This can cause phasors to report untrustworthy data, but physical intuition can help us to judge whether what we’re seeing is accurate. Looking at changes in quantities derived from phasors -- such as frequency -- can provide more context to suggest if and where the data are bad. 
