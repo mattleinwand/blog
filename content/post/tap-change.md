@@ -1,12 +1,12 @@
 ---
-date: '2020-10-12T21:42:13.181361Z'
+date: '2020-10-19T21:42:13.181361Z'
 description: 
 featuredImage: '/assets/images/post/tap-change/sunshine-plot-1.png'
 tags:
 - ni4ai-community
 - do-it-yourself
-title: Do it yourself: Counting tap changer operations
-author: laurel
+title: Do it yourself - Counting tap changer operations
+author: ni4ai
 ---
 
 ## What a tap changer does
