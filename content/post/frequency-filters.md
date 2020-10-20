@@ -6,7 +6,7 @@ tags:
 - ni4ai-community
 - do-it-yourself
 title: Do it yourself - Frequency filters
-author: pingthings
+author: ni4ai
 ---
 
 The nominal frequency of the grid is 60 Hz. In practice, however, the frequency changes subtly due to fluctuations in supply and demand.

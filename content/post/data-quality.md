@@ -1,7 +1,7 @@
 ---
 date: '2020-10-19T21:42:13.181361Z'
 description: 
-featuredImage: '/assets/images/post/frequency-filters/imbalance.png'
+featuredImage: '/assets/images/post/data-quality/brownout.png'
 tags:
 - ni4ai-community
 - do-it-yourself
