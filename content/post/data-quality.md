@@ -27,6 +27,6 @@ We saw the voltage sag on a sensor collection called “ni4ai/weld” on Septemb
 
 Your challenge is to look for similarities and differences in voltage measurements and in the frequency reported at the two locations. Can you detect times when the data quality is suspect? Can you pick up on any events that were primarily local, or on events that affected a wider area of the grid?
 Want to learn more?
-This post was inspired by a panel discussion about grid frequency delivered at the NASPI working group meeting in April, 2020. Here’s a link to the talk.
+This post was inspired by a panel discussion about grid frequency delivered at the NASPI working group meeting in April, 2020. [Here’s a link to the talk](https://www.naspi.org/node/823).
 
-https://www.naspi.org/node/823 
+
