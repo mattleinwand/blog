@@ -8,41 +8,42 @@ author: laurel
 ---
 
 # Welcome to the blog!
-
-Here's a [diagram of the blog][link_to_image] that will give you a bird's eye view of the content that's here. We've included a hyperlink to each of our posts.
-
-Here are some of the highlights.
-
+This post gives an outline of the content that's hosted on the blog.
 Don’t see what you’re looking for? Have a topic you've been curious about? Send us an email to suggest a topic for a new post. [info@ni4ai.org](info@ni4ai.org)
 
+## NI4AI Exercises
 
-## Conversations
-
-These posts cover what's happening in the industry or on the grid. They're geared at putting the data in context, and at giving you ideas for moving the industry forwards.
-- [Wildfire mitigation](https://blog.ni4ai.org/post/2020-07-29-fire-season/)
-- [Data sharing](https://blog.ni4ai.org/post/2020-07-29-whos-in/)
-- [On building expertise](https://blog.ni4ai.org/post/2020-07-31-expertise-for-expert/)
+These posts are designed to provide hands-on experience asking questions of the data.
+- [Data quality assessment](https://blog.ni4ai.org/post/2020-10-19-data-quality/)
+- [Locating disturbances](https://blog.ni4ai.org/post/2020-10-19-locating-disturbances/)
+- [Phase imbalance](https://blog.ni4ai.org/post/2020-10-19-phase-imbalance/)
 - [Find more](https://blog.ni4ai.org/tags/conversations/)
 
-
-## Data Descriptions
+## NI4AI Data
 
 These posts offer documentation of the datasets hosted in the platform.
 - [Sunshine](https://blog.ni4ai.org/tags/sunshine-data)
+- [Texas Synchrophasor Network](https://blog.ni4ai.org/post/2020-10-11-texas-pmus/)
 - [EKG data](https://blog.ni4ai.org/tags/ekg-data)
 - [Find more](https://blog.ni4ai.org/tags/ni4ai-data/)
 
+<!-- ## NI4AI Events
+These posts describe events we’re participating in that are geared at training analysts, recruiting people to solve problems for the industry, or providing thought leadership around data sharing and analytics. You’ll find video recordings for any events that are available online.
+- [CIGRE Academy on PMU Fundamentals]()
+- [CIGRE Academy on Intro to AI]()
+- [Kevin Jones' NASPI webinar]()
+- [Panel on data sharing and collaboration]()
+ -->
 
-## Set up
-
+## NI4AI Platform
 PredictiveGrid is designed to make it easier and more intuitive for data enthusiasts of all skill levels to work with big data.
-This posts will help you get set up using the platform.
+These posts will help you get set up using the platform.
 - [Navigating the Plotter](https://blog.ni4ai.org/post/2020-07-27-blog-demo-1/)
 - [Accessing the API](https://blog.ni4ai.org/post/2020-07-29-demo-2/)
 - [Querying BTrDB](https://blog.ni4ai.org/post/2019-12-12-btrdb-explained/)
 - [Find more](https://blog.ni4ai.org/tags/set-up/)
 
-## Tutorials & Analytics
+## NI4AI Analytics
 
 These posts describe analytical methods for interpreting the data. They provide sample code and jupyter notebooks that will help you get started.
 - [Voltage sag detection](https://blog.ni4ai.org/post/2020-04-15-voltage-sags/)
@@ -50,6 +51,13 @@ These posts describe analytical methods for interpreting the data. They provide 
 - [Phasor visualization](https://blog.ni4ai.org/post/2020-04-25-visualizing-phasor-timeseries/)
 - [Find more](https://blog.ni4ai.org/tags/visualization/)
 
+## NI4AI Ideas
+
+These posts cover what's happening in the industry or on the grid. They're geared at putting the data in context, and at giving you ideas for moving the industry forwards.
+- [Wildfire mitigation](https://blog.ni4ai.org/post/2020-07-29-fire-season/)
+- [Data sharing](https://blog.ni4ai.org/post/2020-07-29-whos-in/)
+- [On building expertise](https://blog.ni4ai.org/post/2020-07-31-expertise-for-expert/)
+- [Find more](https://blog.ni4ai.org/tags/do-it-yourself)
 
 
 

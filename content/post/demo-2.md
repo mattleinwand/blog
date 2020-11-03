@@ -1,10 +1,10 @@
 ---
-title: "Connecting to the NI4AI API"
+title: "Connecting to the API"
 date: '2020-07-30T02:13:47+0000'
 description: This offers a step-by-step tutorial for new users to connect to our API using Python
 featuredImage: '/assets/images/post/demo-2/feature.png'
 
-tags: ["set-up", "visualization", "ni4ai-platform", "sunshine-data"]
+tags: ["set-up", "ni4ai-platform"]
 author: nica
 ---
 
