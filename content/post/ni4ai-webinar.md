@@ -1,13 +1,8 @@
 ---
 date: 2020-04-07T09:20:37-0400
-description: This panel will introduce the ARPA-E funded NI4AI effort, built on PingThings'
-  PredictiveGrid platform.
+description: Panel introducing NI4AI at the NASPI working group meeting (Spring, 2020)
 tags:
-- conversations
 - ni4ai-events
-- ni4ai-community
-
-
 title: NI4AI Webinar
 author: pingthings
 featuredImage: '/assets/images/post/default.jpg'
@@ -19,10 +14,10 @@ featuredImage: '/assets/images/post/default.jpg'
 
 **National Infrastructure for Artificial Intelligence on the Grid (NI4AI)**
 
+Video recording of the event.
+
 [https://www.naspi.org/node/821](https://www.naspi.org/node/821)
 
-Moderated by Prof. Sascha von Meier from UC Berkeley, this panel will introduce the ARPA-E funded NI4AI effort, built on PingThings’ PredictiveGrid platform. Use case examples involving different types of data analytics from academia and utility practice will highlight the role of geographic scope, heterogeneity, and real vs. synthetic data for creating new intelligence about the grid. Participants will have the opportunity to contribute comments and ideas about how this budding infrastructure can best serve their needs.
+Moderated by Prof. Sascha von Meier from UC Berkeley, this panel introduced the ARPA-E funded NI4AI effort, built on PingThings’ PredictiveGrid platform. Use case examples involving different types of data analytics from academia and utility practice highlight the role of geographic scope, heterogeneity, and real vs. synthetic data for creating new intelligence about the grid. Participants will have the opportunity to contribute comments and ideas about how this budding infrastructure can best serve their needs.
 
-Panelists include Sean Murphy and Dr. Michael Andersen (CEO and CTO, PingThings), Mohini Bariya (UC Berkeley), Prof. Luigi Vanfretti and Dr. Tetiana Bogodorova (Rensselaer Polytechnic Institute), and Dr. Kevin Jones (Dominion Energy).
-
-Click here to register for this webinar:  [Zoom registration](https://pnnl.zoom.us/webinar/register/WN_RaQA2cqDQv-TX8dVL5ksKw)
+Panelists include Sean Murphy (CEO of PingThings), Mohini Bariya (UC Berkeley), Prof. Luigi Vanfretti and Dr. Tetiana Bogodorova (Rensselaer Polytechnic Institute), and Dr. Kevin Jones (Dominion Energy).

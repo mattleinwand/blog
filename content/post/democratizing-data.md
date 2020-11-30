@@ -5,8 +5,7 @@ featuredImage: '/assets/images/post/democratizing-data/project_pillars_new.png'
 tags:
 - ni4ai-community
 - pingthings
-- in-the-news
-- conversations
+- ni4ai-ideas
 title: Spreading the word
 author: pingthings
 ---
