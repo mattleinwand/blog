@@ -166,7 +166,9 @@ exports.sourceNodes = ({ boundActionCreators, getNode, getNodes }) => {
 
   nodes.forEach(node => {
     if (node.frontmatter.author) {
-      const authorNode = nodes.find(item => item.frontmatter.id && item.frontmatter.id === node.frontmatter.author)
+      const authorNode = nodes.find(item => {
+        return item.frontmatter.id && item.frontmatter.id === node.frontmatter.author
+      })
 
       if (authorNode) {
         createNodeField({
