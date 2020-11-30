@@ -1,77 +1,48 @@
 ---
-date: '2100-01-01T14:00:00+0000'
-description: Collections hosted in NI4AI and how to find them
-featuredImage: '/assets/images/post/data-quality/brownout.png'
+date: '2020-11-01T01:00:00+0000'
+description: Familiarizing new users with PMU data, database bindings, and analytical use cases
+featuredImage: '/assets/images/post/default.jpg'
 tags:
+- ni4ai-platform
 - ni4ai-data
-title: NI4AI Data Collections
+- ni4ai-community
+title: Workshop on PMU data analytics
 author: ni4ai
 ---
 
-This blog post lists datasets hosted in NI4AI by collection name, and links to relevant documentation and blog posts.
+This Fall, NI4AI hosted a series of workshops about time series data on the grid.
+The purpose of these talks was to familiarize new users with concepts and methods relevant to working with time series grid data.
+This blog post gives a short summary of each talk, and a link to the recording on YouTube.
 
-## Streaming PMU data
+Have questions? Send questions to info@ni4ai.org.
 
-#### Collection: "ni4ai/"
+## Understanding PMU Data
+*Dr. Alexandra "Sascha" von Meier*
 
-This collection includes streaming sensors deployed as part of NI4AI. Sensors are deployed in wall outlets, and report single phase voltage magnitude and angle, as well as frequency. Metadata for sensors in the collection give additional information about siting, sensors, and about the grid they are connected to.
+This talk provides an introduction to PMU measurements to help data analysts make sense of PMU data. The talks discusses the physics relevant to interpreting data in the context of what's happening on the grid.
 
-#### Collection: "texas_pmus/"
-https://blog.ni4ai.org/post/2020-10-11-texas-pmus/
+https://youtu.be/qRAPYVtC2zM
 
-This collection includes three sensors deployed as part of the Texas Synchrophasor Network. The data includes one sensor  on each interconnection. Anyone using the data is requested to cite the following publication.
+## Use Cases and Applications
+*Dr. Kevin Jones*
 
-Mack Grady and David Costello. "Implementation and Application of an Independent Texas Synchrophasor Network." *SEL Journal of Reliable Power*. Vol. 2, No. 2. May, 2011. URL: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.857.5454&rep=rep1&type=pdf
+This talk describe use cases and lessons learned from Kevin's experience building the synchrophasor data program at Dominion Energy. 
+The program is founded upon the premise that making it fast and efficient to explore new use cases for PMU data will lead to the discovery of new use cases. 
+The talk describes practical applications for PMU data that have been developed and deployed using PredictiveGrid. 
 
+https://youtu.be/RwIh6-dSpfE
 
-## Archived PMU data
+## The Power of Data
+*Sean Murphy*
 
-#### Collection: "sunshine/"
-https://blog.ni4ai.org/post/2020-03-30-sunshine-data/
+This talk outlines how digitalization has transformed the way we everything from shopping to taking photos to operating the electric power grid. Sean Murphy, CEO of PingThings, lays out a powerful vision for how continuous grid monitoring coupled with machine learning could help the industry to become more proactive in responding to early indicators of emerging risks that could escalate if left unresolved.
 
-This collection includes archived data for 6 distribution PMUs deployed as part of a pilot program that ran for 18 months. The pilot was run as part of an ARPA-E project funded under Open 2012 which resulted in the development of the micro-PMU.
+https://youtu.be/bagZhgj2GAI
 
-Streams: 78
-Points: 331,983,600,006
+## Voltage Sag Detection
+*Mohini Bariya*
 
-#### Collection: "events/"
+The tutorial describes an algorithm for detecting and analyzing voltage sags recorded in time series voltage measurements recorded by a distribution synchrophasor (a micro-PMU). The algorithm leverages the database structure of the Berkeley Tree Database (BTrDB) by querying summary statistics of measurements recorded across different time intervals to identify and narrow in on intervals during which voltage sags occurred. The algorithm discusses the implications and characteristics of voltage sags, as well as efficient methods for working with long time histories of data using BTrDB.
 
-This collection gives 1-minute snapshots of three wide-area events across a network of 23 PMUs each with a sampling rate of 30 samples per second. The sensors located on the transmission grid and the data are fully anonymized. In other words, the time stamps have been masked and the geographic locations of the sensors removed.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qPBeAjwlQ-s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Streams: 1,311
-Points: 2,361,111
-
-#### Collection: "brownout/"
-This dataset gives 1 hour of PMU data recorded on September 6, 2020 between 5 and 6PM Pacific. One of the ni4ai sensors saw a frequency disturbance during that time, and we reached out to the Texas Synchrophasor Network to see if their sensors had seen it as well. The event occurred in WECC, and forms the basis of an exercise on data quality assessment (link).
-
-Streams: 9
-Points: 971,631
-
-#### Collection: “EPFL/BESS”
-https://github.com/DESL-EPFL/Point-on-wave-Data-of-EPFL-campus-Distribution-Network 
-
-The data was collected by three point on wave sensors as part of an experiment run on the grid that serves the EPFL university campus in Switzerland. The grid includes a 560 kWh lithium-ion battery. The data report six discrete events, including baseline measurements, and measurements recorded during five charging and discharging events. Each event lasts 2 seconds with measurements reported every 20us (sampling rate of 50 kHz).
-
-Streams: 12
-Points: 7,200,000
-
-#### Collection: “USGS/GEOMAG”
-https://www.usgs.gov/natural-hazards/geomagnetism/science/instrumentation?qt-science_center_objects=0#qt-science_center_objects
-
-This dataset reports geomagnetic field measurements taken at 14 different latitudes on the surface of the earth from 2013 to 2019. Each measurement is reported as a vector quantity with coordinates in the North/South, East/West and vertical dimensions. Data are reported as a 1-second average derived from a 100Hz geomagnetic field sensor. Additional information about the measurement infrastructure and data format are available at the link above. 
-
-Streams: 56
-Points: 10,826,130,797
-
-
-## Other time series data
-#### Collection: “Health/EKG/”
-https://blog.ni4ai.org/post/2020-05-06-ekg-data/ 
-
-This data reports EKG measurements for one patient. EKG (short for electrocardiogram) measurements for an 81 year old female. Metadata fields include additional information about the patient's medical history.
-
-Streams: 15
-Points: 1,728,000
-
-## Finding data in the platform
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cqnaSlqPuGU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
