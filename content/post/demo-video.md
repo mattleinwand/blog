@@ -1,5 +1,5 @@
 ---
-date: '2100-01-01T14:00:00+0000'
+date: '2020-11-15T14:00:00+0000'
 description: Short video featuring a demo on navigating the platform
 featuredImage: '/assets/images/post/data-quality/brownout.png'
 tags:
