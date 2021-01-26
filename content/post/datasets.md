@@ -34,12 +34,35 @@ This collection includes archived data for 6 distribution PMUs deployed as part 
 Streams: 78
 Points: 331,983,600,006
 
+
+#### Collection: "golden/"
+
+This collection includes 3 months of archived data for 10 distribution PMUs deployed on a single distribution feeder. PMUs are numbered in order of relative distance from the substation, where PMU1 is at the substation.
+
+Streams: 130
+Points: 104,342,308,680
+
+
 #### Collection: "events/"
 
 This collection gives 1-minute snapshots of three wide-area events across a network of 23 PMUs each with a sampling rate of 30 samples per second. The sensors located on the transmission grid and the data are fully anonymized. In other words, the time stamps have been masked and the geographic locations of the sensors removed.
 
 Streams: 1,311
 Points: 2,361,111
+
+#### Collection: "PQdata/events"
+
+This collection includes point on wave measurements for upwards of 250 faults. Each event includes a 2-second snapshot of data, including current and voltage measurements for all three phases. Metadata for each event includes labels obtained through detailed investigations into each event. Labels include the cause, and (where relevant) the type of equipment that failed.
+
+Streams: 1773
+Points: 12,033,799
+
+#### Collection: "PQdata/underground"
+
+This collection includes point on wave measurements recorded over 24 hours on an underground distribution line. The data reports current and voltage measurements across all three phases.
+
+Streams: 6
+Points: 1,990,153,021
 
 #### Collection: "brownout/"
 This dataset gives 1 hour of PMU data recorded on September 6, 2020 between 5 and 6PM Pacific. One of the ni4ai sensors saw a frequency disturbance during that time, and we reached out to the Texas Synchrophasor Network to see if their sensors had seen it as well. The event occurred in WECC, and forms the basis of an exercise on data quality assessment (link).
@@ -73,5 +96,3 @@ This data reports EKG measurements for one patient. EKG (short for electrocardio
 Streams: 15
 Points: 1,728,000
 
-## Finding data in the platform
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cqnaSlqPuGU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

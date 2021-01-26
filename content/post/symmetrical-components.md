@@ -3,7 +3,7 @@ title: "Symmetrical Components"
 date: '2020-11-20T01:00:00+0000'
 description: "An introduction to symmetrical components"
 tags: ["ni4ai-platform", "analytics"]
-featuredImage: '/assets/images/post/symmetrical-components/sym_comps..png'
+featuredImage: '/assets/images/post/symmetrical-components/sym_comps.png'
 author: mohini
 ---
 *Symmetrical components* are a popular method for analyzing and discussing three phase circuits. Instead of modeling the system in terms of the three phase voltages/currents---represented by a triplet of phasors---the symmetrical component method models the system in terms of three sets of three phasors, or nine in total. In spite of turning three phasors to nine, the transform is not underdetermined. While the original phasors are unconstrained, the symmetrical components obey strict symmetries. The three symmetrical component sets are called the positive, negative, and zero sequences. In Fig 1, we can see the strict symmetries: within each set, the phasors have equal magnitude, and fixed relative angles. The only flexibility is in scaling and rotating each full set of three phasors.  
