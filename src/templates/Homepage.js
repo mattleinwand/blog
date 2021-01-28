@@ -1,10 +1,9 @@
-import React from "react"
+import React, { useEffect, useLayoutEffect, useState } from "react"
 
 import {
   Excerpt as BaseExcerpt,
   Pagination,
-  lightTheme,
-  useWindowSize
+  lightTheme
 } from 'frontend-components'
 import { get } from 'lodash'
 import { Link as BaseLink, graphql, navigate } from "gatsby"
@@ -62,12 +61,27 @@ const ArticleItem = styled(BaseLink)`
 
 const Homepage = ({ data, location, pageContext, ...props }) => {
   const { currentPage, numPages } = pageContext
+  const [width, setWidth] = useState(null)
   let [first, ...posts] = data.allMarkdownRemark.edges;
 
   const onChangePage = item => {
     const path = item === 1 ? '/articles' : `/articles/${item}`
     navigate(path)
   }
+
+  useEffect(() => {
+    setWidth(window.innerWidth)
+  }, [])
+
+  useLayoutEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  })
 
   let author = get(first, 'node.fields.author')
 
@@ -80,12 +94,7 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
     author = { ...author, avatar }
    }
 
-  const windowSize = useWindowSize()
-  const isMobile = (
-    windowSize &&
-    windowSize.width &&
-    windowSize.width < lightTheme.breakpoints.md
-  )
+  const isMobile = width && width < lightTheme.breakpoints.md
 
   let firstPost = {
     ...first.node.frontmatter,

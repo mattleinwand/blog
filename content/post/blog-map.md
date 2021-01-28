@@ -1,6 +1,6 @@
 ---
 title: "Navigating This Blog"
-date: '2100-01-01T15:00:00+0000'
+date: "2100-01-01T15:00:00+0000"
 description: Here's a map to help you quickly find what you're looking for on the NI4AI blog.
 featuredImage: '/assets/images/post/blog-map/blog_diagram.svg'
 tags: ["ni4ai-platform", "ni4ai-data", "ni4ai-community"]
@@ -8,7 +8,8 @@ author: laurel
 ---
 
 # Welcome to the blog!
-This post gives an outline of the content that's hosted on the blog. 
+This post gives an outline of the content that's hosted on the blog.
+
 Don’t see what you’re looking for? Have a topic you've been curious about? Send us an email to suggest a topic for a new post. [info@ni4ai.org](info@ni4ai.org)
 
 ## NI4AI Exercises
@@ -45,7 +46,7 @@ These posts will help you get set up using the platform.
 
 ## NI4AI Analytics
 
-These posts describe analytical methods for interpreting the data. They provide sample code and jupyter notebooks that will help you get started. 
+These posts describe analytical methods for interpreting the data. They provide sample code and jupyter notebooks that will help you get started.
 - [Voltage sag detection](https://blog.ni4ai.org/post/2020-04-15-voltage-sags/)
 - [Phase angle analysis](https://blog.ni4ai.org/post/2020-07-29-what-is-the-angle-part-2/)
 - [Phasor visualization](https://blog.ni4ai.org/post/2020-04-25-visualizing-phasor-timeseries/)
@@ -53,7 +54,7 @@ These posts describe analytical methods for interpreting the data. They provide 
 
 ## NI4AI Ideas
 
-These posts cover what's happening in the industry or on the grid. They're geared at putting the data in context, and at giving you ideas for moving the industry forwards. 
+These posts cover what's happening in the industry or on the grid. They're geared at putting the data in context, and at giving you ideas for moving the industry forwards.
 - [Wildfire mitigation](https://blog.ni4ai.org/post/2020-07-29-fire-season/)
 - [Data sharing](https://blog.ni4ai.org/post/2020-07-29-whos-in/)
 - [On building expertise](https://blog.ni4ai.org/post/2020-07-31-expertise-for-expert/)
