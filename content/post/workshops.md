@@ -44,5 +44,12 @@ https://youtu.be/bagZhgj2GAI
 
 The tutorial describes an algorithm for detecting and analyzing voltage sags recorded in time series voltage measurements recorded by a distribution synchrophasor (a micro-PMU). The algorithm leverages the database structure of the Berkeley Tree Database (BTrDB) by querying summary statistics of measurements recorded across different time intervals to identify and narrow in on intervals during which voltage sags occurred. The algorithm discusses the implications and characteristics of voltage sags, as well as efficient methods for working with long time histories of data using BTrDB.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qPBeAjwlQ-s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://www.youtube.com/watch?v=qPBeAjwlQ-s&t=2s
+
+## Exploring Frequency and Phase
+*Miles Rusch*
+
+This tutorial describes how to use phasor data to compute the frequency of the grid. Phasors are a compressed representation of a sinusoidal waveform. Frequency deviations are evidenced by changes in the phase angle over time. Miles describes a common data processing technique which uses the change in phase angle over time to derive the frequency. The talk also points to some fundamental limitations with using phasors to represent waveforms when they *aren't* perfectly sinusoidal. The limitations of phasor data discussed are a key motivator behind the industry's growing interest in *point on wave* data.
+
+https://www.youtube.com/watch?v=oNAPNDo0vBw
 
