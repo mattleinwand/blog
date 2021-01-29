@@ -9,6 +9,7 @@ author: laurel
 
 # Welcome to the blog!
 This post gives an outline of the content that's hosted on the blog.
+
 Don’t see what you’re looking for? Have a topic you've been curious about? Send us an email to suggest a topic for a new post. [info@ni4ai.org](info@ni4ai.org)
 
 ## NI4AI Exercises
@@ -21,7 +22,7 @@ These posts are designed to provide hands-on experience asking questions of the 
 
 ## NI4AI Data
 
-These posts offer documentation of the datasets hosted in the platform.
+These posts offer documentation of the datasets hosted in the platform. 
 - [Sunshine](https://blog.ni4ai.org/tags/sunshine-data)
 - [Texas Synchrophasor Network](https://blog.ni4ai.org/post/2020-10-11-texas-pmus/)
 - [EKG data](https://blog.ni4ai.org/tags/ekg-data)

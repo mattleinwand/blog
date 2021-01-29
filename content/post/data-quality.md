@@ -16,18 +16,24 @@ When these deviations are large enough, the phasor representation breaks down.
 
 ## See it in the data
 On September 6, one our sensors reported a voltage sag and a frequency deviation of about 1.5 Hz.
-Further investigation showed that other sensors on WECC did not report the same frequency deviation.
-Changes in frequency, however, typically are not local events.
-This suggests that the reported deviation could be an artifact of the data.
+
+Further investigation showed that other sensors on WECC did not report the same deviation.
+Changes in frequency, however, typically are not local events!
+This suggested to us that we might be dealing with bad data.
+What we need now is a good way to figure it out.
 
 ## Physical intuition saves the day
 Transient events such as faults or switching can cause the voltage or current to change on very short timescales -- e.g., less than a cycle. This can cause phasors to become untrustworthy. 
-Physical intuition, however, can help us to judge whether what we’re seeing in the data is accurate. 
-Looking at changes in quantities like frequency can provide more context about data quality. 
+Using physical intuition, we can begin to judge whether what we’re seeing in the data is accurate. 
 
-A change in frequency indicates that rotating generators are speeding up or slowing down. But generators have rotating inertia which prevents them from starting or stopping instantaneously. Unlike voltage and current, changes in frequency don’t tend to happen instantaneously. 
+Changes in frequency happen due to magnetic coupling between synchronous generators and the grid.
+When the load (or generation) on the system changes, this magnetic coupling causes synchronous generators to speed up or slow down. 
+But these generators have a great deal of rotating inertia which prevents them from starting or stopping instantaneously. 
+While voltage and current may change instantaneously due to faults, switching, or other events -- the frequency of the grid tends to change much more gradually as generators speed up and slow down.
 
-Another thing to consider is the geographic extent of the disturbance. Frequency deviations typically affect large geographic areas, whereas voltage events can be much more localized. If two PMUs in different areas of the grid report very different frequencies at the same moment in time, this could be indicative of bad data quality.
+Another thing to consider is the geographic extent of the disturbance. 
+Frequency deviations tend to affect large geographic areas, whereas voltage events can be much more localized. 
+Data shared by the Texas Synchrophasor Network indicated that their sensors had not witnessed the same frequency event, raising the flag that this could be bad data.
 
 ## Do it yourself
 We saw the voltage sag on a sensor collection called “ni4ai/weld” on September 07, 2020 just before 12:37 AM (UTC). We acquired data for a second sensor on WECC called “/texas_pmus/whitesands” during the same period in time. 
