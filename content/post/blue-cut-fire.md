@@ -10,7 +10,7 @@ author: miles
 On August 16th, 2016, the Blue Cut Fire in Southern California caused a transmission line fault, which in turn caused the grid frequency to drop. This event was recorded by the Western Interconnection Frequency (shown in the figure below) and analyzed by the [North American Reliability Corporation](https://www.nerc.com/Pages/default.aspx) (NERC). In this blog post we will locate this event on the [Sunshine dataset](https://data.world/datasets/sunshine) and compare the event as reported by NERC, and as evidenced in the Sunshine data.
 
 ![Figure 1](/assets/images/post/blue-cut-fire/wecc_event.png)
-[https://www.nerc.com/pa/rrm/ea/1200_MW_Fault_Induced_Solar_Photovoltaic_Resource_/1200_MW_Fault_Induced_Solar_Photovoltaic_Resource_Interruption_Final.pdf](https://www.nerc.com/pa/rrm/ea/1200_MW_Fault_Induced_Solar_Photovoltaic_Resource_/1200_MW_Fault_Induced_Solar_Photovoltaic_Resource_Interruption_Final.pdf)
+[Read the NERC report.](https://www.nerc.com/pa/rrm/ea/1200_MW_Fault_Induced_Solar_Photovoltaic_Resource_/1200_MW_Fault_Induced_Solar_Photovoltaic_Resource_Interruption_Final.pdf)
 
 
 This drop in frequency caused solar inverters to trip offline. The solar inverters have a built-in phase-locked loop (PLL) to measure grid frequency and are programmed to automatically disconnect from the grid if the grid frequency is less than or equal to 57 Hz. However, from the reported frequency plot we see that the grid frequency remained above the 57 Hz threshold. The NERC report concludes that the solar inverters tripped offline because their PLLs overestimated the frequency deviation.
