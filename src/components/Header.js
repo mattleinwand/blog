@@ -1,10 +1,9 @@
-import { Icon } from "frontend-components";
-import { NavigationItem } from "./NavigationItem";
-import { menuItems } from "../lib/menu-items";
-import { navigate } from "@reach/router";
-import BaseLogo from "../assets/images/logo.svg";
-import React from "react";
-import styled, { css, down, th, up } from "@xstyled/styled-components";
+import { Icon } from 'frontend-components'
+import { NavigationItem } from './NavigationItem'
+import { menuItems } from '../lib/menu-items'
+import { navigate } from '@reach/router'
+import React from 'react'
+import styled, { css, down, th, up } from '@xstyled/styled-components'
 
 const Container = styled.div`
   align-items: center;
@@ -18,12 +17,12 @@ const Container = styled.div`
   }
 
   ${down(
-    "md",
+    'md',
     css`
       justify-content: center;
     `
   )}
-`;
+`
 
 const Logo = styled.p`
   color: #757575;
@@ -34,7 +33,7 @@ const Logo = styled.p`
   span {
     color: #d87c35;
   }
-`;
+`
 
 const MenuIcon = styled.div`
   position: absolute;
@@ -43,26 +42,26 @@ const MenuIcon = styled.div`
   width: 24px;
 
   ${up(
-    "md",
+    'md',
     css`
       display: none;
     `
   )}
-`;
+`
 
 const NavigationContainer = styled.div`
   display: flex;
 
   ${down(
-    "md",
+    'md',
     css`
       display: none;
     `
   )}
-`;
+`
 
 const Wrapper = styled.div`
-  background-color: ${th("colors.background")};
+  background-color: ${th('colors.background')};
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   height: 64px;
@@ -71,26 +70,26 @@ const Wrapper = styled.div`
   width: 100vw;
   z-index: 10;
   top: 0;
-`;
+`
 
 export const Header = ({ location, onToggleMenu }) => {
   return (
     <Wrapper>
       <Container>
         <MenuIcon onClick={onToggleMenu}>
-          <Icon name="menu"></Icon>
+          <Icon name='menu'></Icon>
         </MenuIcon>
 
-        <Logo onClick={() => navigate("/")}>
+        <Logo onClick={() => navigate('/')}>
           Ping<span>Things</span>
         </Logo>
 
         <NavigationContainer>
-          {menuItems.map((menuItem) => (
-            <NavigationItem {...menuItem} location={location} />
+          {menuItems.map(menuItem => (
+            <NavigationItem key={menuItem.label} {...menuItem} location={location} />
           ))}
         </NavigationContainer>
       </Container>
     </Wrapper>
-  );
-};
+  )
+}

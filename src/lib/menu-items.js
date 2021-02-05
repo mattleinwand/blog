@@ -1,14 +1,14 @@
 export const menuItems = [
   {
-    label: "About",
-    path: "/about",
+    label: 'About',
+    path: '/about'
   },
   {
-    label: "Articles",
-    path: "/articles",
+    label: 'Articles',
+    path: '/articles'
   },
   {
-    label: "Project Home",
-    path: "https://ni4ai.org/",
-  },
-];
+    label: 'Project Home',
+    path: 'https://ni4ai.org/'
+  }
+]
