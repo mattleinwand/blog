@@ -5,6 +5,7 @@ import { get, map } from 'lodash'
 import { Link, graphql, navigate } from 'gatsby'
 import rehypeReact from 'rehype-react'
 import styled, { css, down, th } from '@xstyled/styled-components'
+import "katex/dist/katex.min.css"
 
 import { Container as BaseContainer } from '../components/Container'
 import { Layout } from './Layout'
