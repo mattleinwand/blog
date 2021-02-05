@@ -18,7 +18,7 @@
     "clean": "gatsby clean",
     "deploy": "npx -n \"-r dotenv/config\" gatsby-plugin-s3 deploy",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier-standard --format",
     "lint:css": "stylelint './src/**/*.js'",
     "serve": "gatsby serve",
     "start": "npm run develop"
