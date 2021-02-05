@@ -5,15 +5,17 @@ export const Container = styled.div`
   padding: 0 5vw;
   width: 100%;
 
-  ${up('lg',
+  ${up(
+    'lg',
     css`
       width: 1000px;
     `
   )}
 
-  ${down('md',
+  ${down(
+    'md',
     css`
       padding: 0 24px;
     `
   )}
-`;
+`

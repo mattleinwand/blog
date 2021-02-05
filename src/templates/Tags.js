@@ -1,15 +1,15 @@
-import React from "react"
+import React from 'react'
 
-import { graphql } from "gatsby"
+import { graphql } from 'gatsby'
 
 import { ArticleList, Title, Posts } from './Articles'
-import { Layout } from "./Layout"
+import { Layout } from './Layout'
 
 const Tags = ({ pageContext, location, data }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark
   const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
+    totalCount === 1 ? '' : 's'
   } tagged with "${tag}"`
 
   return (
@@ -30,7 +30,7 @@ export const pageQuery = graphql`
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        frontmatter: { tags: { in: [$tag] } },
+        frontmatter: { tags: { in: [$tag] } }
         fields: { category: { eq: "post" } }
       }
     ) {

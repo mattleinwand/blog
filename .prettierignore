@@ -1,0 +1,6 @@
+/tests
+/build
+/public
+*.md
+*.json
+yarn.lock

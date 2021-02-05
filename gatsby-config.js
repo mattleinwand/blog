@@ -1,10 +1,10 @@
-require('dotenv').config();
+require('dotenv').config()
 
 module.exports = {
   siteMetadata: {
     title: 'NI4AI blog',
     description: '',
-    siteUrl: 'https://blog.ni4ai.org',
+    siteUrl: 'https://blog.ni4ai.org'
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -13,7 +13,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Inter']
+          families: ['Inter:400,700']
         }
       }
     },
@@ -27,29 +27,29 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/about`,
-        name: `about`,
-      },
+        name: `about`
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/authors`,
-        name: `authors`,
-      },
+        name: `authors`
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/post`,
-        name: `post`,
-      },
+        name: `post`
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/assets`,
-        name: `assets`,
-      },
+        name: `assets`
+      }
     },
     {
       resolve: `gatsby-transformer-remark`,
@@ -59,16 +59,23 @@ module.exports = {
         },
         plugins: [
           {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+              strict: `ignore`
+            }
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
-            },
+              maxWidth: 590
+            }
           },
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
+              wrapperStyle: `margin-bottom: 1.0725rem`
+            }
           },
           {
             resolve: 'gatsby-plugin-react-svg',
@@ -79,20 +86,20 @@ module.exports = {
             }
           },
           `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-        ],
-      },
+          `gatsby-remark-smartypants`
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         icon: `src/assets/images/favicon.png`,
         name: `NI4AI Blog`,
-        short_name: `NI4AI Blog`,
-      },
+        short_name: `NI4AI Blog`
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-feed`
-  ],
+  ]
 }

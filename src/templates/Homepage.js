@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react"
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 import {
   Excerpt as BaseExcerpt,
@@ -6,10 +6,10 @@ import {
   lightTheme
 } from 'frontend-components'
 import { get } from 'lodash'
-import { Link as BaseLink, graphql, navigate } from "gatsby"
+import { Link as BaseLink, graphql, navigate } from 'gatsby'
 import styled, { css, down, up } from '@xstyled/styled-components'
 
-import { Layout } from "./Layout"
+import { Layout } from './Layout'
 
 const Link = styled(BaseLink)`
   text-decoration: none;
@@ -18,32 +18,36 @@ const Link = styled(BaseLink)`
 const ArticleList = styled.div`
   margin-top: 64px;
 
-  ${up('xl',
+  ${up(
+    'xl',
     css`
       width: 1000px;
     `
   )}
 
-  ${down('md',
+  ${down(
+    'md',
     css`
       margin-top: 32px;
     `
   )}
-`;
+`
 
 const ArticleItem = styled(BaseLink)`
   display: flex;
   margin-bottom: 64px;
   text-decoration: none;
 
-  ${down('xl',
+  ${down(
+    'xl',
     css`
       margin-top: 96px;
       padding: 0 24px;
     `
   )}
 
-  ${down('md',
+  ${down(
+    'md',
     css`
       margin-bottom: 32px;
       margin-top: 0;
@@ -56,13 +60,12 @@ const ArticleItem = styled(BaseLink)`
       }
     `
   )}
-`;
-
+`
 
 const Homepage = ({ data, location, pageContext, ...props }) => {
   const { currentPage, numPages } = pageContext
   const [width, setWidth] = useState(null)
-  let [first, ...posts] = data.allMarkdownRemark.edges;
+  let [first, ...posts] = data.allMarkdownRemark.edges
 
   const onChangePage = item => {
     const path = item === 1 ? '/articles' : `/articles/${item}`
@@ -89,10 +92,10 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
     const avatar = {
       image: get(author, 'avatar'),
       size: '48'
-    };
+    }
 
     author = { ...author, avatar }
-   }
+  }
 
   const isMobile = width && width < lightTheme.breakpoints.md
 
@@ -110,7 +113,7 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
 
   return (
     <Layout location={location}>
-      { firstPost && (
+      {firstPost && (
         <Link to={get(first, 'node.fields.slug')}>
           <BaseExcerpt {...firstPost} layout='extended' />
         </Link>
@@ -118,18 +121,18 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
 
       <ArticleList>
         {posts.map(({ node }, index) => {
-           let author = get(node, 'fields.author')
+          let author = get(node, 'fields.author')
 
-           if (author) {
+          if (author) {
             const avatar = {
               image: get(author, 'avatar'),
               size: '48'
-            };
+            }
 
             author = { ...author, avatar }
-           }
+          }
 
-           const data = {
+          const data = {
             ...node.frontmatter,
             author,
             image: node.frontmatter.featuredImage,
@@ -144,7 +147,11 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
         })}
       </ArticleList>
 
-      <Pagination currentPage={currentPage} onClick={item => onChangePage(item)} totalPages={numPages} />
+      <Pagination
+        currentPage={currentPage}
+        onClick={item => onChangePage(item)}
+        totalPages={numPages}
+      />
     </Layout>
   )
 }
@@ -158,7 +165,7 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
-      ) {
+    ) {
       edges {
         node {
           html

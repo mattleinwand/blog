@@ -2,8 +2,7 @@ import { Icon } from 'frontend-components'
 import { NavigationItem } from './NavigationItem'
 import { menuItems } from '../lib/menu-items'
 import { navigate } from '@reach/router'
-import BaseLogo from '../assets/images/logo.svg'
-import React from 'react';
+import React from 'react'
 import styled, { css, down, th, up } from '@xstyled/styled-components'
 
 const Container = styled.div`
@@ -17,7 +16,8 @@ const Container = styled.div`
     width: 1500px;
   }
 
-  ${down('md',
+  ${down(
+    'md',
     css`
       justify-content: center;
     `
@@ -41,17 +41,19 @@ const MenuIcon = styled.div`
   top: calc(50% - 6px);
   width: 24px;
 
-  ${up('md',
+  ${up(
+    'md',
     css`
       display: none;
     `
   )}
-`;
+`
 
 const NavigationContainer = styled.div`
   display: flex;
 
-  ${down('md',
+  ${down(
+    'md',
     css`
       display: none;
     `
@@ -74,14 +76,18 @@ export const Header = ({ location, onToggleMenu }) => {
   return (
     <Wrapper>
       <Container>
-        <MenuIcon onClick={onToggleMenu}><Icon name="menu"></Icon></MenuIcon>
+        <MenuIcon onClick={onToggleMenu}>
+          <Icon name='menu'></Icon>
+        </MenuIcon>
 
         <Logo onClick={() => navigate('/')}>
           Ping<span>Things</span>
         </Logo>
 
         <NavigationContainer>
-          {menuItems.map(menuItem => <NavigationItem {...menuItem} location={location} /> )}
+          {menuItems.map(menuItem => (
+            <NavigationItem key={menuItem.label} {...menuItem} location={location} />
+          ))}
         </NavigationContainer>
       </Container>
     </Wrapper>
