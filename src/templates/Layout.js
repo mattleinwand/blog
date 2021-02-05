@@ -1,10 +1,15 @@
-import { NavigationItem } from '../components/NavigationItem'
-import { Header } from '../components/Header'
-import { ThemeProvider, lightTheme } from 'frontend-components'
-import { menuItems } from '../lib/menu-items'
-import React, { useState } from "react"
-import styled, { createGlobalStyle, css, keyframes, up } from '@xstyled/styled-components'
-import { Helmet } from 'react-helmet'
+import { NavigationItem } from "../components/NavigationItem";
+import { Header } from "../components/Header";
+import { ThemeProvider, lightTheme } from "frontend-components";
+import { menuItems } from "../lib/menu-items";
+import React, { useState } from "react";
+import styled, {
+  createGlobalStyle,
+  css,
+  keyframes,
+  up,
+} from "@xstyled/styled-components";
+import { Helmet } from "react-helmet";
 
 const slideLeft = keyframes`
   from {
@@ -24,18 +29,19 @@ const Content = styled.div`
   justify-content: center;
   padding: 64px 0;
 
-  ${up('lg',
+  ${up(
+    "lg",
     css`
       padding-bottom: 48px;
     `
   )}
-`
+`;
 
 const GlobalStyle = createGlobalStyle`
   body, html {
     margin: 0;
   }
-`
+`;
 
 const Menu = styled.div`
   background-color: neutral1;
@@ -47,15 +53,20 @@ const Menu = styled.div`
   width: 25vw;
   z-index: 1;
 
-  ${up('md',
+  ${up(
+    "md",
     css`
       display: none;
     `
   )}
-`
+`;
 
 const Wrapper = styled.div`
-  animation: 0.5s 1 forwards ${props => css`${props.isMenuVisible ? slideLeft : ''}`};
+  animation: 0.5s 1 forwards
+    ${(props) =>
+      css`
+        ${props.isMenuVisible ? slideLeft : ""}
+      `};
   background-color: white;
   position: relative;
   z-index: 10;
@@ -76,23 +87,30 @@ export const Layout = ({ children, location }) => {
           name="keywords"
           content="time series, TSDB, data analysis, machine learning, deep learning, AI, IoT, energy, DOE"
         />
-        <title>NI4AI - National Infrastructure for AI on the Electric Grid</title>
+        <title>
+          NI4AI - National Infrastructure for AI on the Electric Grid
+        </title>
         <link rel="canonical" href="https://blog.ni4ai.org/" />
       </Helmet>
 
       <GlobalStyle />
 
       <Menu isMenuVisible={isMenuVisible}>
-        {menuItems.map(menuItem => <NavigationItem {...menuItem} location={location} /> )}
+        {menuItems.map((menuItem) => (
+          <NavigationItem {...menuItem} location={location} />
+        ))}
       </Menu>
 
       <Wrapper isMenuVisible={isMenuVisible}>
-        <Header location={location} onToggleMenu={() => setIsMenuVisible(previousValue => !previousValue)} />
+        <Header
+          location={location}
+          onToggleMenu={() =>
+            setIsMenuVisible((previousValue) => !previousValue)
+          }
+        />
 
-        <Content>
-          {children}
-        </Content>
+        <Content>{children}</Content>
       </Wrapper>
     </ThemeProvider>
-  )
-}
+  );
+};

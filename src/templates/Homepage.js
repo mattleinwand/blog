@@ -1,30 +1,32 @@
-import React, { useEffect, useLayoutEffect, useState } from "react"
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 import {
   Excerpt as BaseExcerpt,
   Pagination,
-  lightTheme
-} from 'frontend-components'
-import { get } from 'lodash'
-import { Link as BaseLink, graphql, navigate } from "gatsby"
-import styled, { css, down, up } from '@xstyled/styled-components'
+  lightTheme,
+} from "frontend-components";
+import { get } from "lodash";
+import { Link as BaseLink, graphql, navigate } from "gatsby";
+import styled, { css, down, up } from "@xstyled/styled-components";
 
-import { Layout } from "./Layout"
+import { Layout } from "./Layout";
 
 const Link = styled(BaseLink)`
   text-decoration: none;
-`
+`;
 
 const ArticleList = styled.div`
   margin-top: 64px;
 
-  ${up('xl',
+  ${up(
+    "xl",
     css`
       width: 1000px;
     `
   )}
 
-  ${down('md',
+  ${down(
+    "md",
     css`
       margin-top: 32px;
     `
@@ -36,14 +38,16 @@ const ArticleItem = styled(BaseLink)`
   margin-bottom: 64px;
   text-decoration: none;
 
-  ${down('xl',
+  ${down(
+    "xl",
     css`
       margin-top: 96px;
       padding: 0 24px;
     `
   )}
 
-  ${down('md',
+  ${down(
+    "md",
     css`
       margin-bottom: 32px;
       margin-top: 0;
@@ -58,98 +62,101 @@ const ArticleItem = styled(BaseLink)`
   )}
 `;
 
-
 const Homepage = ({ data, location, pageContext, ...props }) => {
-  const { currentPage, numPages } = pageContext
-  const [width, setWidth] = useState(null)
+  const { currentPage, numPages } = pageContext;
+  const [width, setWidth] = useState(null);
   let [first, ...posts] = data.allMarkdownRemark.edges;
 
-  const onChangePage = item => {
-    const path = item === 1 ? '/articles' : `/articles/${item}`
-    navigate(path)
-  }
+  const onChangePage = (item) => {
+    const path = item === 1 ? "/articles" : `/articles/${item}`;
+    navigate(path);
+  };
 
   useEffect(() => {
-    setWidth(window.innerWidth)
-  }, [])
+    setWidth(window.innerWidth);
+  }, []);
 
   useLayoutEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth)
+    const handleResize = () => setWidth(window.innerWidth);
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  })
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
-  let author = get(first, 'node.fields.author')
+  let author = get(first, "node.fields.author");
 
   if (author) {
     const avatar = {
-      image: get(author, 'avatar'),
-      size: '48'
+      image: get(author, "avatar"),
+      size: "48",
     };
 
-    author = { ...author, avatar }
-   }
+    author = { ...author, avatar };
+  }
 
-  const isMobile = width && width < lightTheme.breakpoints.md
+  const isMobile = width && width < lightTheme.breakpoints.md;
 
   let firstPost = {
     ...first.node.frontmatter,
     author,
     image: first.node.frontmatter.featuredImage,
-    subtitle: first.node.frontmatter.description
-  }
+    subtitle: first.node.frontmatter.description,
+  };
 
   if (isMobile) {
-    firstPost = null
-    posts = [first, ...posts]
+    firstPost = null;
+    posts = [first, ...posts];
   }
 
   return (
     <Layout location={location}>
-      { firstPost && (
-        <Link to={get(first, 'node.fields.slug')}>
-          <BaseExcerpt {...firstPost} layout='extended' />
+      {firstPost && (
+        <Link to={get(first, "node.fields.slug")}>
+          <BaseExcerpt {...firstPost} layout="extended" />
         </Link>
       )}
 
       <ArticleList>
         {posts.map(({ node }, index) => {
-           let author = get(node, 'fields.author')
+          let author = get(node, "fields.author");
 
-           if (author) {
+          if (author) {
             const avatar = {
-              image: get(author, 'avatar'),
-              size: '48'
+              image: get(author, "avatar"),
+              size: "48",
             };
 
-            author = { ...author, avatar }
-           }
+            author = { ...author, avatar };
+          }
 
-           const data = {
+          const data = {
             ...node.frontmatter,
             author,
             image: node.frontmatter.featuredImage,
-            subtitle: node.frontmatter.description
-          }
+            subtitle: node.frontmatter.description,
+          };
 
           return (
-            <ArticleItem key={index} to={get(node, 'fields.slug')}>
+            <ArticleItem key={index} to={get(node, "fields.slug")}>
               <BaseExcerpt {...data} />
             </ArticleItem>
-          )
+          );
         })}
       </ArticleList>
 
-      <Pagination currentPage={currentPage} onClick={item => onChangePage(item)} totalPages={numPages} />
+      <Pagination
+        currentPage={currentPage}
+        onClick={(item) => onChangePage(item)}
+        totalPages={numPages}
+      />
     </Layout>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;
 
 export const pageQuery = graphql`
   query($skip: Int, $limit: Int) {
@@ -158,7 +165,7 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
-      ) {
+    ) {
       edges {
         node {
           html
@@ -180,4 +187,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
