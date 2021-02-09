@@ -28,8 +28,14 @@ const AuthorContainer = styled(BaseContainer)`
 `
 
 const Caption = styled(BaseCaption)`
-  margin-top: 64px;
-
+  margin: 32px 0 0;
+  > div {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    ${props =>
+      `filter: drop-shadow(0 0 0.75rem ${props.theme.colors.foreground3});`}
+  }
   p {
     &:empty {
       display: none;
@@ -39,7 +45,8 @@ const Caption = styled(BaseCaption)`
   ${down(
     'md',
     css`
-      margin-top: 32px;
+      margin: 0;
+      margin-top: 8px;
     `
   )}
 `
@@ -62,7 +69,6 @@ const Code = styled(BaseCode)`
 const Content = styled.div`
   ${th('typography.body4')};
   margin-bottom: 64px;
-
   > div {
     p + p,
     table + p {
@@ -112,12 +118,13 @@ const HeaderContainer = styled(BaseContainer)`
 `
 
 const Media = styled(BaseMedia)`
-  margin: 64px 0;
-
+  margin: 8px 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
   ${down(
     'md',
     css`
-      margin: 32px 0;
+      margin: 16px 0;
     `
   )}
 `
@@ -218,7 +225,11 @@ const Article = ({ data, location }) => {
     createElement: React.createElement,
     components: {
       h2: ({ children }) => <Header>{children}</Header>,
-      img: ({ src }) => <Media source={src} />,
+      img: ({ alt, src }) => (
+        <a href={src} target='_blank' rel='noreferrer'>
+          <Media alt={alt} source={src} />
+        </a>
+      ),
       pre: ({ children }) => {
         const { className, children: childrenProps } = children[0].props
         const language = (className || '').replace('language-', '')
@@ -263,7 +274,7 @@ const Article = ({ data, location }) => {
 
         <TagContainer>
           {map(get(post, 'frontmatter.tags'), (tag, key) => (
-            <Link to={`tags/${tag}`}>
+            <Link to={`tags/${tag}`} key={key}>
               <Tag key={key} label={tag} />
             </Link>
           ))}

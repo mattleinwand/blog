@@ -33,6 +33,13 @@ const ArticleList = styled.div`
   )}
 `
 
+const Excerpt = styled(BaseExcerpt)`
+  div {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+`
+
 const ArticleItem = styled(BaseLink)`
   display: flex;
   margin-bottom: 64px;
@@ -115,7 +122,7 @@ const Homepage = ({ data, location, pageContext, ...props }) => {
     <Layout location={location}>
       {firstPost && (
         <Link to={get(first, 'node.fields.slug')}>
-          <BaseExcerpt {...firstPost} layout='extended' />
+          <Excerpt {...firstPost} layout='extended' />
         </Link>
       )}
 

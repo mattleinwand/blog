@@ -97,7 +97,11 @@ export const Layout = ({ children, location }) => {
 
       <Menu isMenuVisible={isMenuVisible}>
         {menuItems.map(menuItem => (
-          <NavigationItem key={menuItem.label} {...menuItem} location={location} />
+          <NavigationItem
+            key={menuItem.label}
+            {...menuItem}
+            location={location}
+          />
         ))}
       </Menu>
 

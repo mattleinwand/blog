@@ -86,7 +86,11 @@ export const Header = ({ location, onToggleMenu }) => {
 
         <NavigationContainer>
           {menuItems.map(menuItem => (
-            <NavigationItem key={menuItem.label} {...menuItem} location={location} />
+            <NavigationItem
+              key={menuItem.label}
+              {...menuItem}
+              location={location}
+            />
           ))}
         </NavigationContainer>
       </Container>
