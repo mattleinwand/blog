@@ -45,8 +45,7 @@ const Caption = styled(BaseCaption)`
   ${down(
     'md',
     css`
-      margin: 0;
-      margin-top: 8px;
+      margin: 8px 0 0;
     `
   )}
 `
