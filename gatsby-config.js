@@ -69,10 +69,7 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
-              wrapperStyle: fluidResult => {
-                console.log('fluid', fluidResult)
-                return `height:${Math.round(fluidResult.aspectRatio)}vw;`
-              }
+              wrapperStyle: fluidResult => `height:${Math.round(fluidResult.aspectRatio)}vw;`
             }
           },
           {
