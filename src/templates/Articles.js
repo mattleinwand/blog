@@ -1,4 +1,4 @@
-import { Excerpt, Pagination } from 'frontend-components'
+import { Excerpt as BaseExcerpt, Pagination } from 'frontend-components'
 import { Layout } from './Layout'
 import { Link, graphql, navigate } from 'gatsby'
 import { get } from 'lodash'
@@ -27,7 +27,6 @@ const ArticleItem = styled(Link)`
   display: flex;
   margin-bottom: 32px;
   text-decoration: none;
-
   ${down(
     'lg',
     css`
@@ -46,6 +45,12 @@ const ArticleItem = styled(Link)`
       }
     `
   )}
+`
+const Excerpt = styled(BaseExcerpt)`
+  div {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 `
 
 export const Title = styled.h3`
