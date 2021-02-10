@@ -58,7 +58,7 @@ yarn build
 
 This will build the site inside the `public/` folder.
 
-Then, to deploy define your AWS credentials on `.env` file. You will define both:
+Then, to deploy define your AWS credentials in `.env` file. Use the `PingThings, Inc.` instance and define both:
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
 
