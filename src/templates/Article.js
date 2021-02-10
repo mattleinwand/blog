@@ -33,8 +33,6 @@ const Caption = styled(BaseCaption)`
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    ${props =>
-      `filter: drop-shadow(0 0 0.75rem ${props.theme.colors.foreground3});`}
   }
   p {
     &:empty {
