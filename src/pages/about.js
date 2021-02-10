@@ -42,8 +42,8 @@ const About = ({ data, location }) => {
   const parseContent = new rehypeReact({
     createElement: React.createElement,
     components: {
-      'img': ({ src }) => <Media source={src} />
-    },
+      img: ({ src }) => <Media source={src} />
+    }
   }).Compiler
 
   return (

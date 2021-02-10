@@ -1,5 +1,5 @@
-import  { Layout } from "../templates/Layout"
-import React from "react"
+import { Layout } from '../templates/Layout'
+import React from 'react'
 
 const NotFoundPage = ({ location }) => {
   return (

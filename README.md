@@ -2,6 +2,31 @@
 
 **The analytics blog for the ARPA-E National Infrastructure for Artificial Intelligence project.**
 
+## Authoring Articles
+
+Articles are written in markdown syntax. Here is a guide on [basic markdown syntax](https://www.markdownguide.org/basic-syntax) and here is another on [extended syntax](https://www.markdownguide.org/extended-syntax).
+
+To include Mathematic notation in the article, we use Katex, which you can read more about and [try out here](https://katex.org/#demo). 
+
+Math Equations can be added in Inline Mode by surrounding your equation with `$` characters.
+
+Example markdown:
+```
+$a^2 + b^2 = c^2$
+```
+
+Math Equations in Display Mode by surrounding your equation with `$$` characters. In Display mode you can use new-lines.
+
+Example markdown:
+```
+$$
+a^2 + b^2 = c^2
+y = m*x + b
+$$
+```
+
+# Development on `/blog`
+
 ## Getting Started
 
 This blog uses [Gatsby](https://www.gatsbyjs.org/) static site generator.

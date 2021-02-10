@@ -1,38 +1,41 @@
-import { Excerpt, Pagination } from 'frontend-components'
-import { Layout } from "./Layout"
-import { Link, graphql, navigate } from "gatsby"
+import { Excerpt as BaseExcerpt, Pagination } from 'frontend-components'
+import { Layout } from './Layout'
+import { Link, graphql, navigate } from 'gatsby'
 import { get } from 'lodash'
-import React, { Fragment } from "react"
+import React, { Fragment } from 'react'
 import styled, { css, down, up, th } from '@xstyled/styled-components'
 
 export const ArticleList = styled.div`
   margin-top: 20px;
 
-  ${up('lg',
+  ${up(
+    'lg',
     css`
       width: 1000px;
     `
   )}
 
-  ${down('md',
+  ${down(
+    'md',
     css`
       margin-top: 0;
     `
   )}
-`;
+`
 
 const ArticleItem = styled(Link)`
   display: flex;
   margin-bottom: 32px;
   text-decoration: none;
-
-  ${down('lg',
+  ${down(
+    'lg',
     css`
       padding: 0 24px;
     `
   )}
 
-  ${down('md',
+  ${down(
+    'md',
     css`
       > div {
         > :not(:first-child) {
@@ -42,19 +45,26 @@ const ArticleItem = styled(Link)`
       }
     `
   )}
-`;
+`
+const Excerpt = styled(BaseExcerpt)`
+  div {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+`
 
 export const Title = styled.h3`
   ${th('typography.display3')}
   margin-bottom: 64px;
 
-  ${down('lg',
+  ${down(
+    'lg',
     css`
       padding: 0 24px;
       margin: 32px 0;
     `
   )}
-`;
+`
 
 export const Posts = ({ posts }) => (
   <Fragment>
@@ -65,7 +75,7 @@ export const Posts = ({ posts }) => (
         const avatar = {
           image: get(author, 'avatar'),
           size: '48'
-        };
+        }
 
         author = { ...author, avatar }
       }
@@ -102,7 +112,11 @@ const Articles = ({ data, location, pageContext }) => {
         <Title>Recent Articles</Title>
         <Posts posts={posts} />
       </ArticleList>
-      <Pagination currentPage={currentPage} onClick={item => onChangePage(item)} totalPages={numPages} />
+      <Pagination
+        currentPage={currentPage}
+        onClick={item => onChangePage(item)}
+        totalPages={numPages}
+      />
     </Layout>
   )
 }
@@ -116,7 +130,7 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
-      ) {
+    ) {
       edges {
         node {
           excerpt
