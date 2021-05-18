@@ -16,20 +16,26 @@ const Container = styled.div`
 
 const Content = styled.div`
   ${th('typography.body4')};
+
   margin-top: 64px;
 `
 
 const Media = styled(BaseMedia)`
+  background-repeat: no-repeat;
+  background-size: contain;
+
   margin-top: 64px;
 `
 
 const Title = styled.p`
   ${th('typography.display2')};
+
   color: foreground3;
 `
 
 const Subtitle = styled.p`
   ${th('typography.display2')};
+
   color: neutral5;
   margin: 10px 0;
 `
