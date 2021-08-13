@@ -6,7 +6,7 @@ tags:
 - ni4ai-data
 
 title: NI4AI Datasets
-author: laurel
+author: ni4ai
 ---
 
 Our data sets blog post has moved to our website. Visit [https://ni4ai.org/datasets](https://ni4ai.org/datasets) to learn more about data sets we host.
