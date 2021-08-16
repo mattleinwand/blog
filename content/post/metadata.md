@@ -1,10 +1,10 @@
 ---
-date: '2021-06-30T14:00:00+0000'
-description: Metadata about streams can help to put the data in context. Here's a tutorial showing various ways to interact with metadata in the platform.
-featuredImage: '/assets/images/post/default.jpg'
+date: '2021-07-02T14:00:00+0000'
+description: Metadata about streams can help to put the data in context. Here's a tutorial showing various ways of interacting with metadata in the platfrom    .
+featuredImage: '/assets/images/post/metadata/metadata.png'
 tags:
 - ni4ai-tutorials
-title: Working with Metadata
+title: Querying Metadata
 author: laurel
 ---
 

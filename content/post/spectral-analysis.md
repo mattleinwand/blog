@@ -1,7 +1,7 @@
 ﻿---
 date: '2021-04-26T01:00:00Z'
 description: What is a spectrogram?
-featuredImage: '/assets/images/post/spectral-analysis/load_current_spectrogram.png'
+featuredImage: '/assets/images/post/spectral-analysis/feature.png'
 tags: ["btrdb", "python", "spectrogram", "oscillations", "analytics"]
 
 title: Spectral Analysis Part 1
