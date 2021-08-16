@@ -319,7 +319,3 @@ Here are examples where we use values queries to examine events that warrant ful
 - Spectral analysis: https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/PV_spectrogram.ipynb
 - Phase angle differencing: https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Phase%20Angle%20Monitoring.ipynb
 
-
-```python
-
-```
