@@ -1,5 +1,5 @@
 ---
-date: '2100-01-01T00:00:00Z'
+date: '2019-01-01T00:00:00Z'
 description: Find open access data sets hosted in the NI4AI platform
 featuredImage: '/assets/images/post/default.jpg'
 tags:
