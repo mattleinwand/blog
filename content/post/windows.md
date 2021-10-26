@@ -1,6 +1,6 @@
 ---
 date: '2021-06-23T14:00:00+0000'
-description: This blog post explores three API calls for querying time series data: `windows`, `aligned_windows` and `values`
+description: This blog post explores three API calls for querying time series data - `windows`, `aligned_windows` and `values`
 featuredImage: '/assets/images/post/windows/bfg_book.png'
 tags:
 - ni4ai-tutorials

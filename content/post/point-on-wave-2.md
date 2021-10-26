@@ -1,7 +1,7 @@
 ---
 date: '2021-08-06T01:00:00Z'
 description: Visualizing point on wave data with spectrograms
-featuredImage: '/assets/images/post/angle-differencing/angle_art.jpeg'
+featuredImage: '/assets/images/post/point-on-wave-2/fig2.png'
 tags: ["btrdb", "python", "angles", "wams", "analytics", "phasors"]
 
 title: Point on Wave Data (Part 2)
