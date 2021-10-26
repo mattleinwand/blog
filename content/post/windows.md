@@ -1,21 +1,24 @@
 ---
 date: '2021-06-23T14:00:00+0000'
-description: This blog post explores how to maximize your efficiency in working with large datasetes using `windows`, `aligned_windows` and `values` queries (Photo credit Roald Dahl). 
+description: This blog post explores three API calls for querying time series data: `windows`, `aligned_windows` and `values`
 featuredImage: '/assets/images/post/windows/bfg_book.png'
 tags:
 - ni4ai-tutorials
-title: Working with big data
+title: Querying Time Series
 author: laurel
 ---
 
+The term "Big Data" refers to data too large to be analyzed using conventional methods. A conventional technique might be, for example, to load data from CSV into memory in order to perform operations on it. With big data, this approach will quickly overwhelm most computing environments.
+
+This blog post describes three user-friendly approaches to querying time series data, including workflows that will make working with big data more approachable for users of all skill levels.
+
+Photo credit: The BFG (Big Friendly Giant) by Roald Dahl.
 
 # Windows, aligned windows, and values
 
-This tutorial offers a guide on using the PredictiveGrid to work wtih VERY big data sets.
+When working with high-resolution time series data, performing operations using seemingly small windows of data (e.g., one week) can quickly overwhelm most computing environments.
 
-When working with high-resolution time series data, seemingly simple tasks can quickly become intractable. The reason for this is that the volume of data exceeds the computational limits of most most computing environments.
-
-Here, we'll describe three methods for querying data in PredictiveGrid. In practice none of these is "better" than another -- there is a time and a place for each. This post will weigh the relative advantages of each approach.
+Below, we'll describe three methods for querying data in PredictiveGrid. In practice none of these is "better" than another -- there is a time and a place for each. This post will weigh the relative advantages of each approach.
 
 ### Functions used
 - `stream.values()`
