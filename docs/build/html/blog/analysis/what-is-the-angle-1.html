@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>What’s the Angle? (Part 1) &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Blog Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#understanding-pmu-angle-measurements">
+   Understanding PMU Angle Measurements
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="whats-the-angle-part-1">
+<h1>What’s the Angle? (Part 1)<a class="headerlink" href="#whats-the-angle-part-1" title="Permalink to this headline">¶</a></h1>
+<section id="understanding-pmu-angle-measurements">
+<h2>Understanding PMU Angle Measurements<a class="headerlink" href="#understanding-pmu-angle-measurements" title="Permalink to this headline">¶</a></h2>
+<p><em>Author: Mohini Bariya</em></p>
+<p>In an idealized AC electrical system, voltages and currents are perfect sinusoids, oscillating with a particular amplitude, frequency, and phase shift. In a real AC system, they are actually imperfect and time varying, often with multiple frequency components. Nevertheless, we often approximate them as idealized sinusoids with only the fundamental (60 or 50 Hz) frequency, and represent them as “phasors,” which capture everything there is to know about a sinusoid in two variables: the root-mean-square (rms) magnitude, and the phase angle shift, or exact timing of the zero crossing. In this blog post, we review the meaning of the phasor, focusing on the angle measurement.</p>
+<p>Converting an arbitrary signal to a phasor is the process of fitting a model to a set of data points—a regression problem. Different PMUs have different algorithms to perform this “fitting,” and may fit different models and therefore find different parameters. For example, some PMUs report frequency and rate-of-change-of-frequency (ROCOF) that are beyond the traditional phasor model which only captures angle and magnitude.  Generally, real-life current and voltages will look very close to perfect sinusoids at the nominal grid frequency (60 Hz in North America), with a bit of noise. Below we visualize the “fitting” of a phasor.</p>
+<p><img alt="PMU angle measurement" src="../../_images/pmu.png" /></p>
+<p>In the <a class="reference external" href="https://blog.ni4ai.org/post/2020-03-30-sunshine-data/">sunshine dataset</a> available through NI4AI, the PMUs report phasor magnitude and angle only. The magnitude is easy to understand: it is the amplitude of the sinusoidal signal. In the classic phasor model, the angle is the “phase shift” of a sinusoid at nominal frequency. However, in the angle measurements of the sunshine dataset, two different elements are entangled: the phase shift and the frequency shift. We can think of the sunshine PMUs determining the angle measurement as follows (keep in mind this is not a literal description of the algorithm, but an intuitive one): Using a clock reference (this is why PMUs need excellent synchronization), the PMU looks at the input signal every 1/60 seconds (60 Hz). It records the angle of the sinusoid at this moment (we can think of this as where the sinusoid is between a zero crossing and a peak), and reports this as the “angle”. Let us consider what this angle measurement will be in a few different cases.</p>
+<p>First, consider an input waveform that is a perfect 60 Hz sinusoid miraculously synchronized with the PMU’s timing. The dashed green lines indicate the moments when the PMU measures the angle. In this case, we see that the angle measurement will always be 0, as the input waveform always crosses zero at the blue lines.</p>
+<p><img alt="PMU angle 1" src="../../_images/pmu1.png" /></p>
+<p>Now, suppose the input waveform is a perfect 60 Hz sinusoid that is delayed from the first one by an angle of, say, 20 degrees. At every moment the PMU measures the angle, the shift will be the same - 20 degrees. Therefore, the angle measurement will be constant at 20. The angle does not change because the signal frequency is nominal, matching the frequency of the PMU checks.</p>
+<p><img alt="PMU angle 2" src="../../_images/pmu2.png" /></p>
+<p>Finally, consider if the system frequency is not nominal, but is instead, say, 63 Hz. Now, every time the PMU checks the angle, the angle will differ. If the frequency stays at 63 Hz, the angle measurement will increase at a constant rate.</p>
+<p><img alt="PMU angle 3" src="../../_images/pmu3.png" /></p>
+<p>In fact, the rate of change of the angle measurement equals the deviation of the signal frequency from nominal.</p>
+<p>Physically, the phase shift and frequency shift arise from phenomena at different scales. Frequency shifts from nominal are a system-wide phenomenon that reflects the continual effort to balance generation and demand across the entire electric grid. Below is a plot of the frequency at several PMUs across the Western United States during a major, system-wide disturbance event. The signals align very closely, reflecting the fact that frequency, observed at this scale, is a global quantity.</p>
+<p><img alt="Frequency" src="../../_images/frequency.png" /></p>
+<p>Phase shifts, which only have meaning when considered between two points in the system, relate to the power flow and impedances between these points. They are a more local quantity.</p>
+<p>Frequency and phase shifts are both encoded in the reported PMU angle, and therefore the angle must be interpreted with care. For example, when looking at real angle measurements, we may see a sudden jump in the angle. Is this due to a brief, significant frequency change, or does it arise from a change in impedance or load? A rapid, short change probably arises from the latter. Comparing the angle as measured at another, distant PMU can help answer the question more definitively. If we see the jump there as well, it may in fact be due to a system-wide frequency event. More likely, we will not see the jump at the distant PMU, confirming the hypothesis that it indicates a local impedance or load change.</p>
+<p>In the next blog post, we will explore how to work with real PMU angle data.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

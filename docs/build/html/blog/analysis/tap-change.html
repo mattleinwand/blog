@@ -1,0 +1,698 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Counting tap changer operations &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Voltage Sag Safari" href="voltage-sags.html" />
+    <link rel="prev" title="Angle Differencing" href="angle-differencing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../home/index.html">
+  Blog Home
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Tutorials
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Read the blog
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data/index.html">
+   Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data/events.html">
+     Wide Area Events
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Analytics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="spectral-analysis.html">
+     Spectral Analysis (part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="disaggregation.html">
+     Solar Disaggregation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="angle-differencing.html">
+     Angle Differencing
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Counting tap changer operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="voltage-sags.html">
+     Voltage Sag Safari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="benchmarking-results.html">
+     Benchmarking Results
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="symmetrical-components.html">
+     Symmetrical Components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="what-is-the-angle-1.html">
+     What’s the Angle? (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="what-is-the-angle-2.html">
+     What’s the Angle? (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="whats-in-a-phasor.html">
+     What is a Phasor?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualizing-phasor-timeseries.html">
+     Visualizing Phasor Timeseries with matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="power-factor.html">
+     Power Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linear-models-overview.html">
+     Training Linear Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="blue-cut-fire.html">
+     Blue Cut Fire
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="btrdb-queries-pt1.html">
+     Memory Efficient Queries (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="btrdb-queries-pt2.html">
+     Memory Efficient Queries (Part 2)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../thoughts/index.html">
+   Commentary
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/fire-season.html">
+     Fire season is just around the corner
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/pmu-siting-2.html">
+     Choosing where to site distribution PMUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/sunshine-data.html">
+     A brief walkthrough of the Sunshine uPMU dataset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/btrdb-explained.html">
+     BTrDB Explained
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/ekg-data.html">
+     On EKG Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ni4ai/index.html">
+   Get Involved in NI4AI
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ni4ai/demo-1.html">
+     Demo (Part 2): Exploring Data in “The Plotter”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ni4ai/demo-2.html">
+     Demo (Part 2): Establishing an API Connection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ni4ai/add-sensors.html">
+     Stream Data to NI4AI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ni4ai/language-bindings-survey.html">
+     Language Bindings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ni4ai/democratizing-data.html">
+     Democratizing Grid Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ni4ai/expertise-for-experts.html">
+     Expertise for Experts
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-a-tap-changer">
+   What is a tap changer?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploratory-data-analysis">
+   Exploratory Data Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-to-look-for-in-the-data">
+     What to look for in the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#putting-this-into-code">
+     Putting this into code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistical-indicators-of-change">
+   Statistical indicators of change
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-constitutes-an-abrupt-change">
+     What constitutes an “abrupt” change?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#interlude">
+       Interlude
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determining-whether-a-change-is-sustained">
+     Determining whether a change is sustained
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="counting-tap-changer-operations">
+<h1>Counting tap changer operations<a class="headerlink" href="#counting-tap-changer-operations" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Author: Laurel Dunn</p>
+<p>Date: October 19, 2020</p>
+<p>This post steps through an exercise in exploratory analysis. Here, our objective is to mine voltage magnitude data for likely instances of tap changer operation. We’ll use statistical aggregates provided by <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> objects to detect and count changes.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>The main objective of this post is to illustrate exploratory analysis methods which users may apply similar methods to efficiently search of events of interest to them – in other words, the methods can be generalized for problems much more complex than tap changer operations!</p>
+<section id="what-is-a-tap-changer">
+<h2>What is a tap changer?<a class="headerlink" href="#what-is-a-tap-changer" title="Permalink to this headline">¶</a></h2>
+<p>Tap changing is the process by which some transformers can adjust the voltage at the head of a distribution network by changing the coils ratio between their primary and secondary sides. Transformers with this capability are called load tap changers or LTCs. The power demand on a network rises and falls over the day, leading to an inverse rise and fall in the voltage drop along the network. LTCs compensate for this varying voltage drop by stepping the voltage at the head of the network up and down, to keep the voltage at the end of the network within permissible limits.</p>
+<p>A tap changer is a mechanism embedded in many transformers that operates to keep the service voltage within reasonable bounds. As pictured below, tap changers use a mechanical switch to adjust the turns ratio between the primary and secondary windings on the transformer. These adjustments occur in response to changes in loading conditions on the distribution grid.</p>
+<p><img alt="tap_changer_gif" src="../../_images/tap_changer.gif" /></p>
+</section>
+<section id="exploratory-data-analysis">
+<h2>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
+<section id="what-to-look-for-in-the-data">
+<h3>What to look for in the data<a class="headerlink" href="#what-to-look-for-in-the-data" title="Permalink to this headline">¶</a></h3>
+<p>Tap change events are characterized by a stepwise increase or decrease in voltage magnitude, as in the first two events pictured below. These events can easily be detected visually, the challenge here is to develop an algorithm for detecting them computationally.</p>
+<p><img alt="examples" src="../../_images/output_15_0.png" /></p>
+</section>
+<section id="putting-this-into-code">
+<h3>Putting this into code<a class="headerlink" href="#putting-this-into-code" title="Permalink to this headline">¶</a></h3>
+<p>Below, we query the database to return <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> objects reporting the min, mean, max, standard deviation and count of values in each 5-min interval in the data.</p>
+<p>The result returns almost 200,000 rows of aggregates for 5-min windows spanning about 167 days (or about 18 months) of data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">ns_to_datetime</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">time</span><span class="p">),</span>
+                    <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="n">ns_to_datetime</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">time</span><span class="o">+</span><span class="n">dt</span><span class="p">),</span>
+                    <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">count</span><span class="p">,</span>
+                    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">min</span><span class="o">/</span><span class="n">base</span><span class="p">,</span>
+                    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">max</span><span class="o">/</span><span class="n">base</span><span class="p">,</span>
+                    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">mean</span><span class="o">/</span><span class="n">base</span><span class="p">,</span>
+                    <span class="s1">&#39;stddev&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">stddev</span><span class="o">/</span><span class="n">base</span><span class="p">,}</span>
+                  <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">streams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">aligned_windows</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">pointwidth</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+                  <span class="p">]</span>
+                 <span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>start</th>
+      <th>end</th>
+      <th>count</th>
+      <th>min</th>
+      <th>max</th>
+      <th>mean</th>
+      <th>stddev</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-07-27 23:56:02.363580+00:00</td>
+      <td>2015-07-28 00:01:02.363580+00:00</td>
+      <td>4468</td>
+      <td>1.003660</td>
+      <td>1.006479</td>
+      <td>1.005208</td>
+      <td>0.000464</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-07-28 00:00:37.241487+00:00</td>
+      <td>2015-07-28 00:05:37.241487+00:00</td>
+      <td>32986</td>
+      <td>1.003439</td>
+      <td>1.007180</td>
+      <td>1.005566</td>
+      <td>0.000506</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-07-28 00:05:12.119394+00:00</td>
+      <td>2015-07-28 00:10:12.119394+00:00</td>
+      <td>32985</td>
+      <td>1.003875</td>
+      <td>1.009009</td>
+      <td>1.007294</td>
+      <td>0.000839</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015-07-28 00:09:46.997301+00:00</td>
+      <td>2015-07-28 00:14:46.997301+00:00</td>
+      <td>32986</td>
+      <td>1.006113</td>
+      <td>1.009292</td>
+      <td>1.008276</td>
+      <td>0.000598</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2015-07-28 00:14:21.875208+00:00</td>
+      <td>2015-07-28 00:19:21.875208+00:00</td>
+      <td>32985</td>
+      <td>1.006857</td>
+      <td>1.012520</td>
+      <td>1.010129</td>
+      <td>0.000926</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total time:</span><span class="se">\t</span><span class="si">%i</span><span class="s1"> days&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">.</span><span class="n">days</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;window width:</span><span class="se">\t</span><span class="si">%.2f</span><span class="s1"> minutes&#39;</span><span class="o">%</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">pw</span><span class="o">/</span><span class="mf">1e9</span><span class="o">/</span><span class="mi">60</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N windows:</span><span class="se">\t</span><span class="si">%i</span><span class="s1"> points&#39;</span><span class="o">%</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>total time:	627 days
+window width:	4.58 minutes
+N windows:	184549 points
+</pre></div>
+</div>
+</section>
+</section>
+<section id="statistical-indicators-of-change">
+<h2>Statistical indicators of change<a class="headerlink" href="#statistical-indicators-of-change" title="Permalink to this headline">¶</a></h2>
+<p>Above, we generated a dataframe <code class="docutils literal notranslate"><span class="pre">df</span></code> reporting statistical aggregates for each 5-min interval in the data. We can use these aggregates to help identify time intervals where a tap change may have occurred, and differentiate them from time intervals where they likely did not.</p>
+<p>A tap change is characterized by three phenomena:</p>
+<ol class="simple">
+<li><p>An <strong>abrupt</strong> and <strong>sustained</strong> change in voltage magnitude</p></li>
+<li><p>A triggering event where the voltage is high (or low) relative to the nominal voltage</p></li>
+</ol>
+<p>Below, we’ll use exploratory data analysis to examine each of these in the data.</p>
+<section id="what-constitutes-an-abrupt-change">
+<h3>What constitutes an “abrupt” change?<a class="headerlink" href="#what-constitutes-an-abrupt-change" title="Permalink to this headline">¶</a></h3>
+<p>The change in magnitude within a given time interval is given as follows:</p>
+<p><span class="math notranslate nohighlight">\(max(values) - min(values)\)</span></p>
+<p>Below, we’ll plot a histogram showing this change for each interval in the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mf">0.004</span><span class="p">,</span> <span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Voltage Change (p.u.)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../_images/output_10_0.png" /></p>
+<p>Notice that the distribution is clearly <strong>bimodal</strong>. This means that changes in voltage magnitude follow characteristically different statistics at certain times than they do at others.</p>
+<p>The <strong>center of mass</strong> for the distribution is clearly on the left side of the histogram. This suggests that most of the time, the voltage does not change very much in a 5-min interval.</p>
+<p>The distribution also appeard to be <strong>left tailed</strong>. This means that there are some time intervals where the voltage changes considerably, but that these are relatively few and far between. The left tail could, for example, indicate that there are voltage sags in the data. Recall that the histogram shows the difference between the minimum and the maximum voltage, but does not tell us whether or not the change was short-lived (as in a voltage sag) or if it was sustained (as it would be during a tap change).</p>
+<section id="interlude">
+<h4>Interlude<a class="headerlink" href="#interlude" title="Permalink to this headline">¶</a></h4>
+<p>Here’s a helper function for zooming in on one of the rows of aggregate data reported in the dataframe we used above.</p>
+<p>Feel free to copy and paste this helper function to use in your own code!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zoom_in</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This helper function takes statitistcal aggregates (as stored in the df used above)</span>
+<span class="sd">    and uses the `start` and `end` time to query data at a more granular level.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">values</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">],</span> <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">ns_to_datetime</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">time</span><span class="p">),</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span>
+                         <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">old_pw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">((</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="o">*</span><span class="mf">1e9</span><span class="p">)</span>
+        <span class="n">new_pw</span> <span class="o">=</span> <span class="n">pw</span><span class="o">-</span><span class="mi">6</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">aligned_windows</span><span class="p">(</span><span class="n">agg</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">],</span> <span class="n">agg</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">],</span> 
+                                      <span class="n">pointwidth</span><span class="o">=</span><span class="n">new_pw</span><span class="p">)</span>
+        
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">ns_to_datetime</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">time</span><span class="p">),</span> <span class="n">p</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span>
+                         <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="determining-whether-a-change-is-sustained">
+<h3>Determining whether a change is sustained<a class="headerlink" href="#determining-whether-a-change-is-sustained" title="Permalink to this headline">¶</a></h3>
+<p>Here, we’ll narrow in on the data to determine whether a change was short-lived, or if it was sustained. The two figures below illustrate this difference by comparing a voltage sag with a possible tap change.</p>
+<p><em>Note: These two intervals were cherry picked via trial and error (not shown here!)</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">example1</span> <span class="o">=</span> <span class="n">zoom_in</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">20390</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">example2</span> <span class="o">=</span> <span class="n">zoom_in</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">122695</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">example3</span> <span class="o">=</span> <span class="n">zoom_in</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">109050</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="n">example1</span><span class="o">/</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">(</span><span class="n">example2</span><span class="o">/</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="p">(</span><span class="n">example3</span><span class="o">/</span><span class="n">base</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../_images/output_15_0.png" /></p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="angle-differencing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Angle Differencing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="voltage-sags.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Voltage Sag Safari</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

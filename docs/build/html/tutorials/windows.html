@@ -1,0 +1,1268 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>8 - Windows, aligned windows, and values &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog/index.html">
+  Blog Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   8 - Windows, aligned windows, and values
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Functions-used">
+     Functions used
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Querying-data">
+     Querying data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#That’s-a-lot-of-data!">
+     That’s a lot of data!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Windows-Queries">
+   Windows Queries
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#What-just-happened?">
+     What just happened?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#What-happens-if-we-zoom-in?">
+   What happens if we zoom in?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Aligned-windows">
+   Aligned windows
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Getting-more-granular-with-aligned_windows">
+   Getting more granular with aligned_windows
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#When-to-use-values">
+   When to use
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     values
+    </span>
+   </code>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Final-note…">
+     Final note…
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aligned_windows-queries-in-action">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       aligned_windows
+      </span>
+     </code>
+     queries in action
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#values-queries-in-action">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       values
+      </span>
+     </code>
+     queries in action
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="8---Windows,-aligned-windows,-and-values">
+<h1>8 - Windows, aligned windows, and values<a class="headerlink" href="#8---Windows,-aligned-windows,-and-values" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>The term “big data” refers to data that is so large, fast or complex that it’s difficult or impossible to process using traditional methods.</p>
+</div></blockquote>
+<p>This tutorial offers a guide on using non-traditional methods in PredictiveGrid to work with big time series data sets.</p>
+<p>For high resolution streams a simple query such as “Give me all of the data in this stream” can return a volume of data large enough to overload any computing environment. This tutorial describes options for interacting with data in various ways to enable interactions with very large volumes of data.</p>
+<p>We’ll describe three methods for querying data in PredictiveGrid. In practice none of these is better or worse; there is a time and a place for each. This post will explore when each is appropriate to use.</p>
+<section id="Functions-used">
+<h2>Functions used<a class="headerlink" href="#Functions-used" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stream.values()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stream.windows()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stream.aligned_windows()</span></code></p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import btrdb
+import pandas as pd
+import numpy as np
+from btrdb.utils.timez import *
+from datetime import datetime, timedelta
+
+from matplotlib import pyplot as plt
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>db = btrdb.connect()
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Querying-data">
+<h2>Querying data<a class="headerlink" href="#Querying-data" title="Permalink to this headline">¶</a></h2>
+<p>To illustrate what’s meant by <code class="docutils literal notranslate"><span class="pre">BIG</span> <span class="pre">DATA</span></code>, let’s investigate the very simple task of querying data from a single stream.</p>
+<p>If you ask for all of the data in a stream, what will that yield?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>streams = db.streams_in_collection(&#39;sunshine/PMU1&#39;, tags={&#39;name&#39;: &#39;L1MAG&#39;})
+stream = streams[0]
+print(&#39;collection:\t&#39;, stream.collection)
+print(&#39;stream name:\t&#39;, stream.name)
+
+# How many points is that?
+print(&#39;size:\t\t&#39;, round(stream.count()/1e9,2), &#39;billion points&#39;)
+print(&#39;volume:\t\t&#39;, round(stream.count()*64*2/8/1e9,2), &#39;gigabytes&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+collection:      sunshine/PMU1
+stream name:     L1MAG
+size:            5.14 billion points
+volume:          82.29 gigabytes
+</pre></div></div>
+</div>
+</section>
+<section id="That’s-a-lot-of-data!">
+<h2>That’s a lot of data!<a class="headerlink" href="#That’s-a-lot-of-data!" title="Permalink to this headline">¶</a></h2>
+<p>Querying that much data will likely overload your computing environment and will likely take quite a long time to get the data back to you.</p>
+<p><strong>Is there a better way?</strong></p>
+</section>
+</section>
+<section id="Windows-Queries">
+<h1>Windows Queries<a class="headerlink" href="#Windows-Queries" title="Permalink to this headline">¶</a></h1>
+<p>Windows queries provide <em>statistical aggregates</em> or “summary statistics” of raw data points in a given time interval. A windows query will return a time series of <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> objects, which can be used to explore summary statistics of raw values over time.</p>
+<p>New to <code class="docutils literal notranslate"><span class="pre">StatPoints</span></code>? Start with the tutorial below.</p>
+<p><a class="reference external" href="https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/tutorials/5%20-%20Working%20with%20StatPoints.ipynb">https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/tutorials/5%20-%20Working%20with%20StatPoints.ipynb</a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>t0 = currently_as_ns()
+
+start, _ = stream.earliest()
+start = ns_to_datetime(start.time)
+
+end, _ = stream.latest()
+end = ns_to_datetime(end.time)
+
+window = ns_delta(days=5)
+
+start_time = datetime(start.year, start.month, start.day+1)
+statpoints = stream.windows(start_time, end, window)
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Runtime: 0.24 seconds
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>def statpoints_to_dataframe(statpoints, datetime_index=True):
+    attributes = [&#39;min&#39;,&#39;mean&#39;,&#39;max&#39;,&#39;stddev&#39;,&#39;count&#39;,&#39;time&#39;,]
+
+    df = pd.DataFrame([[getattr(p, attr) for attr in attributes] for p, _ in statpoints],
+                     columns=attributes)
+
+    if datetime_index:
+        df[&#39;datetime&#39;] = [ns_to_datetime(t) for t in df[&#39;time&#39;]]
+        return df.set_index(&#39;datetime&#39;)
+    else:
+        return df
+
+df = statpoints_to_dataframe(statpoints)
+df.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>stddev</th>
+      <th>count</th>
+      <th>time</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-10-02 00:00:00+00:00</th>
+      <td>116.784149</td>
+      <td>119.321719</td>
+      <td>121.366257</td>
+      <td>0.566179</td>
+      <td>51840000</td>
+      <td>1443744000000000000</td>
+    </tr>
+    <tr>
+      <th>2015-10-07 00:00:00+00:00</th>
+      <td>105.813171</td>
+      <td>4269.307051</td>
+      <td>7299.838379</td>
+      <td>3462.597022</td>
+      <td>51721157</td>
+      <td>1444176000000000000</td>
+    </tr>
+    <tr>
+      <th>2015-10-12 00:00:00+00:00</th>
+      <td>5.467874</td>
+      <td>7154.005115</td>
+      <td>7355.261230</td>
+      <td>46.374464</td>
+      <td>51816197</td>
+      <td>1444608000000000000</td>
+    </tr>
+    <tr>
+      <th>2015-10-17 00:00:00+00:00</th>
+      <td>6681.592773</td>
+      <td>7154.443182</td>
+      <td>7249.294922</td>
+      <td>35.945926</td>
+      <td>51840320</td>
+      <td>1445040000000000000</td>
+    </tr>
+    <tr>
+      <th>2015-10-22 00:00:00+00:00</th>
+      <td>6954.883789</td>
+      <td>7154.556317</td>
+      <td>7270.524902</td>
+      <td>38.951711</td>
+      <td>51840000</td>
+      <td>1445472000000000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="What-just-happened?">
+<h2>What just happened?<a class="headerlink" href="#What-just-happened?" title="Permalink to this headline">¶</a></h2>
+<p>The query <code class="docutils literal notranslate"><span class="pre">stream.windows()</span></code> scanned through 18 months [!!!] of data and returned a tuple of StatPoint objects.</p>
+<p>Those 18 months are partitioned into 5-day time increments (as specified by the <code class="docutils literal notranslate"><span class="pre">window</span></code> parameter). Each StatPoint reports summary statistics of values observed during that time frame.</p>
+<p>Note that pulling all 9+ billion raw point values for the same interval would have taken MUCH longer, and would have returned more data than would have been feasible to hold in RAM. Leveraging StatPoint objects makes it feasible to mine through long time intervals of data to look for trends or event signatures that warrant more detailed / granular analysis.</p>
+</section>
+</section>
+<section id="What-happens-if-we-zoom-in?">
+<h1>What happens if we zoom in?<a class="headerlink" href="#What-happens-if-we-zoom-in?" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>t0 = currently_as_ns()
+
+window = ns_delta(days=1)
+statpoints = stream.windows(start, end, window)
+print(&#39;Data Duration:&#39;,(end-start))
+print(&#39;Aggregation window:&#39;, timedelta(seconds=int(window/1e9)))
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+
+df = statpoints_to_dataframe(statpoints)
+df.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data Duration: 561 days, 9:28:47.325000
+Aggregation window: 1 day, 0:00:00
+Runtime: 1.39 seconds
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>stddev</th>
+      <th>count</th>
+      <th>time</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-10-01 16:08:24.008333+00:00</th>
+      <td>117.231087</td>
+      <td>119.139902</td>
+      <td>121.366257</td>
+      <td>0.759523</td>
+      <td>10287287</td>
+      <td>1443715704008333056</td>
+    </tr>
+    <tr>
+      <th>2015-10-02 16:08:24.008333+00:00</th>
+      <td>117.449776</td>
+      <td>119.251162</td>
+      <td>121.302170</td>
+      <td>0.569169</td>
+      <td>10368000</td>
+      <td>1443802104008333056</td>
+    </tr>
+    <tr>
+      <th>2015-10-03 16:08:24.008333+00:00</th>
+      <td>116.784149</td>
+      <td>119.547277</td>
+      <td>120.763474</td>
+      <td>0.502983</td>
+      <td>10368000</td>
+      <td>1443888504008333056</td>
+    </tr>
+    <tr>
+      <th>2015-10-04 16:08:24.008333+00:00</th>
+      <td>117.354645</td>
+      <td>119.350104</td>
+      <td>120.760208</td>
+      <td>0.495989</td>
+      <td>10368000</td>
+      <td>1443974904008333056</td>
+    </tr>
+    <tr>
+      <th>2015-10-05 16:08:24.008333+00:00</th>
+      <td>117.235992</td>
+      <td>119.055069</td>
+      <td>120.682983</td>
+      <td>0.525771</td>
+      <td>10368000</td>
+      <td>1444061304008333056</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Aligned-windows">
+<h1>Aligned windows<a class="headerlink" href="#Aligned-windows" title="Permalink to this headline">¶</a></h1>
+<p>Aligned windows return results that look very much like windows queries. The only differece is that time stamps are adjusted to align with time windows stored inherently in the database. Where <code class="docutils literal notranslate"><span class="pre">windows</span></code> queries may need to re-compute statistical aggregates over the time window requested, <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> queries can leverage pre-computed values.</p>
+<p>Let’s look at the difference in performance.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(days=1)
+pw = np.log2(window)
+
+t0 = currently_as_ns()
+statpoints = stream.aligned_windows(start, end, pointwidth=pw)
+print(&#39;Data Duration:&#39;,(end-start))
+print(&#39;Aggregation window:&#39;, timedelta(seconds=int(window/1e9)))
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+
+df = statpoints_to_dataframe(statpoints)
+df.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data Duration: 561 days, 9:28:47.325000
+Aggregation window: 1 day, 0:00:00
+Runtime: 0.01 seconds
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>stddev</th>
+      <th>count</th>
+      <th>time</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-10-01 07:39:15.548955+00:00</th>
+      <td>117.231087</td>
+      <td>118.795732</td>
+      <td>121.259659</td>
+      <td>0.750870</td>
+      <td>4697722</td>
+      <td>1443685155548954624</td>
+    </tr>
+    <tr>
+      <th>2015-10-02 03:12:04.293132+00:00</th>
+      <td>117.318283</td>
+      <td>119.183483</td>
+      <td>121.366257</td>
+      <td>0.681662</td>
+      <td>8444249</td>
+      <td>1443755524293132288</td>
+    </tr>
+    <tr>
+      <th>2015-10-02 22:44:53.037310+00:00</th>
+      <td>117.655342</td>
+      <td>119.438784</td>
+      <td>121.302170</td>
+      <td>0.441992</td>
+      <td>8444249</td>
+      <td>1443825893037309952</td>
+    </tr>
+    <tr>
+      <th>2015-10-03 18:17:41.781488+00:00</th>
+      <td>116.784149</td>
+      <td>119.591669</td>
+      <td>120.763474</td>
+      <td>0.531194</td>
+      <td>8444250</td>
+      <td>1443896261781487616</td>
+    </tr>
+    <tr>
+      <th>2015-10-04 13:50:30.525665+00:00</th>
+      <td>117.887520</td>
+      <td>119.463267</td>
+      <td>120.760208</td>
+      <td>0.432865</td>
+      <td>8444249</td>
+      <td>1443966630525665280</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>That’s much faster! The only thing to note is that the time increment in an <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> query is rounded to the nearest time increment that matches the inherent structure of the database. This means your start time, end time, and window may be modified slightly to optimize performance.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>print(&#39;WINDOW DURATION&#39;)
+print(&#39;\tAs specified:&#39;, timedelta(seconds=int(window/1e9)))
+print(&#39;\tAs returned:&#39;, btrdb.utils.general.pointwidth(pw))
+
+
+print(&#39;\n\nSTART TIME&#39;)
+print(&#39;\tAs specified:&#39;, start)
+print(&#39;\tAs returned:&#39;, df.index.min())
+
+
+print(&#39;\n\nEND TIME&#39;)
+print(&#39;\tAs specified:&#39;, end)
+print(&#39;\tAs returned:&#39;, df.index.max()+timedelta(seconds=int(window/1e9)))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WINDOW DURATION
+        As specified: 1 day, 0:00:00
+        As returned: 19.55 hours
+
+
+START TIME
+        As specified: 2015-10-01 16:08:24.008333+00:00
+        As returned: 2015-10-01 07:39:15.548955+00:00
+
+
+END TIME
+        As specified: 2017-04-15 01:37:11.333333+00:00
+        As returned: 2017-04-14 15:54:11.543187+00:00
+</pre></div></div>
+</div>
+</section>
+<section id="Getting-more-granular-with-aligned_windows">
+<h1>Getting more granular with aligned_windows<a class="headerlink" href="#Getting-more-granular-with-aligned_windows" title="Permalink to this headline">¶</a></h1>
+<p>Performance on <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> queries is much faster, and will enable you to query data more quickly and at finer resolutions that you’ll be able to do using <code class="docutils literal notranslate"><span class="pre">windows</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(hours=6)
+pw = np.log2(window)
+
+t0 = currently_as_ns()
+statpoints = stream.aligned_windows(start, end, pointwidth=pw)
+
+print(&#39;Data Duration:&#39;,(end-start))
+print(&#39;Aggregation window:&#39;, btrdb.utils.general.pointwidth(pw))
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data Duration: 561 days, 9:28:47.325000
+Aggregation window: 4.89 hours
+Runtime: 0.02 seconds
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(minutes=30)
+pw = np.log2(window)
+
+t0 = currently_as_ns()
+statpoints = stream.aligned_windows(start, end, pointwidth=pw)
+
+print(&#39;Data Duration:&#39;,(end-start))
+print(&#39;Aggregation window:&#39;, btrdb.utils.general.pointwidth(pw))
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data Duration: 561 days, 9:28:47.325000
+Aggregation window: 18.33 minutes
+Runtime: 2.13 seconds
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(minutes=5)
+pw = np.log2(window)
+
+t0 = currently_as_ns()
+statpoints = stream.aligned_windows(start, end, pointwidth=pw)
+
+print(&#39;Data Duration:&#39;,(end-start))
+print(&#39;Aggregation window:&#39;, btrdb.utils.general.pointwidth(pw))
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data Duration: 561 days, 9:28:47.325000
+Aggregation window: 4.58 minutes
+Runtime: 1.51 seconds
+</pre></div></div>
+</div>
+<p>That last query took a while! Let’s make note that querying 1.5 years of data at 1-minute resolution is starting to push the limits of what our environment (or patience!) can handle.</p>
+<p>It is possible to speed that up, however, by using a larger computing environment.</p>
+</section>
+<section id="When-to-use-values">
+<h1>When to use <code class="docutils literal notranslate"><span class="pre">values</span></code><a class="headerlink" href="#When-to-use-values" title="Permalink to this headline">¶</a></h1>
+<p>Many analytics can be done using StatPoints to summarize steady state characteristics of the data at the time-scale that is of interest, or to identify intervals in the data where there is an “event” in the data.</p>
+<p>Here, we’ll simply explore at what point values queries become intractable to perform.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(minutes=1)
+start_time = datetime_to_ns(start)
+end_time = start_time + window
+
+t0 = currently_as_ns()
+statpoints = stream.values(start_time, end_time)
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Runtime: 0.06 seconds
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(minutes=10)
+start_time = datetime_to_ns(start)
+end_time = start_time + window
+
+t0 = currently_as_ns()
+statpoints = stream.values(start_time, end_time)
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Runtime: 0.17 seconds
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(hours=1)
+start_time = datetime_to_ns(start)
+end_time = start_time + window
+
+t0 = currently_as_ns()
+statpoints = stream.values(start_time, end_time)
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Runtime: 0.94 seconds
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>window = ns_delta(hours=3)
+start_time = datetime_to_ns(start)
+end_time = start_time + window
+
+t0 = currently_as_ns()
+statpoints = stream.values(start_time, end_time)
+print(&#39;Runtime: %.2f seconds&#39;%((currently_as_ns()-t0)/1e9))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Runtime: 2.64 seconds
+</pre></div></div>
+</div>
+<section id="Final-note…">
+<h2>Final note…<a class="headerlink" href="#Final-note…" title="Permalink to this headline">¶</a></h2>
+<p>When running values queries, be sure to check how much working memory you have available in your jupyterhub instance. Bringing large amounts of data into memory can easily cause your environment to crash! You may need to shut down and move to a larger instance.</p>
+</section>
+<section id="aligned_windows-queries-in-action">
+<h2><code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> queries in action<a class="headerlink" href="#aligned_windows-queries-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Here are some examples where we use statpoints to hone in on time intervals that are known (or likely) to be of interest for a given analytic: - Voltage sags: <a class="reference external" href="https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Voltage%20Sag%20Exploration.ipynb">https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Voltage%20Sag%20Exploration.ipynb</a> - Tap changes: <a class="reference external" href="https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Voltage%20Change%20Detection.ipynb">https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Voltage%20Change%20Detection.ipynb</a></p>
+</section>
+<section id="values-queries-in-action">
+<h2><code class="docutils literal notranslate"><span class="pre">values</span></code> queries in action<a class="headerlink" href="#values-queries-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Here are examples where we use values queries to examine events that warrant full-resolution queries: - Spectral analysis: <a class="reference external" href="https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/PV_spectrogram.ipynb">https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/PV_spectrogram.ipynb</a> - Phase angle differencing: <a class="reference external" href="https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Phase%20Angle%20Monitoring.ipynb">https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Phase%20Angle%20Monitoring.ipynb</a></p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

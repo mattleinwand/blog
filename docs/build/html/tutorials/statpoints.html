@@ -1,0 +1,892 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5: Working with StatPoints &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog/index.html">
+  Blog Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Database-structure">
+   Database structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Making-queries-using-aligned_windows">
+   Making queries using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     aligned_windows
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Using-StatPoints">
+   Using StatPoints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Using-StatPoints-to-detect-gaps">
+   Using StatPoints to detect gaps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Plot-the-actual-vs-expected-count-in-each-time-interval">
+     Plot the actual vs expected count in each time interval
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Flag-time-intervals-where-there-are-gaps">
+     Flag time intervals where there are gaps
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="5:-Working-with-StatPoints">
+<h1>5: Working with StatPoints<a class="headerlink" href="#5:-Working-with-StatPoints" title="Permalink to this headline">¶</a></h1>
+<p>Capitalizing on the tree structure of the database can allow you to work more efficiently with large volumes of time series data. This tutorial describes the structure of the database and how it can be used to develop efficient code.</p>
+<p>This notebook gives a primer on how the database is structured, and how you can interact with it efficiently.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import btrdb
+
+from datetime import datetime, timedelta
+from matplotlib import pyplot as plt
+
+from btrdb.utils import timez
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># Make sure you add your API key to the config file to connect!
+conn = btrdb.connect()
+</pre></div>
+</div>
+</div>
+<section id="Database-structure">
+<h2>Database structure<a class="headerlink" href="#Database-structure" title="Permalink to this headline">¶</a></h2>
+<p>Data are archived using a tree-based structure, where each level of the tree spans a prescribed time interval. The root node spans about 146 years (or <span class="math notranslate nohighlight">\(2^{62}\)</span> nanoseconds). At each level of the database, the parent node is time-partitioned into 64 child nodes, each of which spans a time interval <span class="math notranslate nohighlight">\(1/64^{th}\)</span> of the parent node.</p>
+<p>Each node is characterized by a parameter called the <code class="docutils literal notranslate"><span class="pre">pointwidth</span></code> which describes how many nanoseconds the node spans. The point width is specified in powers of two, and increases by a factor of 64 (or <span class="math notranslate nohighlight">\(2^6\)</span>) at each level.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>streams = conn.streams_in_collection(&#39;sunshine&#39;)
+stream = streams[2]
+
+print(stream.collection, stream.name, stream.unit)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+sunshine/PMU1 C3MAG amps
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>earliest, _ = stream.earliest()
+start = earliest.time
+
+latest, _ = stream.latest()
+end = latest.time
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># converts from nanoseconds to days
+ns_to_days = lambda ns: ns/1e9/60/60/24
+ns_to_days(end-start)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+561.3946218171296
+</pre></div></div>
+</div>
+</section>
+<section id="Making-queries-using-aligned_windows">
+<h2>Making queries using <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code><a class="headerlink" href="#Making-queries-using-aligned_windows" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> function rounds the start and end times to the nearest time window native to the database. The query returns a list of <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> objects, each of which spans <span class="math notranslate nohighlight">\(2^{pw}\)</span> nanoseconds (where <code class="docutils literal notranslate"><span class="pre">pw</span></code> is the user-defined pointwidth. Using a larger <code class="docutils literal notranslate"><span class="pre">pointwidth</span></code> returns fewer <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> that span relatively longer time intervals.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>pw = 50 # or 2^50 nanoseconds
+
+t0 = datetime.now()
+points = stream.aligned_windows(start=start, end=end, pointwidth=pw)
+
+ns = points[1][0].time - points[0][0].time
+
+print(&#39;Stream duration is %.0f days&#39;%(ns_to_days(end-start)))
+print(&#39;There are %i statpoints in measurement interval, where each statpoint spans %.2f days&#39;%(len(points), ns_to_days(ns)))
+print(&#39;Query took %.2f seconds to run&#39;%((datetime.now()-t0)).total_seconds())
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Stream duration is 561 days
+There are 41 statpoints in measurement interval, where each statpoint spans 13.03 days
+Query took 0.01 seconds to run
+</pre></div></div>
+</div>
+<p>Decreasing the pointwidth returns a longer list with more <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> objects, each of which spans a shorter time interval. The smaller the <code class="docutils literal notranslate"><span class="pre">pointwidth</span></code>, the longer the query will take to run.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>pw = 44 # or 2^38 nanoseconds
+
+t0 = datetime.now()
+points = stream.aligned_windows(start=start, end=end, pointwidth=pw)
+ns = points[1][0].time - points[0][0].time
+
+print(&#39;Stream duration is %.0f days&#39;%(ns_to_days(end-start)))
+print(&#39;There are %i statpoints, each of which spans %.2f minutes&#39;%(len(points), 24*60*ns_to_days(ns)))
+print(&#39;Query took %.2f seconds to run&#39;%((datetime.now()-t0)).total_seconds())
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Stream duration is 561 days
+There are 2444 statpoints, each of which spans 293.20 minutes
+Query took 0.06 seconds to run
+</pre></div></div>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> query returns a list of tuples giving <code class="docutils literal notranslate"><span class="pre">(StatPoint,</span> <span class="pre">version)</span></code>. The following line of code separates these into two lists. Here, we don’t care about the versions so we’ll store those in a throw-away variable called <code class="docutils literal notranslate"><span class="pre">_</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>statpoints, _ = zip(*points)
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Using-StatPoints">
+<h2>Using StatPoints<a class="headerlink" href="#Using-StatPoints" title="Permalink to this headline">¶</a></h2>
+<p>Every node in a window is characterized by a <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> which reports summary statistics including the <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">stddev</span></code>, and <code class="docutils literal notranslate"><span class="pre">count</span></code> of raw values within the interval. Each <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> also has a <code class="docutils literal notranslate"><span class="pre">time</span></code>, which describes the start of the interval. Each interval spans the time <code class="docutils literal notranslate"><span class="pre">(start_time,</span> <span class="pre">start_time</span> <span class="pre">+</span> <span class="pre">ns]</span></code>, where <code class="docutils literal notranslate"><span class="pre">ns=2^{pointwidth}</span></code>. Time intervals are inclusive of the <code class="docutils literal notranslate"><span class="pre">start_time</span></code>, and exclusive of <code class="docutils literal notranslate"><span class="pre">end_time</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import pandas as pd
+
+def stats_to_df(statpoints,
+                attrs=[&#39;count&#39;,&#39;min&#39;,&#39;mean&#39;,&#39;max&#39;,&#39;stddev&#39;,&#39;time&#39;],
+                pw=44,
+                add_start_time=True,
+                add_end_time=True,
+               ):
+
+    df = pd.DataFrame(columns=attrs, index=range(len(statpoints)))
+    for i, spoint in enumerate(statpoints):
+        df.loc[i] = [getattr(spoint, attr) for attr in attrs]
+
+    if add_start_time:
+        df[&#39;Interval Start&#39;] = [timez.ns_to_datetime(t) for t in df[&#39;time&#39;].tolist()]
+
+    if add_end_time:
+        df[&#39;Interval End&#39;] = [timez.ns_to_datetime(t + 2**pw) for t in df[&#39;time&#39;].tolist()]
+    return df
+
+df = stats_to_df(statpoints, pw=pw)
+print(&#39;Table of Summary Statistics&#39;)
+df.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Table of Summary Statistics
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>stddev</th>
+      <th>time</th>
+      <th>Interval Start</th>
+      <th>Interval End</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>535165</td>
+      <td>0.055121</td>
+      <td>0.174375</td>
+      <td>0.224571</td>
+      <td>0.028975</td>
+      <td>1443702747734999040</td>
+      <td>2015-10-01 12:32:27.734999+00:00</td>
+      <td>2015-10-01 17:25:39.921043+00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2075595</td>
+      <td>0.085291</td>
+      <td>0.240711</td>
+      <td>0.268793</td>
+      <td>0.022665</td>
+      <td>1443720339921043456</td>
+      <td>2015-10-01 17:25:39.921043+00:00</td>
+      <td>2015-10-01 22:18:52.107088+00:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2111063</td>
+      <td>0.000149</td>
+      <td>0.062999</td>
+      <td>0.199236</td>
+      <td>0.067157</td>
+      <td>1443737932107087872</td>
+      <td>2015-10-01 22:18:52.107088+00:00</td>
+      <td>2015-10-02 03:12:04.293132+00:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2111062</td>
+      <td>0.001072</td>
+      <td>0.00338</td>
+      <td>0.006424</td>
+      <td>0.000884</td>
+      <td>1443755524293132288</td>
+      <td>2015-10-02 03:12:04.293132+00:00</td>
+      <td>2015-10-02 08:05:16.479177+00:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2111062</td>
+      <td>0.001199</td>
+      <td>0.002734</td>
+      <td>0.005129</td>
+      <td>0.000487</td>
+      <td>1443773116479176704</td>
+      <td>2015-10-02 08:05:16.479177+00:00</td>
+      <td>2015-10-02 12:58:28.665221+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>We can use the summary statistics to look for time intervals that we want to study in more detail.</p>
+</section>
+<section id="Using-StatPoints-to-detect-gaps">
+<h2>Using StatPoints to detect gaps<a class="headerlink" href="#Using-StatPoints-to-detect-gaps" title="Permalink to this headline">¶</a></h2>
+<p>Because we know the frequency of the streams (120Hz in the case of our test data), we can use the stat points to find gaps in our streams.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># expected number of points
+expected_points = 120 # samples per second
+expected_points = 120 * 2**pw / 1e9 # samples per StatPoint
+
+print(expected_points)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2111062.32532992
+</pre></div></div>
+</div>
+<section id="Plot-the-actual-vs-expected-count-in-each-time-interval">
+<h3>Plot the actual vs expected count in each time interval<a class="headerlink" href="#Plot-the-actual-vs-expected-count-in-each-time-interval" title="Permalink to this headline">¶</a></h3>
+<p>By plotting the number of points per stat window vs. the number of points we would exspect based on the frequency and the span of the window, we can find windows with low point counts.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>fig, ax = plt.subplots(figsize=(10,2))
+ax.plot(df[&#39;Interval Start&#39;], df[&#39;count&#39;]/1e6, label=&#39;actual&#39;, ls=&#39; &#39;, marker=&#39;.&#39;, alpha=0.5)
+ax.plot(df[&#39;Interval Start&#39;], [expected_points/1e6 for e in df[&#39;count&#39;]], label=&#39;expected&#39;, lw=2)
+ax.set_ylabel(&#39;Count\n(millions)&#39;, fontsize=14)
+ax.legend(fontsize=14)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_statpoints_18_0.png" src="../_images/tutorials_statpoints_18_0.png" />
+</div>
+</div>
+</section>
+<section id="Flag-time-intervals-where-there-are-gaps">
+<h3>Flag time intervals where there are gaps<a class="headerlink" href="#Flag-time-intervals-where-there-are-gaps" title="Permalink to this headline">¶</a></h3>
+<p>We can use this comparison to flag regions with inssuficient points for further investigation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>fig, ax = plt.subplots(figsize=(10,2))
+ax.plot(df[&#39;Interval Start&#39;], df[&#39;count&#39;]/1e6, label=&#39;observed&#39;, ls=&#39; &#39;, marker=&#39;.&#39;, alpha=0.5)
+ax.plot(df[&#39;Interval Start&#39;], [expected_points/1e6 for e in df[&#39;count&#39;]], label=&#39;expected&#39;)
+
+upper = [expected_points/1e6 for e in df[&#39;count&#39;]]
+lower = [0 for e in df[&#39;count&#39;]]
+ax.fill_between(df[&#39;Interval Start&#39;], upper, lower,
+                where=df[&#39;count&#39;] &lt; expected_points-10, color=&#39;0.5&#39;, alpha=0.5,
+               label=&#39;gaps&#39;)
+
+ax.set_ylabel(&#39;Count\n(millions)&#39;, fontsize=14)
+ax.legend(fontsize=14)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_statpoints_20_0.png" src="../_images/tutorials_statpoints_20_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

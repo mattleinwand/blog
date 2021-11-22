@@ -1,0 +1,971 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2 - Working with Streams &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog/index.html">
+  Blog Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2 - Working with Streams
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Imports">
+     Imports
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Connect-To-Server">
+     Connect To Server
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Stream-Basics">
+   Stream Basics
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Metadata-Properties">
+     Metadata Properties
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Metadata-Methods">
+     Metadata Methods
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Metadata-Example">
+     Metadata Example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Stream-Version">
+     Stream Version
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Viewing-Data">
+   Viewing Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Windowed-Data">
+   Windowed Data
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="2---Working-with-Streams">
+<h1>2 - Working with Streams<a class="headerlink" href="#2---Working-with-Streams" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial focuses on retrieving data from the individual streams of time series data.</p>
+<p>We will also look into the <code class="docutils literal notranslate"><span class="pre">Point</span></code> classes which represent individual data points that make up a <code class="docutils literal notranslate"><span class="pre">Stream</span></code>. We will start by looking at basic metadata about the streamm, and then illustrate how to query quantitative data values.</p>
+<p>In this tutorial we will retrieve both low level data and aggregated windows of data. Once you have mastered these concepts, we recommend working through the tutorial <strong>windows, aligned_windows, and values</strong> to learn more about when it’s more appropriate to use windows vs values queries.</p>
+<section id="Imports">
+<h2>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import btrdb
+from tabulate import tabulate
+from pprint import pprint
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Connect-To-Server">
+<h2>Connect To Server<a class="headerlink" href="#Connect-To-Server" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>conn = btrdb.connect()
+conn.info()
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;majorVersion&#39;: 5, &#39;build&#39;: &#39;5.12.5&#39;, &#39;proxy&#39;: {&#39;proxyEndpoints&#39;: []}}
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Stream-Basics">
+<h1>Stream Basics<a class="headerlink" href="#Stream-Basics" title="Permalink to this headline">¶</a></h1>
+<p>Streams contain actual points of data and you can query the time series values in a number of ways. But first, let’s look at the Stream metadata for a better understanding of what is available.</p>
+<section id="Metadata-Properties">
+<h2>Metadata Properties<a class="headerlink" href="#Metadata-Properties" title="Permalink to this headline">¶</a></h2>
+<p>As discussed in the previous notebook, a stream has its own metadata properties such as its <code class="docutils literal notranslate"><span class="pre">collection</span></code> or <code class="docutils literal notranslate"><span class="pre">uuid</span></code>. Let’s start by defining each read-only property.</p>
+<p><strong>collection:</strong> The hierarchichal path where a stream lives. This is used purely for organizational purposes and has no impact on the underlying data.</p>
+<p><strong>name:</strong> A friendly name for the stream.</p>
+<p><strong>uuid:</strong> A unique identifier for a given stream. This UUID cannot be changed and can be used to fetch a stream directly using the connection object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>streams = list(conn.streams_in_collection(&#39;sunshine/PMU6&#39;, tags={&quot;unit&quot;: &quot;volts&quot;}))
+for stream in streams:
+    print(&quot;collection:{}, name:{}, uuid:{}&quot;.format(stream.collection, stream.name, stream.uuid))
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+collection:sunshine/PMU6, name:L2MAG, uuid:d60fc469-a6da-4c98-8763-fd833293d955
+collection:sunshine/PMU6, name:L3MAG, uuid:4833b5e0-ef30-40ed-8db8-352e79d38c28
+collection:sunshine/PMU6, name:L1MAG, uuid:d3e9ed52-6db9-4b98-bfda-e1b509148e47
+</pre></div></div>
+</div>
+</section>
+<section id="Metadata-Methods">
+<h2>Metadata Methods<a class="headerlink" href="#Metadata-Methods" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the metadata properties above, each stream has a set of metadata methods. This information is provided as instance methods to indicate that they typically require a round-trip to the server and may change often.</p>
+<dl><dt><p>tags</p>
+</dt><dd><p>A dictionary containing metadata used internally by the BTrDB server. This is also where the name of a stream can be found as the property is just for convenience. Tags are intended for internal use and generally should not be edited.</p>
+</dd><dt><p>annotations</p>
+</dt><dd><p>A dictionary so that custom data can be attached to a stream. As an example you could provide an annotation to indicate a point-of-contact for this data or the make/model of the sensor device. Whenever you call the annotations method, a separate property version number is also returned. Similar to the stream version, this is a monotonically increasing number but is only updated when the metadata changes. Annotations are well suited for user-defined metadata that may evolve over time.</p>
+</dd></dl><p>Let’s look at some sample tags and annotations below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>stream = streams[0]
+
+print(&quot;tags&quot;)
+pprint(stream.tags())
+
+annotations, property_version = stream.annotations()
+print(&quot;\nannotations&quot;)
+pprint(annotations)
+
+print(&quot;\nproperty_version&quot;)
+print(property_version)
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tags
+{&#39;distiller&#39;: &#39;&#39;, &#39;ingress&#39;: &#39;&#39;, &#39;name&#39;: &#39;L2MAG&#39;, &#39;unit&#39;: &#39;volts&#39;}
+
+annotations
+{&#39;impedance&#39;: &#39;{&#34;source&#34;: &#34;PMU4&#34;, &#34;target&#34;: &#34;PMU6&#34;, &#34;pos_sequence&#34;: &#34;0.76 + &#39;
+              &#39;j0.463&#34;, &#34;neg_sequence&#34;: &#34;1.782 + j1.234&#34;}&#39;,
+ &#39;location&#39;: &#39;building&#39;}
+
+property_version
+1
+</pre></div></div>
+</div>
+</section>
+<section id="Metadata-Example">
+<h2>Metadata Example<a class="headerlink" href="#Metadata-Example" title="Permalink to this headline">¶</a></h2>
+<p>As with the collections, we can write a simple helper method to display information about a Stream.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>def stream_detail(stream):
+    &quot;&quot;&quot;
+    Prints detailed information about a stream.
+    &quot;&quot;&quot;
+    table = [[&quot;Attribute&quot;, &quot;Value&quot;]]
+    table.append([&quot;collection&quot;, stream.collection])
+    table.append([&quot;version&quot;, stream.version()])
+
+    for k,v in stream.tags().items():
+        table.append([&quot;tag/{}&quot;.format(k), v])
+
+    for k,v in stream.annotations()[0].items():
+        table.append([&quot;annotation/{}&quot;.format(k), v])
+
+    return tabulate(table, headers=&quot;firstrow&quot;)
+
+print(stream_detail(stream))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Attribute             Value
+--------------------  -------------------------------------------------------------------------------------------------------
+collection            sunshine/PMU6
+version               37988
+tag/distiller
+tag/name              L2MAG
+tag/unit              volts
+tag/ingress
+annotation/location   building
+annotation/impedance  {&#34;source&#34;: &#34;PMU4&#34;, &#34;target&#34;: &#34;PMU6&#34;, &#34;pos_sequence&#34;: &#34;0.76 + j0.463&#34;, &#34;neg_sequence&#34;: &#34;1.782 + j1.234&#34;}
+</pre></div></div>
+</div>
+</section>
+<section id="Stream-Version">
+<h2>Stream Version<a class="headerlink" href="#Stream-Version" title="Permalink to this headline">¶</a></h2>
+<p>Remember that the version of a stream changes whenever data is modified (though not when metadata is modified). This is especially useful on live data such that you can pin all of your queries to a specific version of your data. Otherwise, you could potentially get constantly changing statistics as new data is appended or older data arrives out of order.</p>
+<p>Think of the version as a snapshot of your data in time. Most of the calls we use on this page allow for an optional <code class="docutils literal notranslate"><span class="pre">version</span></code> argument which we have omitted. <em>The default value of zero is used which indicates the current (or latest) version</em>.</p>
+</section>
+</section>
+<section id="Viewing-Data">
+<h1>Viewing Data<a class="headerlink" href="#Viewing-Data" title="Permalink to this headline">¶</a></h1>
+<p>Most likely you are interested in examining the stored values in each time series stream. This is fairly straightforward though it is important to note that the time series values are actually provided in a <code class="docutils literal notranslate"><span class="pre">RawPoint</span></code> class which has <code class="docutils literal notranslate"><span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code> attributes.</p>
+<p>Because a stream may contain billions of values, data queries should provide a start and end time to bound the amount of data retrieved. All times are stored internally in nanoseconds with the zero value being the <a class="reference external" href="https://en.wikipedia.org/wiki/Unix_time">Unix epoch</a>. Luckily, the btrdb library comes with many convenience functions to help with converting between nanoseconds and other datetime formats.</p>
+<p>Let’s start with a simple example to view data in our <code class="docutils literal notranslate"><span class="pre">LINE560V1-MAG</span></code> stream. We will call the stream’s <code class="docutils literal notranslate"><span class="pre">values</span></code> method which returns a sequence. Each item in the sequence is a tuple containing a <code class="docutils literal notranslate"><span class="pre">RawPoint</span></code> and the version of the stream at retrieval time. However, before we call the <code class="docutils literal notranslate"><span class="pre">values</span></code> method we will need to determine the start time for our call.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># retrieve the first point of data and the current stream version
+earliest, version = stream.earliest()
+print(earliest, version)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+RawPoint(1456790400008333000, 283.017822265625) 0
+</pre></div></div>
+</div>
+<p>We can see above that the first data point in the stream has a time of <code class="docutils literal notranslate"><span class="pre">1536710401000000000</span></code> nanoseconds. Let’s convert that to a datetime so we can understand it better.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from btrdb.utils.timez import ns_to_datetime
+ns_to_datetime(earliest.time)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+datetime.datetime(2016, 3, 1, 0, 0, 0, 8333, tzinfo=&lt;UTC&gt;)
+</pre></div></div>
+</div>
+<p>Now, let’s call <code class="docutils literal notranslate"><span class="pre">values</span></code> using our start time and ending 200 milliseconds later.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>start = earliest.time
+end = earliest.time + 2e8
+
+for point, version in stream.values(start, end):
+    print(point)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+RawPoint(1456790400008333000, 283.017822265625)
+RawPoint(1456790400016666000, 283.0371398925781)
+RawPoint(1456790400024999000, 283.05413818359375)
+RawPoint(1456790400033333000, 283.05853271484375)
+RawPoint(1456790400041666000, 283.0568542480469)
+RawPoint(1456790400049999000, 283.06005859375)
+RawPoint(1456790400058333000, 283.05340576171875)
+RawPoint(1456790400066666000, 283.0347900390625)
+RawPoint(1456790400074999000, 283.0113220214844)
+RawPoint(1456790400083333000, 283.0077209472656)
+RawPoint(1456790400091666000, 283.02532958984375)
+RawPoint(1456790400099999000, 283.03515625)
+RawPoint(1456790400108333000, 283.0439147949219)
+RawPoint(1456790400116666000, 283.05706787109375)
+RawPoint(1456790400124999000, 283.0538635253906)
+RawPoint(1456790400133333000, 283.0562438964844)
+RawPoint(1456790400141666000, 283.0840759277344)
+RawPoint(1456790400149999000, 283.11444091796875)
+RawPoint(1456790400158333000, 283.1253967285156)
+RawPoint(1456790400166666000, 283.1314697265625)
+RawPoint(1456790400174999000, 283.1392517089844)
+RawPoint(1456790400183333000, 283.1244812011719)
+RawPoint(1456790400191666000, 283.1060485839844)
+RawPoint(1456790400199999000, 283.09478759765625)
+RawPoint(1456790400208333000, 283.088134765625)
+</pre></div></div>
+</div>
+<p>We can also access the <code class="docutils literal notranslate"><span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute of each point as follows:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>for point, version in stream.values(start, end):
+    print(point.time, point.value)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1456790400008333000 283.017822265625
+1456790400016666000 283.0371398925781
+1456790400024999000 283.05413818359375
+1456790400033333000 283.05853271484375
+1456790400041666000 283.0568542480469
+1456790400049999000 283.06005859375
+1456790400058333000 283.05340576171875
+1456790400066666000 283.0347900390625
+1456790400074999000 283.0113220214844
+1456790400083333000 283.0077209472656
+1456790400091666000 283.02532958984375
+1456790400099999000 283.03515625
+1456790400108333000 283.0439147949219
+1456790400116666000 283.05706787109375
+1456790400124999000 283.0538635253906
+1456790400133333000 283.0562438964844
+1456790400141666000 283.0840759277344
+1456790400149999000 283.11444091796875
+1456790400158333000 283.1253967285156
+1456790400166666000 283.1314697265625
+1456790400174999000 283.1392517089844
+1456790400183333000 283.1244812011719
+1456790400191666000 283.1060485839844
+1456790400199999000 283.09478759765625
+1456790400208333000 283.088134765625
+</pre></div></div>
+</div>
+</section>
+<section id="Windowed-Data">
+<h1>Windowed Data<a class="headerlink" href="#Windowed-Data" title="Permalink to this headline">¶</a></h1>
+<p>Aside from viewing the raw values, we can also query windows of data. Windowed queries return <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> values that contain aggregations of the data in each window rather than individual <code class="docutils literal notranslate"><span class="pre">RawPoint</span></code> values. Each <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> contains attributes for the minimum, maximum, mean, and standard deviation of the values in each window. StatPoints also report the number of raw points (i.e., the count) and the start time of the window. You can find more information about windowing data in the
+<a class="reference external" href="https://btrdb.readthedocs.io/en/latest/working/stream-view-data.html#view-windows-of-data">docs</a> or view the <a class="reference external" href="https://btrdb.readthedocs.io/en/latest/api/streams.html">API</a> reference.</p>
+<p>This time we will use another convenience function from <code class="docutils literal notranslate"><span class="pre">btrdb.utils.timez</span></code> which will help us to manipulate values at the nanosecond scale by better defining the query range and selecting aggregates of data at 100 millisecond intervals.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from btrdb.utils.timez import ns_delta
+
+start = earliest.time
+end = earliest.time + ns_delta(seconds=1)   # 1 second later
+width = ns_delta(milliseconds=100)          # 100 milleseconds per window
+
+for point, version in stream.windows(start, end, width):
+    print(point)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+StatPoint(1456790400008333000, 283.0077209472656, 283.0376892089844, 283.06005859375, 12, 0.018201699453480432)
+StatPoint(1456790400108333000, 283.0439147949219, 283.09425354003906, 283.1392517089844, 12, 0.03283400327693183)
+StatPoint(1456790400208333000, 283.0471496582031, 283.06798299153644, 283.0984191894531, 12, 0.016191161279048426)
+StatPoint(1456790400308333000, 282.9364318847656, 283.0061569213867, 283.05145263671875, 12, 0.03689424607932575)
+StatPoint(1456790400408333000, 282.95733642578125, 283.0086212158203, 283.03564453125, 12, 0.02022968452356655)
+StatPoint(1456790400508333000, 283.01397705078125, 283.04548899332684, 283.07122802734375, 12, 0.01554654929714072)
+StatPoint(1456790400608333000, 283.047607421875, 283.08336639404297, 283.13568115234375, 12, 0.0278841838563787)
+StatPoint(1456790400708333000, 283.089111328125, 283.13182830810547, 283.16107177734375, 12, 0.01937428873128766)
+StatPoint(1456790400808333000, 283.09521484375, 283.1276219685872, 283.15911865234375, 12, 0.017036256335062058)
+StatPoint(1456790400908333000, 283.0104064941406, 283.03795623779297, 283.083740234375, 12, 0.0210068369334544)
+</pre></div></div>
+</div>
+<p>Let’s create a convenience function to view all of this data in a table using tabulate again.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>def stat_table(points):
+    attrs = [&quot;time&quot;, &quot;min&quot;, &quot;max&quot;, &quot;mean&quot;, &quot;stddev&quot;, &quot;count&quot;]
+    table = [attrs]
+    for p in points:
+        table.append([getattr(p, attr) for attr in attrs])
+    return tabulate(table, headers=&quot;firstrow&quot;)
+
+points = [point for point, _ in stream.windows(start, end, width)]
+print(stat_table(points))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+               time      min      max     mean     stddev    count
+-------------------  -------  -------  -------  ---------  -------
+1456790400008333000  283.008  283.06   283.038  0.0182017       12
+1456790400108333000  283.044  283.139  283.094  0.032834        12
+1456790400208333000  283.047  283.098  283.068  0.0161912       12
+1456790400308333000  282.936  283.051  283.006  0.0368942       12
+1456790400408333000  282.957  283.036  283.009  0.0202297       12
+1456790400508333000  283.014  283.071  283.045  0.0155465       12
+1456790400608333000  283.048  283.136  283.083  0.0278842       12
+1456790400708333000  283.089  283.161  283.132  0.0193743       12
+1456790400808333000  283.095  283.159  283.128  0.0170363       12
+1456790400908333000  283.01   283.084  283.038  0.0210068       12
+</pre></div></div>
+</div>
+<p>While we haven’t used it in our examples, you can also optionally supply a <code class="docutils literal notranslate"><span class="pre">depth</span></code> argument to the <code class="docutils literal notranslate"><span class="pre">windows</span></code> query. The depth is the precision of the data in each window, which can greatly speed up your queries if you don’t need to be precise down to the nanosecond level. As an example, supplying <code class="docutils literal notranslate"><span class="pre">depth=30</span></code> would return to-second precision and take advantage of the BTrDB database to increase the retrieval performance. Please see the docs for more information.</p>
+<p>The aligned windows method is an alternative aggregate query that more directly exploits the underlying database structure for the best possible performance. This method, <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> takes a <code class="docutils literal notranslate"><span class="pre">pointwidth</span></code> argument that defines the window width as a power of two. Like the <code class="docutils literal notranslate"><span class="pre">windows</span></code> method, each point returned is a statistical aggregate of all the raw data within a window but of width <span class="math notranslate nohighlight">\(2^{pointwidth}\)</span> nanoseconds.</p>
+<p>Note that when bounding the query with a time range, <code class="docutils literal notranslate"><span class="pre">start</span></code> is inclusive, but <code class="docutils literal notranslate"><span class="pre">end</span></code> is exclusive. That is, results will be returned for all windows that start in the interval <span class="math notranslate nohighlight">\([start, end)\)</span>. If <span class="math notranslate nohighlight">\(end &lt; start+2^{pointwidth}\)</span> you will not get any results. If start and end are not powers of two, the bottom pointwidth bits will be cleared. Each window will contain statistical summaries of the window. Statistical points with no points (<code class="docutils literal notranslate"><span class="pre">count=0</span></code>) will be ommitted.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>pointwidth = 27    # 2^27 nanoseconds wide
+points = [point for point, _ in stream.aligned_windows(start, end, pointwidth)]
+print(stat_table(points))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+               time      min      max     mean     stddev    count
+-------------------  -------  -------  -------  ---------  -------
+1456790399996657664  283.008  283.06   283.04   0.017388        15
+1456790400130875392  283.054  283.139  283.094  0.0276213       16
+1456790400265093120  282.95   283.069  283.027  0.0342351       16
+1456790400399310848  282.936  283.04   283.01   0.0272138       17
+1456790400533528576  283.034  283.112  283.061  0.0189327       16
+1456790400667746304  283.089  283.161  283.127  0.0202038       16
+1456790400801964032  283.044  283.159  283.111  0.0338108       16
+</pre></div></div>
+</div>
+<p>This can be really useful if you dont particularly care where the start/end of your windows are, or if you just want a high level statistical view.</p>
+<p>As an example, the code below will return a single window of all of the data so you can easily view statistics of the entire dataset. We will use the <code class="docutils literal notranslate"><span class="pre">currently_as_ns</span></code> function to get the current datetime as nanoseconds from epoch to use as our end time.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from btrdb.utils.timez import currently_as_ns
+
+pointwidth = 52
+points = [point for point, _ in stream.aligned_windows(start, currently_as_ns(), pointwidth)]
+print(stat_table(points))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+               time      min      max     mean    stddev      count
+-------------------  -------  -------  -------  --------  ---------
+1454662679640670208  240.445  290.53   285.478   1.41733  285105792
+1459166279268040704  271.247  293.465  284.494   1.62677  536368941
+1463669878895411200  266.341  289.085  283.935   1.7701   127976711
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
