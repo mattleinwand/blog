@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Accessing EKG Data &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Wide Area Events" href="events.html" />
+    <link rel="prev" title="Calculating Frequency from Unwrapped Phase" href="blue-cut-fire.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Blog Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Read the blog
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../analysis/index.html">
+   Analytics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/angle-differencing.html">
+     All the Angles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/data-quality.html">
+     See it in the data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/disaggregation.html">
+     Solar Disaggregation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/frequency-filters.html">
+     Why frequency deviates from 60 Hz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/linear-models-overview.html">
+     Linear Modeling Process Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/phase-imbalance.html">
+     What to look for in the data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/power-factor.html">
+     Complex Power &amp; Power Factor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/spectral-analysis.html">
+     References
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/symmetrical-components.html">
+     References
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/tap-change.html">
+     What a tap changer does
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/visualizing-phasor-timeseries.html">
+     Stream Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/voltage-sags.html">
+     Finding Voltage Sags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/whats-in-a-phasor.html">
+     What’s in a Phasor
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Data Sets
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="blue-cut-fire.html">
+     Calculating Frequency from Unwrapped Phase
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Accessing EKG Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="events.html">
+     Wide Area Events
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <p>While the connection between cardiology and power systems might not be immediately obvious, the study of medical electrocardiograms (ECG or EKG, from the original German) in fact shares important similarities with the study of grid data such as synchrophasors. In each case, we are looking at a time-series of voltage measurements. An EKG measures the voltage across the heart, which corresponds to the polarization of muscle tissue that makes it contract. Certain periodicities are expected – for example, a regular heartbeat, or diurnal variations in load on the electric grid – but within these basic rhythms lies a more subtle information-rich signature. In each case, we are interested in detailed variations on shorter time scales. For one, we look to infer things about the underlying structure of the system from the data – for example, the size of heart chambers, or the impedance of a circuit. Also, we look for the distinction between healthy and unhealthy behaviors – for example, whether a patient is having a heart attack, or whether there is a fault on the power system. With EKG and grid data side-by-side, the PredictiveGrid platform supports the exploration of algorithms that identify unique characteristics or anomalies in these time-series voltage data streams.</p>
+<p><img alt="EKG Data" src="assets/images/post/ekg-data/ekg.png" /></p>
+<p>The use of EKGs for medical diagnostics long predates the advent of computerized data analysis. Back in the day, a mechanical recorder would capture analog measurements with ink on paper. Getting any value from this information hinged on the ability of highly skilled professionals to draw meaningful conclusions from these traces. On the one hand, cardiologists applied first principles, such as an anatomical and physiological understanding of what should be driving the voltage signature. On the other hand, generations of clinicians trained by empirically observing and recording large numbers of EKGs. This ability has been significantly aided by modern technology, which allows for rapid comparison of much larger and more detailed data sets.</p>
+<p>Similarly, electric grid operators have traditionally relied on their professional experience to evaluate measurement data, using a combination of physical knowledge about the system and a form of wisdom and intuition based on the accumulation of many observations over the years. Because this empirical component is so indispensable, seniority on the job and familiarity with the particular local system have always been highly valued in system operations.</p>
+<p>Today, the technology exists to greatly enhance and accelerate what smart and knowledgeable humans can do with data. Not only are measurements available at much higher precision or granularity, but observational experiments can be repeated in the computational environment at rates and volumes that are orders of magnitude beyond what a human can experience in their lifetime.</p>
+<p>Of course, quantity is not the same as quality. For a machine learning algorithm to improve upon what a human could learn over the course of many years, it must be asking the right questions. Just like learning in real life is an iterative process of gathering impressions, reflecting upon them, and seeking out further experiences, developing good algorithms is an interactive process of testing assumptions, making and interpreting observations, and experimenting with new things.</p>
+<p>This is why the NI4AI project brings together data scientists with domain experts including academic researchers and seasoned professionals from the electric power industry. Now that the logistic problem of learning from large, shared datasets has been solved, we can generate new knowledge together in unprecedented ways.</p>
+<section id="accessing-ekg-data">
+<h1>Accessing EKG Data<a class="headerlink" href="#accessing-ekg-data" title="Permalink to this headline">¶</a></h1>
+<p>The EKG data can be found in the NI4AI platform under the <code class="docutils literal notranslate"><span class="pre">Health/EKG</span></code> collection prefix, in patient-specific collections. Using the btrdb-python bindings, we can list the number of patients whose data is in the PredictiveGrid as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">btrdb</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">btrdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;api.ni4ai.org:4411&quot;</span><span class="p">,</span> <span class="s2">&quot;myapikey&quot;</span><span class="p">)</span>
+<span class="n">patients</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">list_collections</span><span class="p">(</span><span class="s2">&quot;Health/EKG&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can get all of the EKG streams for a single patient as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">streams</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">streams_in_collection</span><span class="p">(</span><span class="s2">&quot;Health/EKG/patient001&quot;</span><span class="p">,</span> <span class="n">is_collection_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To get information about the patient, we can access one of these streams annotations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">annotations</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="n">streams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;Lytic_agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Gamma-TPA&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Medication_preadmission&quot;</span><span class="p">:</span> <span class="s2">&quot;Isosorbit-Dinitrate Digoxin Glibenclamide&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;81&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sex&quot;</span><span class="p">:</span> <span class="s2">&quot;female&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Smoker&quot;</span><span class="p">:</span> <span class="s2">&quot;no&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Chest_X-ray&quot;</span><span class="p">:</span> <span class="s2">&quot;Heart size upper limit of norm&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Ventriculography&quot;</span><span class="p">:</span> <span class="s2">&quot;Akinesia inferior wall&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Hemodynamics&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Admission_date&quot;</span><span class="p">:</span> <span class="s2">&quot;29-Sep-90&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;ECG_date&quot;</span><span class="p">:</span> <span class="s2">&quot;18/10/1990&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Reason_for_admission&quot;</span><span class="p">:</span> <span class="s2">&quot;Myocardial infarction&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Catheterization_date&quot;</span><span class="p">:</span> <span class="s2">&quot;16-Oct-90&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Additional_diagnoses&quot;</span><span class="p">:</span> <span class="s2">&quot;Diabetes mellitus&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Infarction_date&quot;</span><span class="p">:</span> <span class="s2">&quot;29-Sep-90&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="blue-cut-fire.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Calculating Frequency from Unwrapped Phase</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="events.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Wide Area Events</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

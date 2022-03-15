@@ -1,0 +1,1231 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4 - Basic Plots &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5: Working with StatPoints" href="statpoints.html" />
+    <link rel="prev" title="3 - Working with StreamSets" href="streamsets.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../quickstart/index.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../data/index.html">
+  Data
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog/index.html">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../workshops/index.html">
+  Watch
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Code
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Access the PredictiveGrid
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org">
+   Register
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://plot.ni4ai.org">
+   Plotter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://jupyter.ni4ai.org">
+   Jupyterhub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/datasets">
+   Data
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Learn More
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../blog/index.html">
+   Learn
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../blog/platform/index.html">
+     Platform
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/platform/plotter-demo.html">
+       Plotter Demo
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/platform/api-demo.html">
+       Demo: Connecting to the API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/platform/btrdb-explained.html">
+       BTrDB Explained
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/platform/btrdb-queries-pt1.html">
+       Memory Efficient BTrDB Queries: Part 1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/platform/btrdb-queries-pt2.html">
+       Memory Efficient BTrDB Queries: Part 2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/platform/benchmarking-results.html">
+       PredictiveGrid Benchmarks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../blog/analysis/index.html">
+     Analytics
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/quadrature-demodulation.html">
+       Harmonic Phasor Estimation with Quadrature Demodulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/spectral-analysis.html">
+       Spectral Analysis (part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/disaggregation.html">
+       Solar Disaggregation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/angle-differencing.html">
+       Angle Differencing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/tap-change.html">
+       Counting tap changer operations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/voltage-sags.html">
+       Voltage Sag Safari
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/benchmarking-results.html">
+       Benchmarking Results
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/symmetrical-components.html">
+       Symmetrical Components
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/what-is-the-angle-1.html">
+       What’s the Angle? (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/what-is-the-angle-2.html">
+       What’s the Angle? (Part 2)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/whats-in-a-phasor.html">
+       What is a Phasor?
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/visualizing-phasor-timeseries.html">
+       Visualizing Phasor Timeseries with matplotlib
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/power-factor.html">
+       Power Factor Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/linear-models-overview.html">
+       Training Linear Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/blue-cut-fire.html">
+       Blue Cut Fire
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/btrdb-queries-pt1.html">
+       Memory Efficient Queries (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/analysis/btrdb-queries-pt2.html">
+       Memory Efficient Queries (Part 2)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../blog/commentary/index.html">
+     Commentary
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/commentary/fire-season.html">
+       Fire season is just around the corner
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/commentary/pmu-siting-2.html">
+       Choosing where to site distribution PMUs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/commentary/ekg-data.html">
+       On EKG Data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../blog/ni4ai/index.html">
+     Get Involved in NI4AI
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/ni4ai/add-sensors.html">
+       Stream Data to NI4AI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/ni4ai/language-bindings-survey.html">
+       Language Bindings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/ni4ai/democratizing-data.html">
+       Democratizing Grid Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/ni4ai/expertise-for-experts.html">
+       Expertise for Experts
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../blog/ni4ai/sunshine-data.html">
+       A brief walkthrough of the Sunshine uPMU dataset
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../workshops/index.html">
+   Watch
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/sascha.html">
+     Understanding PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/kevin.html">
+     Use Cases and Applications for PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/sean.html">
+     The Power of Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/mohini.html">
+     Voltage Sag Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../workshops/miles.html">
+     Exploring Frequency and Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Code
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="quickstart.html">
+     0 - PredictiveGrid in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="collections.html">
+     1 - Finding Collections &amp; Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="streams.html">
+     2 - Working with Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="streamsets.html">
+     3 - Working with StreamSets
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4 - Basic Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statpoints.html">
+     5: Working with StatPoints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="queries.html">
+     6 - Memory Efficient Queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="metadata.html">
+     7 - Working with Metadata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="windows.html">
+     8 - Windows, aligned windows, and values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plotaggregates.html">
+     9 - Visualizing Aggregates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ingestion.html">
+     10 - Data Ingestion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://btrdb.readthedocs.io/en/latest/">
+   API Docs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pingthings.io">
+   PingThings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/about">
+   NI4AI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/contact">
+   Contact Us
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Notebook-Setup">
+   Notebook Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Imports">
+     Imports
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Connect-to-Server">
+     Connect to Server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Convenience-Functions">
+     Convenience Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Basic-Time-Series-Plot">
+   Basic Time Series Plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Multiple-Streams-Plot">
+   Multiple Streams Plot
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Plot-List-of-Streams">
+     Plot List of Streams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Plot-StreamSet">
+     Plot StreamSet
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+
+<section id="4---Basic-Plots">
+<h1>4 - Basic Plots<a class="headerlink" href="#4---Basic-Plots" title="Permalink to this headline">¶</a>
+</h1>
+<p>This tutorial uses the matplotlib Python library to visualize stream data. These examples are intended as a guide for creating your own plots for streams of interest to you.</p>
+<p><strong>NOTE</strong>: To get access to the Sunshine dataset to run this notebook, please register for an API key at <a class="reference external" href="https://ni4ai.org/">ni4ai.org</a>.</p>
+<section id="Notebook-Setup">
+<h2>Notebook Setup<a class="headerlink" href="#Notebook-Setup" title="Permalink to this headline">¶</a>
+</h2>
+<section id="Imports">
+<h3>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a>
+</h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">btrdb</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">btrdb.utils.timez</span> <span class="kn">import</span> <span class="n">ns_delta</span><span class="p">,</span> <span class="n">ns_to_datetime</span>
+</pre></div>
+</div>
+</div>
+<p><strong>NOTE</strong>: The use of <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> is required on Jupyter lab.</p>
+</section>
+<section id="Connect-to-Server">
+<h3>Connect to Server<a class="headerlink" href="#Connect-to-Server" title="Permalink to this headline">¶</a>
+</h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="c1"># Make sure you add your API key to the config file to connect!</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">btrdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{'majorVersion': 5, 'build': '5.12.5', 'proxy': {'proxyEndpoints': []}}
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Convenience-Functions">
+<h3>Convenience Functions<a class="headerlink" href="#Convenience-Functions" title="Permalink to this headline">¶</a>
+</h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">split_points</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    This helper function takes in RawPoints and returns two</span>
+<span class="sd">    np.arrays, one for the time index and the other for the</span>
+<span class="sd">    values; this makes plotting with matplotlib much easier.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Convert times to datetimes for better x-axis ticks</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ns_to_datetime</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">time</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">])</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Basic-Time-Series-Plot">
+<h2>Basic Time Series Plot<a class="headerlink" href="#Basic-Time-Series-Plot" title="Permalink to this headline">¶</a>
+</h2>
+<p>Let’s begin by just rendering a basic plot of one of the streams in our dataset. For visualization inside of a notebook it is highly recommended that you put the code into a function – this helps encapsulate the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> directives that operate on a global figure and axes.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">simple_plot</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Get data and split into time and values arrays.</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)]</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">split_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+
+    <span class="c1"># Create a new figure and axes that is 10 by 6 inches.</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Plot the time series with the specified color and label</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># Modify the plot by adding axis labels and a legend</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">tags</span><span class="p">()[</span><span class="s1">'unit'</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="c1"># Always return the ax to ensure proper rendering</span>
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+<p>We can make use of this simple function by fetching a stream then defining a 10 minute window of data to view, before passing that data to our plotting function.</p>
+<p>Here, we’ll use data for one of the streams in the <code class="docutils literal notranslate"><span class="pre">Sunshine</span></code> dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="n">stream</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream_from_uuid</span><span class="p">(</span><span class="s2">"35bdb8dc-bf18-4523-85ca-8ebe384bd9b5"</span><span class="p">)</span>
+<span class="n">stream</span><span class="o">.</span><span class="n">annotations</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+({'impedance': {'source': 'PMU3',
+   'target': 'PMU1',
+   'Zreal': '[[0.523+1.135j, 0.146+0.387j, 0.146+0.387j], [0.146+0.387j, 0.523+1.135j, 0.146+0.387j], [0.146+0.387j, 0.146+0.387j, 0.523+1.135j]]'},
+  'location': 'PV array'},
+ 1)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="n">latest</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">latest</span><span class="p">()</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="n">latest</span><span class="o">.</span><span class="n">time</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">simple_plot</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_plots_12_0.png" src="../_images/tutorials_plots_12_0.png">
+</div>
+</div>
+<p>This simple plot is a good start to visualizing time series streams, but is lacking some functionality: for example, what if we want to plot multiple streams? Can we make the x-axis ticks more informative with time? Can we set the units of the y-axis? What about a title? We’ll tackle these questions in the next couple of sections.</p>
+<p>Before we get to that, it is important to note the importance of <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">ax</span></code> in our <code class="docutils literal notranslate"><span class="pre">simple_plot</span></code> function. It allows you to directly modify the Axes after calling the utility function, giving a lot of flexibility when defining helper functions and using them in code:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="n">time_window</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># minutes</span>
+<span class="n">start2</span> <span class="o">=</span> <span class="n">start</span> <span class="o">-</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="n">time_window</span><span class="p">)</span>
+<span class="n">end2</span> <span class="o">=</span> <span class="n">start</span> <span class="o">-</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">simple_plot</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">start2</span><span class="p">,</span> <span class="n">end2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"</span><span class="si">%i</span><span class="s2"> minutes later ..."</span><span class="o">%</span><span class="p">(</span><span class="n">time_window</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'</span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1">)'</span><span class="o">%</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">stream</span><span class="o">.</span><span class="n">unit</span><span class="o">.</span><span class="n">title</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0, 0.5, 'L1Mag (Volts)')
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_plots_14_1.png" src="../_images/tutorials_plots_14_1.png">
+</div>
+</div>
+</section>
+<section id="Multiple-Streams-Plot">
+<h2>Multiple Streams Plot<a class="headerlink" href="#Multiple-Streams-Plot" title="Permalink to this headline">¶</a>
+</h2>
+<p>Let’s see how easy it is to use matplotlib to plot for multiple streams. We will create a function that accepts a sequence of streams along with a start and end for the plot. Note that our example is assuming that all of the streams share the same Y axis and use the same unit (volts vs amps, etc.).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">multiple_plot</span><span class="p">(</span><span class="n">streams</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="c1"># Create a new figure and axes to draw on</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Loop through all streams and plot for the specified time range</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">streams</span><span class="p">:</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)]</span>
+        <span class="n">times</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">split_points</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">tags</span><span class="p">()[</span><span class="s1">'unit'</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+<section id="Plot-List-of-Streams">
+<h3>Plot List of Streams<a class="headerlink" href="#Plot-List-of-Streams" title="Permalink to this headline">¶</a>
+</h3>
+<p>Now let’s use our plotting function to plot a list of Stream objects.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="n">stream1</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream_from_uuid</span><span class="p">(</span><span class="s2">"35bdb8dc-bf18-4523-85ca-8ebe384bd9b5"</span><span class="p">)</span>
+<span class="n">stream2</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">stream_from_uuid</span><span class="p">(</span><span class="s2">"d4cfa9a6-e11a-4370-9eda-16e80773ce8c"</span><span class="p">)</span>
+<span class="n">streams</span> <span class="o">=</span> <span class="p">[</span><span class="n">stream1</span><span class="p">,</span> <span class="n">stream2</span><span class="p">]</span>
+
+<span class="n">latest</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stream1</span><span class="o">.</span><span class="n">latest</span><span class="p">()</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">latest</span><span class="o">.</span><span class="n">time</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">multiple_plot</span><span class="p">(</span><span class="n">streams</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_plots_18_0.png" src="../_images/tutorials_plots_18_0.png">
+</div>
+</div>
+</section>
+<section id="Plot-StreamSet">
+<h3>Plot StreamSet<a class="headerlink" href="#Plot-StreamSet" title="Permalink to this headline">¶</a>
+</h3>
+<p>Because a StreamSet supports iteration, we can use almost exactly the same code to plot all of the streams in a StreamSet object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="n">streams</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">streams</span><span class="p">(</span><span class="s2">"35bdb8dc-bf18-4523-85ca-8ebe384bd9b5"</span><span class="p">,</span> <span class="s2">"d4cfa9a6-e11a-4370-9eda-16e80773ce8c"</span><span class="p">)</span>
+
+<span class="n">latest</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stream1</span><span class="o">.</span><span class="n">latest</span><span class="p">()</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">latest</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">multiple_plot</span><span class="p">(</span><span class="n">streams</span><span class="p">,</span> <span class="n">start2</span><span class="p">,</span> <span class="n">end2</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"20 minutes earlier ..."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_plots_20_0.png" src="../_images/tutorials_plots_20_0.png">
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="streamsets.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">3 - Working with StreamSets</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="statpoints.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5: Working with StatPoints</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Angle Differencing &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Counting tap changer operations" href="tap-change.html" />
+    <link rel="prev" title="Solar Disaggregation" href="disaggregation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../quickstart/index.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../data/index.html">
+  Data
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../workshops/index.html">
+  Watch
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Code
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Access the PredictiveGrid
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org">
+   Register
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://plot.ni4ai.org">
+   Plotter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://jupyter.ni4ai.org">
+   Jupyterhub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/datasets">
+   Data
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Learn More
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../platform/index.html">
+     Platform
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/plotter-demo.html">
+       Plotter Demo
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/api-demo.html">
+       Demo: Connecting to the API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-explained.html">
+       BTrDB Explained
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-queries-pt1.html">
+       Memory Efficient BTrDB Queries: Part 1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-queries-pt2.html">
+       Memory Efficient BTrDB Queries: Part 2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/benchmarking-results.html">
+       PredictiveGrid Benchmarks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     Analytics
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="quadrature-demodulation.html">
+       Harmonic Phasor Estimation with Quadrature Demodulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="spectral-analysis.html">
+       Spectral Analysis (part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="disaggregation.html">
+       Solar Disaggregation
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Angle Differencing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="tap-change.html">
+       Counting tap changer operations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="voltage-sags.html">
+       Voltage Sag Safari
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="benchmarking-results.html">
+       Benchmarking Results
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="symmetrical-components.html">
+       Symmetrical Components
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="what-is-the-angle-1.html">
+       What’s the Angle? (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="what-is-the-angle-2.html">
+       What’s the Angle? (Part 2)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="whats-in-a-phasor.html">
+       What is a Phasor?
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="visualizing-phasor-timeseries.html">
+       Visualizing Phasor Timeseries with matplotlib
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="power-factor.html">
+       Power Factor Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="linear-models-overview.html">
+       Training Linear Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="blue-cut-fire.html">
+       Blue Cut Fire
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="btrdb-queries-pt1.html">
+       Memory Efficient Queries (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="btrdb-queries-pt2.html">
+       Memory Efficient Queries (Part 2)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../commentary/index.html">
+     Commentary
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/fire-season.html">
+       Fire season is just around the corner
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/pmu-siting-2.html">
+       Choosing where to site distribution PMUs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/ekg-data.html">
+       On EKG Data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../ni4ai/index.html">
+     Get Involved in NI4AI
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/add-sensors.html">
+       Stream Data to NI4AI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/language-bindings-survey.html">
+       Language Bindings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/democratizing-data.html">
+       Democratizing Grid Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/expertise-for-experts.html">
+       Expertise for Experts
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/sunshine-data.html">
+       A brief walkthrough of the Sunshine uPMU dataset
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../workshops/index.html">
+   Watch
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/sascha.html">
+     Understanding PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/kevin.html">
+     Use Cases and Applications for PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/sean.html">
+     The Power of Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/mohini.html">
+     Voltage Sag Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/miles.html">
+     Exploring Frequency and Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../tutorials/index.html">
+   Code
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/quickstart.html">
+     0 - PredictiveGrid in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/collections.html">
+     1 - Finding Collections &amp; Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/streams.html">
+     2 - Working with Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/streamsets.html">
+     3 - Working with StreamSets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/plots.html">
+     4 - Basic Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/statpoints.html">
+     5: Working with StatPoints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/queries.html">
+     6 - Memory Efficient Queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/metadata.html">
+     7 - Working with Metadata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/windows.html">
+     8 - Windows, aligned windows, and values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/plotaggregates.html">
+     9 - Visualizing Aggregates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/ingestion.html">
+     10 - Data Ingestion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://btrdb.readthedocs.io/en/latest/">
+   API Docs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pingthings.io">
+   PingThings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/about">
+   NI4AI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/contact">
+   Contact Us
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-i-angles-ohms-law">
+   Part I: Angles &amp; Ohm’s Law
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-ii-angles-in-the-wild">
+   Part II: Angles in the wild
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="angle-differencing">
+<h1>Angle Differencing<a class="headerlink" href="#angle-differencing" title="Permalink to this headline">¶</a>
+</h1>
+<blockquote>
+<div>
+<p>Author: Mohini Bariya</p>
+<p>Date: March 30, 2021</p>
+<p>This blog post provides physical intuition behind <em>phase angle differencing</em>, an analysis method commonly used for analyzing the impedance between two nodes on a network.</p>
+</div>
+</blockquote>
+<hr class="docutils">
+<p>Beautiful angles by <a class="reference external" href="https://www.saatchiart.com/art/Painting-Right-Angle-East-of-Blue/764852/7000043/view">Koola Adams</a>. Angles in the electric grid can be just as exciting and interesting.</p>
+<p>In <a class="reference external" href="https://blog.ni4ai.org/post/2020-07-30-what-is-the-angle/">prior blog posts</a>, we discussed the fundamental nature of phasor angle measurements. Now we are ready to abstract away the phasor measurement process, take the angle produced at face value (only for the duration of this post!) and consider its physical meaning in the electrical network. Angle measurements are important because they reflect the values of more material quantities—specifically power flows and impedances—that may not or can not be measured directly. This blog post explains how to interpret and use the angles of the voltage phasors at network nodes, sharing some examples of operational tools from industry that use angle measurements.</p>
+<p>Part I uses a simple example to provide mathematical and physical intuition for voltage angles in a.c. electrical circuits. If you are impatient to see some data and real-world examples, skip to Part II.</p>
+<section id="part-i-angles-ohms-law">
+<h2>Part I: Angles &amp; Ohm’s Law<a class="headerlink" href="#part-i-angles-ohms-law" title="Permalink to this headline">¶</a>
+</h2>
+<p>Consider two voltage phasors, <span class="math notranslate nohighlight">\(V_a\)</span> and <span class="math notranslate nohighlight">\(V_b\)</span>, at two ends of a line named <span class="math notranslate nohighlight">\(ab\)</span>, somewhere in the electric grid.</p>
+<p><img alt="Figure 1: Line ab" src="../../_images/line_ab.png">
+Figure 1: Line <span class="math notranslate nohighlight">\(ab\)</span> somewhere in the electric grid, with impedance <span class="math notranslate nohighlight">\(Z_{ab}\)</span>, current flow <span class="math notranslate nohighlight">\(I_{ab}\)</span>, and terminal voltages <span class="math notranslate nohighlight">\(V_a\)</span> and <span class="math notranslate nohighlight">\(V_b\)</span>.</p>
+<p>Current phasor <span class="math notranslate nohighlight">\(I_{ab}\)</span> flows along the line. All three phasors can be represented by complex numbers, and drawn on the complex plane. The line impedance <span class="math notranslate nohighlight">\(Z_{ab}\)</span> is also a complex number—though not a phasor—with the real part corresponding to resistance, and the imaginary part corresponding to reactance (in the most cursory terms, resistance leads to differences in voltage magnitude, while reactance leads to differences in voltage phase, ie time delays). We can visualize the relationship of Ohm’s Law on the complex plane for typical values of <span class="math notranslate nohighlight">\(Z_{ab}\)</span> and <span class="math notranslate nohighlight">\(I_{ab}\)</span>:
+$<span class="math notranslate nohighlight">\(
+V_a - V_b = Z_{ab}I_{ab}.
+\)</span><span class="math notranslate nohighlight">\(
+To keep things simple, we will need to make several assumptions: all reasonable and commonplace. In transmission system analysis, it is ubiquitous to assume that power line impedances are dominated by reactance and have little resistance. We will neglect the resistance of line \)</span>ab<span class="math notranslate nohighlight">\(, so that \)</span>Z_{ab}<span class="math notranslate nohighlight">\( is purely imaginary, lying on the imaginary axis of the complex plane. In a.c. networks, two types of power are present: real power and reactive power, denoted \)</span>P<span class="math notranslate nohighlight">\( and \)</span>Q<span class="math notranslate nohighlight">\( respectively. Together, they constitute complex power \)</span>S = P + jQ<span class="math notranslate nohighlight">\(. The angle of \)</span>S<span class="math notranslate nohighlight">\( in the complex plane is the power angle, and indicates the relative quantities of real and reactive power. We will assume that current \)</span>I_{ab}<span class="math notranslate nohighlight">\( is a proxy for complex power demanded by the loads, such that the current angle equals the power angle delivered to the load. Finally, we assume that \)</span>V_a$ is purely real; since only voltage differences carry physical meaning, we can always set one reference voltage arbitrarily.</p>
+<p>First, assume only real power is flowing through the line, so <span class="math notranslate nohighlight">\(I_{ab}\)</span> lies along the real axis in the complex plane (Fig. 2 Real Power Flow). Drawing out the voltage-current-impedance relationship across the line from Ohm’s Law, we see that the resulting voltage drop is purely imaginary. Given the relative magnitudes of the <span class="math notranslate nohighlight">\(Z_{ab}\)</span>, <span class="math notranslate nohighlight">\(I_{ab}\)</span>, <span class="math notranslate nohighlight">\(V_{a}\)</span> and <span class="math notranslate nohighlight">\(V_{b}\)</span> phasors, the preponderant effect of the voltage drop is an angle shift between the terminal voltages. That is, <span class="math notranslate nohighlight">\(V_{a}\)</span> and <span class="math notranslate nohighlight">\(V_{b}\)</span> have essentially equal magnitudes, but significantly different angles.</p>
+<p>Now, assume only reactive power is flowing through the line, so <span class="math notranslate nohighlight">\(I_{ab}\)</span> lies along the imaginary axis in the complex plane (Fig. 2 Reactive Power Flow). Redrawing Ohm’s Law, we see that <span class="math notranslate nohighlight">\(V_{a}\)</span> and <span class="math notranslate nohighlight">\(V_{b}\)</span> differ only in magnitude, with equal angle.</p>
+<p>The implication of this exercise is that, in the transmission context, where lines are mostly inductive, real power flows lead to differences in voltage angles, while reactive power flows produce differences in voltage magnitudes.</p>
+<p><img alt="Figure 2: Phasor Diagrams" src="../../_images/phasor_diagrams.png">
+Figure 2: The relationship between voltages, current, and impedance across line ab visualized in the complex plane for the case of purely real power (left) and purely reactive power (right).</p>
+<p>As it turns out, this result can be extended to voltages across entire networks, which are not directly connected by a single line. The angle difference between two arbitrary nodes in a large system can not be associated with a single line impedance and single power flow, but more comprehensively reflects the aggregated impedances and real power flows between the two nodes. This is the basis for the real world angle difference monitoring applications discussed next.</p>
+</section>
+<section id="part-ii-angles-in-the-wild">
+<h2>Part II: Angles in the wild<a class="headerlink" href="#part-ii-angles-in-the-wild" title="Permalink to this headline">¶</a>
+</h2>
+<p>Applications which look at angle differences to understand real power flows through a system are widespread. In general, these applications present the user with measured voltage angles from across the system, in a variety of visualizations.</p>
+<p>The website of the FNET project, out of the University of Tennessee, uses a heatmap to visualize voltage angles from synchrophasor sensors across the Eastern Interconnection. The map is accessible <a class="reference external" href="http://fnetpublic.utk.edu/anglecontour.html">here</a> and is updated continually but—for security reasons—lagging real time. At the time of writing, I can look at angles across the Eastern Interconnection at 10:20 pm (Fig. 3). The rapid angle gradient around the large cities of the north east is especially conspicuous, reflecting the large power flows into this high-demand region from across the system. This map strikingly illustrates the relationship between voltage angles and power flows through an electric network.</p>
+<p><img alt="Figure 3: FNET" src="../../_images/fnet.png">
+Figure 3: Screen grab of the FNET angle difference map, showing voltage angles measured by synchrophasors scattered through the Eastern Interconnection.</p>
+<p>Utilities monitor angle differences in their control rooms to detect unusual angle differences that could indicate overloading, line outages, or faults. Angles are often presented in a phasor visualization like that shown in Figure 4. This and other applications and visualizations of angle difference monitoring in use at utilities are described in [1].</p>
+<p><img alt="Figure 4: Dominion Angles" src="../../_images/dominion_angles.png">
+Figure 4: The voltage angle monitoring interface at Dominion [1].</p>
+<p>We can also look at voltage angle differences in the open access sunshine dataset available through the NI4AI project. Let us look at the voltage angle difference between PMU 1, at a PV array, and PMU 3, at the substation above the array.</p>
+<p>First, I query the voltage angle measurements on phase A at PMU 1 and PMU 3—it is important to look at matching phases when considering angle differences. The raw angle measurements from two hours starting at 10 pm on October 20, 2016 are plotted in Figure 5. Notice the familiar wrapping of the angles between 0 and 360 degrees (for more on wrapping, see <a class="reference external" href="https://blog.ni4ai.org/post/2020-07-29-what-is-the-angle-part-2/">this prior post</a>).</p>
+<p><img alt="Figure 5: Raw Angles" src="../../_images/raw_angles_1_3.png">
+Figure 5: Two hours of wrapped voltage angle measurements at PMU 1 and 3.</p>
+<p>After unwrapping the two angle streams, we obtain the data in Figure 6. The angles are close, and the two time series appear to overlap.</p>
+<p><img alt="Figure 6: Unwrapped angles" src="../../_images/unwrapped_angles_1_3.png">
+Figure 6: Two hours of unwrapped voltage angle measurements at PMUs 1 and 3.</p>
+<p>Taking the difference between the angle at PMU 1 and that at 3, we obtain the plot in Figure 7.</p>
+<p><img alt="Figure 7: Raw difference" src="../../_images/angle_diff_1_3.png">
+Figure 7: Voltage angle difference between PMU 1 and PMU 3.</p>
+<p>Oh no! What are those strange spikes? Unnatural patterns like this are a sign of bad data: erroneous values that have been introduced by the sensor, communication network, or some other element in the measurement pipeline. Wrangling with bad data is an unavoidable joy of working with real measurements. Since the bad data points lie about a degree off from the true time series, we can easily filter them out in Python to obtain the cleaned angle difference. For this particular time series, I simply throw out all angle difference values above 0 degrees to obtain the result in Figure 8. Much better!</p>
+<p><img alt="Figure 8: Cleaned Differences" src="../../_images/clean_angle_diff_1_3.png">
+Figure 8: Clean voltage angle difference between PMU 1 and PMU 3 over the hours from 10pm to midnight on October 10, 2016.</p>
+<p>Through a similar set of steps, we obtain the voltage angle difference between PMUs 1 and 3 earlier on the same day: two hours beginning at 4 pm. The clean difference is plotted in Figure 9.</p>
+<p><img alt="Figure 9: Another example" src="../../_images/clean_angle_diff_1_3_example2.png">
+Figure 9: Clean voltage angle difference between PMU 1 and PMU 3 over the hours from 4pm to 6pm on October 10, 2016.</p>
+<p>In both time periods, the voltage angle separation between PMUs 1 and 3 is increasing. However, the difference is increasing in opposite directions, reflecting changing directions of power flow through the network.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a>
+</h2>
+<ol class="simple">
+<li><p>Using Synchrophasor Data for Phase Angle Monitoring. NASPI Control Room Solutions Task Team Paper. https://www.naspi.org/sites/default/files/reference_documents/0.pdf?fileID=1567</p></li>
+</ol>
+</section>
+</section>
+
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="disaggregation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Solar Disaggregation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="tap-change.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Counting tap changer operations</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
