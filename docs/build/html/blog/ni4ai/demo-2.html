@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Demo (Part 2): Establishing an API Connection &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Stream Data to NI4AI" href="add-sensors.html" />
+    <link rel="prev" title="Demo (Part 2): Exploring Data in “The Plotter”" href="demo-1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../home/index.html">
+  Blog Home
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Tutorials
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Read the blog
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data/index.html">
+   Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data/events.html">
+     Wide Area Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../analysis/index.html">
+   Analytics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/spectral-analysis.html">
+     Spectral Analysis (part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/disaggregation.html">
+     Solar Disaggregation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/angle-differencing.html">
+     Angle Differencing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/tap-change.html">
+     Counting tap changer operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/voltage-sags.html">
+     Voltage Sag Safari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/benchmarking-results.html">
+     Benchmarking Results
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/symmetrical-components.html">
+     Symmetrical Components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/what-is-the-angle-1.html">
+     What’s the Angle? (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/what-is-the-angle-2.html">
+     What’s the Angle? (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/whats-in-a-phasor.html">
+     What is a Phasor?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/visualizing-phasor-timeseries.html">
+     Visualizing Phasor Timeseries with matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/power-factor.html">
+     Power Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/linear-models-overview.html">
+     Training Linear Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/blue-cut-fire.html">
+     Blue Cut Fire
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/btrdb-queries-pt1.html">
+     Memory Efficient Queries (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../analysis/btrdb-queries-pt2.html">
+     Memory Efficient Queries (Part 2)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../thoughts/index.html">
+   Commentary
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/fire-season.html">
+     Fire season is just around the corner
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/pmu-siting-2.html">
+     Choosing where to site distribution PMUs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/sunshine-data.html">
+     A brief walkthrough of the Sunshine uPMU dataset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/btrdb-explained.html">
+     BTrDB Explained
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../thoughts/ekg-data.html">
+     On EKG Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Get Involved in NI4AI
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="demo-1.html">
+     Demo (Part 2): Exploring Data in “The Plotter”
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Demo (Part 2): Establishing an API Connection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="add-sensors.html">
+     Stream Data to NI4AI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="language-bindings-survey.html">
+     Language Bindings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="democratizing-data.html">
+     Democratizing Grid Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="expertise-for-experts.html">
+     Expertise for Experts
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-a-jupyter-notebook-on-your-machine">
+   Running a Jupyter Notebook on Your Machine
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-install-jupyter-notebooks">
+     Step 1. Install Jupyter Notebooks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-install-the-btrdb-python-package">
+     Step 2. Install the btrdb python package
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-3-getting-your-api-key">
+     Step 3. Getting Your API Key
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#developing-data-analytics">
+   Developing Data Analytics
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="demo-part-2-establishing-an-api-connection">
+<h1>Demo (Part 2): Establishing an API Connection<a class="headerlink" href="#demo-part-2-establishing-an-api-connection" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Author: Nica Campbell</p>
+<p>Date: July 30, 2020</p>
+<p>This blog post offers a step-by-step tutorial for new users to connect to our API using the Python bindings.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>Hello, and welcome back!</p>
+<p>Here, we’ll use the blog post “A brief walkthrough of the Sunshine uPMU dataset” (<a class="reference external" href="https://blog.ni4ai.org/post/2020-03-30-sunshine-data/">here</a>) as a demo to show you how you can access the API.</p>
+<p>Here, we show you how to run a jupyter notebook in Google Colaboratory, and on your own machine.
+Google Colaboratory is like a Google Doc for sharing Jupyter notebooks.
+Colab notebooks run on a virtual machine in the cloud, which means you can run them without having install python or other packages locally.
+You’ll need a Google account to run colab notebooks in the cloud, but you can still download the notebook and run it locally without an account.</p>
+<p>You can access our Colab Notebook <a class="reference external" href="https://drive.google.com/file/d/1DAecP25WQKm9K2LDZgu-s1x8ZKKcPloU/view?usp=sharing">here</a>. Select “Open with Google Colaboratory” and it’ll open up a new tab allowing you to run code directly in your browser. You may need to install the Google Colaboratory add in if you haven’t done so already.</p>
+<p>Because colab notebooks run on virtual machines, you’ll need to run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">!pip</span> <span class="pre">install</span> <span class="pre">btrdb</span></code></p>
+<p>every time you open up a new notebook server. This installs the btrdb python package (more on this later) on the new virtual machine.</p>
+<p><img alt="Jupyter 1" src="../../_images/jupyter1.gif" /></p>
+<section id="running-a-jupyter-notebook-on-your-machine">
+<h2>Running a Jupyter Notebook on Your Machine<a class="headerlink" href="#running-a-jupyter-notebook-on-your-machine" title="Permalink to this headline">¶</a></h2>
+<section id="step-1-install-jupyter-notebooks">
+<h3>Step 1. Install Jupyter Notebooks<a class="headerlink" href="#step-1-install-jupyter-notebooks" title="Permalink to this headline">¶</a></h3>
+<p>You can install Jupyter Notebooks using Anaconda or pip (more info <a class="reference external" href="https://jupyter.readthedocs.io/en/latest/install.html">here</a>).</p>
+</section>
+<section id="step-2-install-the-btrdb-python-package">
+<h3>Step 2. Install the btrdb python package<a class="headerlink" href="#step-2-install-the-btrdb-python-package" title="Permalink to this headline">¶</a></h3>
+<p>The NI4AI database is built on <a class="reference external" href="https://blog.ni4ai.org/post/2019-12-12-btrdb-explained/">BTrDB</a> (pronounced “Better DB”).
+You’ll use the “btrdb” python library to connect to the database, and to make queries. You can find the install guide on the <a class="reference external" href="https://btrdb.readthedocs.io/en/latest/installing.html">btrdb website</a>.</p>
+</section>
+<section id="step-3-getting-your-api-key">
+<h3>Step 3. Getting Your API Key<a class="headerlink" href="#step-3-getting-your-api-key" title="Permalink to this headline">¶</a></h3>
+<p>All of the code we post on the blog has a place for you to enter your own API key.
+Your API key is a randomly generated 24-digit alpha numberic code that lets us know who you are.
+This allows us to keep track of how many people are using the API and how often.
+It also lets us know what data you have access to.
+Any of the data you see listed in the plotter is data you can access through the API.</p>
+<p>You can find your API key by logging in at ni4ai.org.
+It’ll be listed under your “Profile” in the top right corner of the screen.</p>
+<p>Once you have your key, the syntax for connecting to the database looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">YOUR_API_KEY</span> <span class="o">=</span> <span class="s1">&#39;copy_and_paste_your_api_key_here&#39;</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">btrdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;api.ni4ai.org:4411&quot;</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">YOUR_API_KEY</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="API KEY" src="../../_images/apikey.png" /></p>
+</section>
+</section>
+<section id="developing-data-analytics">
+<h2>Developing Data Analytics<a class="headerlink" href="#developing-data-analytics" title="Permalink to this headline">¶</a></h2>
+<p>Once you have an API key and a jupyter notebook, you’ll be able to copy code from any of our blog posts and run it locally on your machine.</p>
+<p>For example, you can run code from Sascha’s <a class="reference external" href="https://blog.ni4ai.org/post/2020-03-30-sunshine-data/">blog post</a>.
+You can download the colab notebook <a class="reference external" href="https://drive.google.com/file/d/1DAecP25WQKm9K2LDZgu-s1x8ZKKcPloU/view?usp=sharing">here</a>.</p>
+<p>These blog posts are just intended to get you started.
+We encourage you to become familiar with the code on our blog, and then to keep exploring questions of your own.</p>
+<p>For ideas about what you can do with the data we host, we encourage you to read our blog post <a class="reference external" href="https://blog.ni4ai.org/post/2020-07-31-expertise-for-expert/">here</a> which lists resources that will help you learn more about the grid and about the data.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="demo-1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Demo (Part 2): Exploring Data in “The Plotter”</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="add-sensors.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Stream Data to NI4AI</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
