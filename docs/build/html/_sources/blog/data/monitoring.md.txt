@@ -1,9 +1,0 @@
----
-# Monitoring
-*Laurel Dunn*
-
-The `monitoring` collection includes one week of time series measurements recorded at four different power generators, including one grid-scale solar farm and three conventional generators (fuel source unknown).
-
-The dataset can be used to study solar PV generation, including high-frequency dynamics or forecasting. Dynamic interactions between generation nodes can also be studied. There is also known to be a sub-synchronous oscillation present in the data -- see our blog posts on **spectral analysis** for more information about how to detect and diagnose oscillations.
-
-As with the `events` collection, the `monitoring` data is fully anonymized. Geographic and network data are intentionally omitted, time stamps are masked, and measurements are expressed in per unit notation.
