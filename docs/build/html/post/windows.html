@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Windows, aligned windows, and values &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Windows, aligned windows, and values
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-used">
+     Functions used
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-big-data">
+     What is “Big Data”?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-much-data-is-that">
+     How much data is that?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#that-s-a-lot-of-data">
+     That’s a lot of data!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-are-the-alternatives">
+       What are the alternatives?
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-queries">
+   Windows Queries
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-to-statpoints">
+     New to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       StatPoints
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-just-happened">
+     What just happened?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-happens-if-we-zoom-in">
+   What happens if we zoom in?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aligned-windows">
+   Aligned windows
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-may-seem-counter-intuitive-at-first-but">
+     This may seem counter-intuitive at first but …
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-to-use-values">
+   When to use
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     values
+    </span>
+   </code>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-last-note-to-self">
+     One last note to self…
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aligned-windows-queries-in-action">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       aligned_windows
+      </span>
+     </code>
+     queries in action
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#values-queries-in-action">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       values
+      </span>
+     </code>
+     queries in action
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="windows-aligned-windows-and-values">
+<h1>Windows, aligned windows, and values<a class="headerlink" href="#windows-aligned-windows-and-values" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial offers a guide on using the PredictiveGrid to work wtih VERY big data sets.</p>
+<p>When working with high-resolution time series data, seemingly simple tasks can quickly become intractable. The reason for this is that the volume of data exceeds the computational limits of most most computing environments.</p>
+<p>Here, we’ll describe three methods for querying data in PredictiveGrid. In practice none of these is “better” than another – there is a time and a place for each. This post will weigh the relative advantages of each approach.</p>
+<section id="functions-used">
+<h2>Functions used<a class="headerlink" href="#functions-used" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stream.values()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stream.windows()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stream.aligned_windows()</span></code></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">btrdb</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">btrdb.utils.timez</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">btrdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="what-is-big-data">
+<h2>What is “Big Data”?<a class="headerlink" href="#what-is-big-data" title="Permalink to this headline">¶</a></h2>
+<p>One definition of the term “Big Data” helps to put the problem in context:</p>
+<blockquote>
+<div><p>The term “big data” refers to data that is so large, fast or complex that it’s difficult or impossible to process using traditional methods.</p>
+</div></blockquote>
+<p>Let’s dig into what this means by looking at the size of the <code class="docutils literal notranslate"><span class="pre">sunshine</span></code> data set.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_points</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">streams_in_collection</span><span class="p">(</span><span class="s1">&#39;sunshine&#39;</span><span class="p">):</span>
+    <span class="n">n_points</span> <span class="o">+=</span> <span class="n">stream</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Thats a total of </span><span class="si">%.2f</span><span class="s1"> Billion points!&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">n_points</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Thats a total of 279.60 Billion points!
+</pre></div>
+</div>
+</section>
+<section id="how-much-data-is-that">
+<h2>How much data is that?<a class="headerlink" href="#how-much-data-is-that" title="Permalink to this headline">¶</a></h2>
+<p>To illustrate what’s meant by <code class="docutils literal notranslate"><span class="pre">BIG</span> <span class="pre">DATA</span></code>, let’s investigate the very simple task of querying data from a single stream.</p>
+<p>Your first thought might be to say: <code class="docutils literal notranslate"><span class="pre">Give</span> <span class="pre">me</span> <span class="pre">all</span> <span class="pre">the</span> <span class="pre">data!</span></code> But what will that yield?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">streams</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">streams_in_collection</span><span class="p">(</span><span class="s1">&#39;sunshine/PMU1&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;L1MAG&#39;</span><span class="p">})</span>
+<span class="n">stream</span> <span class="o">=</span> <span class="n">streams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;collection:</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">.</span><span class="n">collection</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stream name:</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># How many points is that?</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;num points:</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">/</span><span class="mf">1e9</span><span class="p">,</span> <span class="s1">&#39;Billion&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>collection:	 sunshine/PMU1
+stream name:	 L1MAG
+num points:	 5.143168296 Billion
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is that in gigabytes?</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1"> Billion points is </span><span class="si">%.2f</span><span class="s1"> gigabytes of data!&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">/</span><span class="mf">1e9</span><span class="p">,</span> <span class="n">stream</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">*</span><span class="mi">64</span><span class="o">*</span><span class="mi">2</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>5.14 Billion points is 82.29 gigabytes of data!
+</pre></div>
+</div>
+</section>
+<section id="that-s-a-lot-of-data">
+<h2>That’s a lot of data!<a class="headerlink" href="#that-s-a-lot-of-data" title="Permalink to this headline">¶</a></h2>
+<p>That volume of data will almost certainly overload your local computing environment. Even if you’re working in the cloud, it would be expensive to maintain an envrionment with that much memory. It’s worth checking that you need that much data before asking for an environment large enough to get it.</p>
+<p>Most importantly, it’ll likely take quite a long time to get the data back to you. <strong>Waiting for data is NOT worth your time</strong>.</p>
+<section id="what-are-the-alternatives">
+<h3>What are the alternatives?<a class="headerlink" href="#what-are-the-alternatives" title="Permalink to this headline">¶</a></h3>
+<p>Below, we’ve included a helper function for issuing different types of queries.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="windows-queries">
+<h1>Windows Queries<a class="headerlink" href="#windows-queries" title="Permalink to this headline">¶</a></h1>
+<p>Windows queries provide <em>statistical aggregates</em> or “summary statistics” of raw data points in a give ntime interval. A windows query will return a time series of <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> objetcs, which can be used to explore summary statistics of raw values over time.</p>
+<section id="new-to-statpoints">
+<h2>New to <code class="docutils literal notranslate"><span class="pre">StatPoints</span></code>?<a class="headerlink" href="#new-to-statpoints" title="Permalink to this headline">¶</a></h2>
+<p>Start here: https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/tutorials/5%20-%20Working%20with%20StatPoints.ipynb</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+
+<span class="n">start</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">earliest</span><span class="p">()</span>
+<span class="n">end</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">latest</span><span class="p">()</span>
+
+<span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">windows</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 1.45 seconds
+</pre></div>
+</div>
+</section>
+<section id="what-just-happened">
+<h2>What just happened?<a class="headerlink" href="#what-just-happened" title="Permalink to this headline">¶</a></h2>
+<p>The query <code class="docutils literal notranslate"><span class="pre">stream.windows()</span></code> scanned through 18 months of data to return <code class="docutils literal notranslate"><span class="pre">StatPoint</span></code> objects in intervals specified by <code class="docutils literal notranslate"><span class="pre">window</span></code>. Let’s visualize the restults.</p>
+<p>It took less than 10 MICROseconds to run through all 18 months of data.</p>
+<p><em><strong>That’s pretty fast</strong></em></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-happens-if-we-zoom-in">
+<h1>What happens if we zoom in?<a class="headerlink" href="#what-happens-if-we-zoom-in" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+
+<span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">windows</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 5.99 seconds
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">windows</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 26.49 seconds
+</pre></div>
+</div>
+<p>That one took a while! Don’t worry, there’s a better way.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aligned-windows">
+<h1>Aligned windows<a class="headerlink" href="#aligned-windows" title="Permalink to this headline">¶</a></h1>
+<p>Aligned windows return results that look very much like windows queries. The only differece, is that time stamps are adjusted to align with time windows stored inherently in the database. Where <code class="docutils literal notranslate"><span class="pre">windows</span></code> queries may need to re-compute statistical aggregates over the time window requested, <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> queries can leverage pre-computed values.</p>
+<p>Let’s look at the difference in performance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">aligned_windows</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">pointwidth</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 0.04 seconds
+</pre></div>
+</div>
+<p>That’s much faster! The only thing to note is that the time increment in an <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> query is rounded to the nearest time increment that matches the inherent structure of the database.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">btrdb</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">general</span><span class="o">.</span><span class="n">pointwidth</span><span class="p">(</span><span class="n">pw</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Increment requested: 6 hours
+Increment used: 4.89 hours
+</pre></div>
+</div>
+<section id="this-may-seem-counter-intuitive-at-first-but">
+<h2>This may seem counter-intuitive at first but …<a class="headerlink" href="#this-may-seem-counter-intuitive-at-first-but" title="Permalink to this headline">¶</a></h2>
+<p>It is wortwhile to become familiar with <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> queries because they can be much faster.</p>
+<p>If you don’t care whether or not aggregates are returned in precisely 1-hour increments (for example), <code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> queries will allow you to query more data in finer time increments than you would be able to do using <code class="docutils literal notranslate"><span class="pre">windows</span></code> queries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">aligned_windows</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">pointwidth</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 0.05 seconds
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">aligned_windows</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">pointwidth</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 1.74 seconds
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">aligned_windows</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">pointwidth</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 60.34 seconds
+</pre></div>
+</div>
+<p>That last query took a while! Let’s make note of that…</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">time</span><span class="o">-</span><span class="n">start</span><span class="o">.</span><span class="n">time</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="o">/</span><span class="mi">3600</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">btrdb</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">general</span><span class="o">.</span><span class="n">pointwidth</span><span class="p">(</span><span class="n">pw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Note to self: Don&#39;t try to query </span><span class="si">%i</span><span class="s2"> days of data at </span><span class="si">%i</span><span class="s2"> second granularity&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">pw</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Note to self: Don&#39;t try to query 561 days of data at 35 second granularity
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="when-to-use-values">
+<h1>When to use <code class="docutils literal notranslate"><span class="pre">values</span></code><a class="headerlink" href="#when-to-use-values" title="Permalink to this headline">¶</a></h1>
+<p>Many analytics can be done using StatPoints to summarize steady state characteristics of the data at the time-scale that is of interest, or to identify intervals in the data where there is an “event” in the data.</p>
+<p>Here, we’ll simply explore at what point values queries become intractable to perform.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">time</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">window</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 0.27 seconds
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">time</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">window</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 0.23 seconds
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">time</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">window</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 1.15 seconds
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">time</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">+</span> <span class="n">window</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">currently_as_ns</span><span class="p">()</span>
+<span class="n">statpoints</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runtime: </span><span class="si">%.2f</span><span class="s1"> seconds&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">currently_as_ns</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Runtime: 6.86 seconds
+</pre></div>
+</div>
+<section id="one-last-note-to-self">
+<h2>One last note to self…<a class="headerlink" href="#one-last-note-to-self" title="Permalink to this headline">¶</a></h2>
+<p>When running values queries, be sure to check how much working memory you have available in your jupyterhub instance. Bringing large amounts of data into memory can easily crash your jupyter server! You may need to shut down and move to a larger instance if your kernel crashes repeatedly.</p>
+</section>
+<section id="aligned-windows-queries-in-action">
+<h2><code class="docutils literal notranslate"><span class="pre">aligned_windows</span></code> queries in action<a class="headerlink" href="#aligned-windows-queries-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Here are some examples where we use statpoints to hone in on time intervals that are known (or likely) to be of interest for a given analytic:</p>
+<ul class="simple">
+<li><p>Voltage sags: https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Voltage%20Sag%20Exploration.ipynb</p></li>
+<li><p>Tap changes: https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Voltage%20Change%20Detection.ipynb</p></li>
+</ul>
+</section>
+<section id="values-queries-in-action">
+<h2><code class="docutils literal notranslate"><span class="pre">values</span></code> queries in action<a class="headerlink" href="#values-queries-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Here are examples where we use values queries to examine events that warrant full-resolution queries:</p>
+<ul class="simple">
+<li><p>Spectral analysis: https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/PV_spectrogram.ipynb</p></li>
+<li><p>Phase angle differencing: https://github.com/PingThingsIO/ni4ai-notebooks/blob/main/demo/Phase%20Angle%20Monitoring.ipynb</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

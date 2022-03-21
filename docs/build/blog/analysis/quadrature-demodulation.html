@@ -1,0 +1,1317 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Harmonic Phasor Estimation with Quadrature Demodulation &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Spectral Analysis (part 1)" href="spectral-analysis.html" />
+    <link rel="prev" title="Analytics" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../quickstart/index.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../data/index.html">
+  Data
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../workshops/index.html">
+  Watch
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Code
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Access the PredictiveGrid
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org">
+   Register
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://plot.ni4ai.org">
+   Plotter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://jupyter.ni4ai.org">
+   Jupyterhub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/datasets">
+   Data
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Learn More
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../platform/index.html">
+     Platform
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/plotter-demo.html">
+       Plotter Demo
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/api-demo.html">
+       Demo: Connecting to the API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-explained.html">
+       BTrDB Explained
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-queries-pt1.html">
+       Memory Efficient BTrDB Queries: Part 1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-queries-pt2.html">
+       Memory Efficient BTrDB Queries: Part 2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/benchmarking-results.html">
+       PredictiveGrid Benchmarks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     Analytics
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Harmonic Phasor Estimation with Quadrature Demodulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="spectral-analysis.html">
+       Spectral Analysis (part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="disaggregation.html">
+       Solar Disaggregation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="angle-differencing.html">
+       Angle Differencing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="tap-change.html">
+       Counting tap changer operations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="voltage-sags.html">
+       Voltage Sag Safari
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="benchmarking-results.html">
+       Benchmarking Results
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="symmetrical-components.html">
+       Symmetrical Components
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="what-is-the-angle-1.html">
+       What’s the Angle? (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="what-is-the-angle-2.html">
+       What’s the Angle? (Part 2)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="whats-in-a-phasor.html">
+       What is a Phasor?
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="visualizing-phasor-timeseries.html">
+       Visualizing Phasor Timeseries with matplotlib
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="power-factor.html">
+       Power Factor Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="linear-models-overview.html">
+       Training Linear Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="blue-cut-fire.html">
+       Blue Cut Fire
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="btrdb-queries-pt1.html">
+       Memory Efficient Queries (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="btrdb-queries-pt2.html">
+       Memory Efficient Queries (Part 2)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../commentary/index.html">
+     Commentary
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/fire-season.html">
+       Fire season is just around the corner
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/pmu-siting-2.html">
+       Choosing where to site distribution PMUs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/ekg-data.html">
+       On EKG Data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../ni4ai/index.html">
+     Get Involved in NI4AI
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/add-sensors.html">
+       Stream Data to NI4AI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/language-bindings-survey.html">
+       Language Bindings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/democratizing-data.html">
+       Democratizing Grid Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/expertise-for-experts.html">
+       Expertise for Experts
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../ni4ai/sunshine-data.html">
+       A brief walkthrough of the Sunshine uPMU dataset
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../workshops/index.html">
+   Watch
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/sascha.html">
+     Understanding PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/kevin.html">
+     Use Cases and Applications for PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/sean.html">
+     The Power of Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/mohini.html">
+     Voltage Sag Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/miles.html">
+     Exploring Frequency and Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../tutorials/index.html">
+   Code
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/quickstart.html">
+     0 - PredictiveGrid in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/collections.html">
+     1 - Finding Collections &amp; Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/streams.html">
+     2 - Working with Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/streamsets.html">
+     3 - Working with StreamSets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/plots.html">
+     4 - Basic Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/statpoints.html">
+     5: Working with StatPoints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/queries.html">
+     6 - Memory Efficient Queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/metadata.html">
+     7 - Working with Metadata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/windows.html">
+     8 - Windows, aligned windows, and values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/plotaggregates.html">
+     9 - Visualizing Aggregates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/ingestion.html">
+     10 - Data Ingestion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://btrdb.readthedocs.io/en/latest/">
+   API Docs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pingthings.io">
+   PingThings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/about">
+   NI4AI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/contact">
+   Contact Us
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Harmonic Phasor Estimation with Quadrature Demodulation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Harmonic-Distortion">
+     Harmonic Distortion
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Dataset-Used">
+     Dataset Used
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Get-&amp;-Plot-Data-from-NI4AI">
+     Get &amp; Plot Data from NI4AI
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Calculating-phasors">
+     Calculating phasors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#Quadrature-Demodulation-for-Harmonic-Analysis">
+     Quadrature Demodulation for Harmonic Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#References">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+
+<section id="Harmonic-Phasor-Estimation-with-Quadrature-Demodulation">
+<h1>Harmonic Phasor Estimation with Quadrature Demodulation<a class="headerlink" href="#Harmonic-Phasor-Estimation-with-Quadrature-Demodulation" title="Permalink to this headline">¶</a>
+</h1>
+<p>As discussed in previous blog posts, voltage and current waveforms on AC power systems are often modeled as ideal sinusoids at a single fundamental frequency (either 50 or 60 Hz). However, in the modern electric grid, this model is often not reflective of the true shape of these waveforms. Many modern consumer devices (e.g. laptop chargers), as well as inverter-based renewable energy sources, rely on power electronics. As opposed to traditional loads, these power electronics have non-linear
+behavior, and distort the voltage and current waveforms of the grid by introducing harmonic components (sinusoidal components that oscillate at an integer multiple of the fundamental frequency).</p>
+<section id="Harmonic-Distortion">
+<h2>Harmonic Distortion<a class="headerlink" href="#Harmonic-Distortion" title="Permalink to this headline">¶</a>
+</h2>
+<p>Waveforms can become “distorted” by harmonics, causing phasor approximations to break down as waveforms look less and less like perfect sinusoids. This blog post describes one approach (called Quadrature Demodulation) for decomposing a signal into its harmonic components.</p>
+</section>
+<section id="Dataset-Used">
+<h2>Dataset Used<a class="headerlink" href="#Dataset-Used" title="Permalink to this headline">¶</a>
+</h2>
+<p>To demonstrate the approach, we will look at the point-on-wave data for a 50 Hz current waveform measured at the EPFL campus [1]. Current waveforms tend to have higher levels of harmonic distortion, and this particular dataset shows a current waveform with a relatively large but not abnormal amount of harmonic distortion.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="c1"># Import python libraries</span>
+
+<span class="kn">import</span> <span class="nn">btrdb</span>
+<span class="kn">from</span> <span class="nn">btrdb.utils.timez</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Get-&amp;-Plot-Data-from-NI4AI">
+<h2>Get &amp; Plot Data from NI4AI<a class="headerlink" href="#Get-&amp;-Plot-Data-from-NI4AI" title="Permalink to this headline">¶</a>
+</h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="c1"># Define helper function</span>
+
+<span class="k">def</span> <span class="nf">points2series</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">"""Unpacks datapoints into an array of times and an array of values"""</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span>
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">time</span><span class="o">/</span><span class="mf">1e9</span><span class="p">)</span> <span class="c1">#time in seconds</span>
+        <span class="k">if</span> <span class="n">raw</span><span class="p">:</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="n">db</span> <span class="o">=</span> <span class="n">btrdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="n">epfl_data</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">streams_in_collection</span><span class="p">(</span><span class="s2">"POW/EPFL"</span><span class="p">,</span> <span class="n">tags</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"ia1"</span><span class="p">})</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">epfl_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">earliest</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">+</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">interval</span> <span class="o">=</span> <span class="n">ns_delta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">interval</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#this number should be &lt;15 to get the raw data</span>
+
+<span class="c1"># Extract values and timestamps from data</span>
+<span class="n">points</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">epfl_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+<span class="n">pow_data</span><span class="p">,</span> <span class="n">times</span> <span class="o">=</span> <span class="n">points2series</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ts_datetimes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ns_to_datetime</span><span class="p">(</span><span class="n">time_point</span><span class="o">*</span><span class="mf">1e9</span><span class="p">)</span> <span class="k">for</span> <span class="n">time_point</span> <span class="ow">in</span> <span class="n">times</span><span class="p">]</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">dt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Sample Rate: </span><span class="si">%i</span><span class="s2"> Hz"</span><span class="o">%</span><span class="p">(</span><span class="n">fs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Sample Rate: 50000 Hz
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="n">start_plot</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">end_plot</span> <span class="o">=</span> <span class="mi">15000</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pow_data</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Time (s)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Current (A)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"POW/EPFL/ia1"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/blog_analysis_quadrature-demodulation_6_0.png" src="../../_images/blog_analysis_quadrature-demodulation_6_0.png">
+</div>
+</div>
+</section>
+<section id="Calculating-phasors">
+<h2>Calculating phasors<a class="headerlink" href="#Calculating-phasors" title="Permalink to this headline">¶</a>
+</h2>
+<p>If we try to model this waveform as a synchrophasor, we see that the model of this signal as a single sine wave doesn’t really reflect the true shape of the waveform. Here, we define a helper function for calculating a phasor approximation of the raw waveform data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="c1"># Define helper function</span>
+
+<span class="k">def</span> <span class="nf">gen_phasor</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pow_data</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="sd">"""Uses quadrature demodulation to estimate the fundamental phasor of a system</span>
+<span class="sd">    Returns: phasor amplitude (amp) and phase angle (ph)</span>
+<span class="sd">    """</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span> <span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># define in-phase &amp; quadrature signals</span>
+    <span class="n">r_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">times</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">r_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">times</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="n">y_i</span> <span class="o">=</span> <span class="n">pow_data</span> <span class="o">*</span> <span class="n">r_i</span>
+    <span class="n">y_q</span> <span class="o">=</span> <span class="n">pow_data</span> <span class="o">*</span> <span class="n">r_q</span>
+
+    <span class="c1"># filter out higher freq components</span>
+    <span class="n">sos</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">'low'</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">'sos'</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">y_i</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">sosfiltfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">y_i</span><span class="p">,</span> <span class="n">padtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">y_q</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">sosfiltfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">y_q</span><span class="p">,</span> <span class="n">padtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># calculate amplitude &amp; phase</span>
+    <span class="n">amp</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_i</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y_q</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ph</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_q</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">amp</span><span class="p">,</span> <span class="n">ph</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="c1"># estimate 50 Hz phasor parameters for data</span>
+<span class="n">amp</span><span class="p">,</span> <span class="n">ph</span> <span class="o">=</span> <span class="n">gen_phasor</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pow_data</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># reconstruct fundamental frequency from phasor</span>
+<span class="n">recon</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">50</span><span class="o">*</span><span class="n">times</span> <span class="o">+</span> <span class="n">ph</span><span class="p">)</span>
+
+<span class="c1"># plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">],</span> <span class="n">pow_data</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"POW Data"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">],</span> <span class="n">recon</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Reconstruction"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Time (s)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Current (A)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"POW/EPFL/ia1 with single phasor reconstruction"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/blog_analysis_quadrature-demodulation_9_0.png" src="../../_images/blog_analysis_quadrature-demodulation_9_0.png">
+</div>
+</div>
+<p>As shown in the plot above, the point-on-wave signal has many higher-frequency oscillations caused by the presence of the harmonics that aren’t reflected by the traditional single-phasor estimation. These harmonic components in the voltage and current do not contribute any net real power, so characterizing the harmonics is an important issue with regards to power quality. Often, all of the harmonic components of a given signal are described with a single number, called the total harmonic
+distortion (THD), which describes the relative magnitude of the harmonic components of a signal compared to the magnitude of the component of the signal at the fundamental frequency. The THD reflects the impact that the harmonic distortion in a signal has on power quality, but not much else. An alternative way to represent the harmonic components of a signal is to represent each harmonic component individually as its own phasor, at its own harmonic frequency. This representation gives more
+detailed information about the harmonics present, potentially making it possible to analyze the cause of the harmonics or directly counteract them.</p>
+</section>
+<section id="Quadrature-Demodulation-for-Harmonic-Analysis">
+<h2>Quadrature Demodulation for Harmonic Analysis<a class="headerlink" href="#Quadrature-Demodulation-for-Harmonic-Analysis" title="Permalink to this headline">¶</a>
+</h2>
+<p>One method for determining the harmonic content of a waveform is to use a technique commonly used in telecommunication called quadrature demodulation [2]. This method is used to estimate the phasor parameters of a signal at any given frequency by essentially shifting the frequency spectrum of the signal to the left so the frequency of interest is centered at 0, and low-pass filtering the shifted signal to isolate the magnitude and phase of the signal at the specific frequency.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">quad_demod</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pow_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">base_f</span><span class="p">):</span>
+
+    <span class="c1"># estimate sampling frequency</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span> <span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># define in-phase &amp; quadrature signals</span>
+    <span class="n">r_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">times</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">r_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">times</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="n">y_i</span> <span class="o">=</span> <span class="n">pow_data</span> <span class="o">*</span> <span class="n">r_i</span>     <span class="c1"># real part of signal with shifted frequency spectrum</span>
+    <span class="n">y_q</span> <span class="o">=</span> <span class="n">pow_data</span> <span class="o">*</span> <span class="n">r_q</span>     <span class="c1"># imaginary part of signal with shifted frequency spectrum</span>
+
+    <span class="c1"># filter out higher freq components</span>
+    <span class="n">sos</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">base_f</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">'low'</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">'sos'</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">y_i</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">sosfiltfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">y_i</span><span class="p">,</span> <span class="n">padtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">y_q</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">sosfiltfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">y_q</span><span class="p">,</span> <span class="n">padtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># calculate amplitude &amp; phase</span>
+    <span class="n">amp</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_i</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y_q</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ph</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_q</span><span class="p">,</span> <span class="n">y_i</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">amp</span><span class="p">,</span> <span class="n">ph</span>
+</pre></div>
+</div>
+</div>
+<p>To use quadrature demodulation to describe the harmonic decomposition of the system, we can iteratively apply quadrature demodulation to estimate the frequency at each harmonic frequency of interest, and subtract the reconstruction of that component from our signal before computing the reconstruction of the next harmonic from the remainder.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">estimate_harmonics_quad</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pow_data</span><span class="p">,</span> <span class="n">harm_freqs</span><span class="p">,</span> <span class="n">base_f</span><span class="p">):</span>
+    <span class="sd">"""Inputs</span>
+<span class="sd">       -------------</span>
+<span class="sd">       times: numpy array of timestamps of data</span>
+<span class="sd">       pow_data: numpy array of point-on-wave data</span>
+<span class="sd">       harm_freqs: list of harmonic frequencies to be estimated</span>
+<span class="sd">       base_f: fundamental frequency of the signal</span>
+
+<span class="sd">       Returns:</span>
+<span class="sd">       -------------</span>
+<span class="sd">       amps: a 2D list where the i-th row contains the amplitude of the</span>
+<span class="sd">             i-th harmonic to be estimated at each time-step in times</span>
+<span class="sd">       phs: a 2D list where the i-th row contains the phase of the</span>
+<span class="sd">            i-th harmonic to be estimated at each time-step in times</span>
+<span class="sd">       recon: a numpy array containing the point-on-wave data reconstructed</span>
+<span class="sd">              from the harmonics generated"""</span>
+
+    <span class="c1"># initialize data</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">pow_data</span>
+    <span class="n">amps</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">phs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">recon</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+    <span class="k">for</span> <span class="n">harm_f</span> <span class="ow">in</span> <span class="n">harm_freqs</span><span class="p">:</span>
+        <span class="c1"># estimate amplitude and phase of each harmonic frequency</span>
+        <span class="n">amp</span><span class="p">,</span> <span class="n">ph</span> <span class="o">=</span> <span class="n">quad_demod</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">residual</span><span class="p">,</span> <span class="n">harm_f</span><span class="p">,</span> <span class="n">base_f</span><span class="p">)</span>
+
+        <span class="c1"># update reconstruction</span>
+        <span class="n">harm_recon</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">times</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">harm_f</span> <span class="o">+</span> <span class="n">ph</span><span class="p">)</span>
+        <span class="n">recon</span> <span class="o">+=</span> <span class="n">harm_recon</span>
+
+        <span class="c1"># subtracted estimated component from signal</span>
+        <span class="n">residual</span> <span class="o">=</span> <span class="n">residual</span> <span class="o">-</span> <span class="n">harm_recon</span>
+
+        <span class="n">amps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">amp</span><span class="p">)</span>
+        <span class="n">phs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ph</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">amps</span><span class="p">,</span> <span class="n">phs</span><span class="p">,</span> <span class="n">recon</span>
+</pre></div>
+</div>
+</div>
+<p>When we estimate the harmonic content of the signal, we can get a much better reconstruction of the shape of the waveform. The plots below show the reconstruction of the same point-on-wave data with various number of harmonics taken into account. Note that here we only estimate the odd harmonics (i.e. 1*50 Hz, 3*50 Hz, 5*50 Hz, etc.), because power electronics generally tend to only inject the odd harmonics into the grid.</p>
+<p>As seen below, as we add more harmonics, we can better characterize the higher frequency oscillations that take place within each period of the data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="c1"># plot reconstruction for various numbers of harmonics</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">20</span><span class="p">]:</span>
+    <span class="c1"># estimate the first n odd harmonics</span>
+    <span class="n">harm_freqs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="mi">100</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">amps</span><span class="p">,</span> <span class="n">phs</span><span class="p">,</span> <span class="n">recon</span> <span class="o">=</span> <span class="n">estimate_harmonics_quad</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pow_data</span><span class="p">,</span> <span class="n">harm_freqs</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># plot reconstruction</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">],</span> <span class="n">pow_data</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"POW Data"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">],</span> <span class="n">recon</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Reconstruction"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Time (s)"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Current (A)"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"POW/EPFL/ia1 with reconstruction from first </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> odd harmonics"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/blog_analysis_quadrature-demodulation_15_0.png" src="../../_images/blog_analysis_quadrature-demodulation_15_0.png">
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/blog_analysis_quadrature-demodulation_15_1.png" src="../../_images/blog_analysis_quadrature-demodulation_15_1.png">
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/blog_analysis_quadrature-demodulation_15_2.png" src="../../_images/blog_analysis_quadrature-demodulation_15_2.png">
+</div>
+</div>
+<p>With this analysis, we can also break down our signal into its individual harmonic components. The plot below shows a few of the higher magnitude harmonic components of the signal plotted together. This decomposition into the primary harmonic components allows us to analyze more specifically the type of harmonic distortion present in the grid.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span><span class="c1"># calculate harmonic phasors for first 20 odd harmonics</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">harm_freqs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="mi">100</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">amps</span><span class="p">,</span> <span class="n">phs</span><span class="p">,</span> <span class="n">recon</span> <span class="o">=</span> <span class="n">estimate_harmonics_quad</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pow_data</span><span class="p">,</span> <span class="n">harm_freqs</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># for a few selected harmonics</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>
+    <span class="c1"># use harmonic phasors to generate reconstruction</span>
+    <span class="n">recon_i</span> <span class="o">=</span> <span class="n">amps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">harm_freqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">times</span> <span class="o">+</span> <span class="n">phs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[</span><span class="n">start_plot</span><span class="p">],</span>
+             <span class="n">recon_i</span><span class="p">[</span><span class="n">start_plot</span><span class="p">:</span><span class="n">end_plot</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">harm_freqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2"> Hz component"</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Time (s)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Current (A)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Harmonic components of POW/EPFL/ia1"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/blog_analysis_quadrature-demodulation_17_0.png" src="../../_images/blog_analysis_quadrature-demodulation_17_0.png">
+</div>
+</div>
+</section>
+</section>
+
+<section id="References">
+<h1>References<a class="headerlink" href="#References" title="Permalink to this headline">¶</a>
+</h1>
+<p>[1] DESL-EPFL, “Point-on-wave Data of EPFL-campus Distribution Network.” [Online]. Available: <a class="reference external" href="https://github.com/DESL-EPFL/">https://github.com/DESL-EPFL/</a>. Accessed: 2022-02-14</p>
+<p>[2] D. Saba, M. Rusch, D. M. Laverty, and A. von Meier, ”Iterative Quadrature Demodulation for Harmonic Synchrophasor Estimation,” under review, for 2022 International Conference on Smart Grid Synchronized Measurements and Analytics.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate">
+<div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate">
+<div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Analytics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="spectral-analysis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Spectral Analysis (part 1)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
