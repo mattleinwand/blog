@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Democratizing Grid Data &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Expertise for Experts" href="expertise-for-experts.html" />
+    <link rel="prev" title="Language Bindings" href="language-bindings-survey.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../quickstart/index.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../data/index.html">
+  Data
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../workshops/index.html">
+  Watch
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials/index.html">
+  Code
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Access the PredictiveGrid
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org">
+   Register
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://plot.ni4ai.org">
+   Plotter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://jupyter.ni4ai.org">
+   Jupyterhub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/datasets">
+   Data
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Learn More
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../platform/index.html">
+     Platform
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/plotter-demo.html">
+       Plotter Demo
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/api-demo.html">
+       Demo: Connecting to the API
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-explained.html">
+       BTrDB Explained
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-queries-pt1.html">
+       Memory Efficient BTrDB Queries: Part 1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/btrdb-queries-pt2.html">
+       Memory Efficient BTrDB Queries: Part 2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../platform/benchmarking-results.html">
+       PredictiveGrid Benchmarks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../analysis/index.html">
+     Analytics
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/quadrature-demodulation.html">
+       Harmonic Phasor Estimation with Quadrature Demodulation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/spectral-analysis.html">
+       Spectral Analysis (part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/disaggregation.html">
+       Solar Disaggregation
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/angle-differencing.html">
+       Angle Differencing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/tap-change.html">
+       Counting tap changer operations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/voltage-sags.html">
+       Voltage Sag Safari
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/benchmarking-results.html">
+       Benchmarking Results
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/symmetrical-components.html">
+       Symmetrical Components
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/what-is-the-angle-1.html">
+       What’s the Angle? (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/what-is-the-angle-2.html">
+       What’s the Angle? (Part 2)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/whats-in-a-phasor.html">
+       What is a Phasor?
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/visualizing-phasor-timeseries.html">
+       Visualizing Phasor Timeseries with matplotlib
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/power-factor.html">
+       Power Factor Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/linear-models-overview.html">
+       Training Linear Models
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/blue-cut-fire.html">
+       Blue Cut Fire
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/btrdb-queries-pt1.html">
+       Memory Efficient Queries (Part 1)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../analysis/btrdb-queries-pt2.html">
+       Memory Efficient Queries (Part 2)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../commentary/index.html">
+     Commentary
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/fire-season.html">
+       Fire season is just around the corner
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/pmu-siting-2.html">
+       Choosing where to site distribution PMUs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../commentary/ekg-data.html">
+       On EKG Data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     Get Involved in NI4AI
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="add-sensors.html">
+       Stream Data to NI4AI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="language-bindings-survey.html">
+       Language Bindings
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Democratizing Grid Data
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="expertise-for-experts.html">
+       Expertise for Experts
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="sunshine-data.html">
+       A brief walkthrough of the Sunshine uPMU dataset
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../workshops/index.html">
+   Watch
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/sascha.html">
+     Understanding PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/kevin.html">
+     Use Cases and Applications for PMU Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/sean.html">
+     The Power of Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/mohini.html">
+     Voltage Sag Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../workshops/miles.html">
+     Exploring Frequency and Phase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../tutorials/index.html">
+   Code
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/quickstart.html">
+     0 - PredictiveGrid in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/collections.html">
+     1 - Finding Collections &amp; Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/streams.html">
+     2 - Working with Streams
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/streamsets.html">
+     3 - Working with StreamSets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/plots.html">
+     4 - Basic Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/statpoints.html">
+     5: Working with StatPoints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/queries.html">
+     6 - Memory Efficient Queries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/metadata.html">
+     7 - Working with Metadata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/windows.html">
+     8 - Windows, aligned windows, and values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/plotaggregates.html">
+     9 - Visualizing Aggregates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorials/ingestion.html">
+     10 - Data Ingestion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://btrdb.readthedocs.io/en/latest/">
+   API Docs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pingthings.io">
+   PingThings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/about">
+   NI4AI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://ni4ai.org/contact">
+   Contact Us
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arpa-e-funded-platform-is-democratizing-grid-data">
+   ARPA-E funded platform is democratizing grid data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-analytics-can-improve-every-aspect-of-the-grid">
+     Data analytics can improve every aspect of the grid
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#three-pillars-of-ni4ai-data-platform-and-community">
+     Three pillars of NI4AI: Data, Platform, and Community
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-data">
+       <em>
+        The Data
+       </em>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-platform">
+       <em>
+        The Platform
+       </em>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-community">
+       <em>
+        The Community
+       </em>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#becoming-an-agent-for-change-in-the-industry">
+     Becoming an agent for change in the industry
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="democratizing-grid-data">
+<h1>Democratizing Grid Data<a class="headerlink" href="#democratizing-grid-data" title="Permalink to this headline">¶</a>
+</h1>
+<blockquote>
+<div>
+<p>Author: Laurel Dunn</p>
+<p>December 12, 2020</p>
+<p>This is a blog post written for <em>Energy Central</em> about the project. It’s targeted at soliciting pilot participation among early-career professionals in the power sector who are interested to explore the value of their data. If this describes you, feel free to reach out to laurel[at]pingthings.io.</p>
+</div>
+</blockquote>
+<hr class="docutils">
+<p>NI4AI will be featured on an industry podcast as part of a series on data analytics in November.
+The podcast will feature an interview with Theo Laughner, a veteran of the industry and NI4AI contributor with expertise in power quality.
+We’ll share a link to the podcast when it comes out.
+In the meantime, here’s an article we wrote for the Energy Central blog.</p>
+<section id="arpa-e-funded-platform-is-democratizing-grid-data">
+<h2>ARPA-E funded platform is democratizing grid data<a class="headerlink" href="#arpa-e-funded-platform-is-democratizing-grid-data" title="Permalink to this headline">¶</a>
+</h2>
+<p>The National Infrastructure for Artificial Intelligence (AI) on the Grid – or NI4AI – is a three-year ARPA-E initiative designed to enable breakthroughs in data analytics for the grid.</p>
+<p>In the past, limited data access has created barriers to advancing the analytical capabilities of the industry.
+NI4AI is geared at catalyzing the rapid development and deployment of AI tools to improve every aspect of the grid. The project is taking a three pronged approach:</p>
+<ol class="simple">
+<li><p><em>The platform</em> offers a high-performance environment that makes it easier to work with large volumes of time series data, and to collaborate.</p></li>
+<li><p><em>The data</em> captures different aspects of grid behavior relevant to developing analytical tools to address problems on the grid.</p></li>
+<li><p><em>The community</em> includes data analysts and practitioners working to find new opportunities for data to solve practical problems for utilities.</p></li>
+</ol>
+<p>The project is led by a tech startup, PingThings, and leverages a platform they developed called PredictiveGrid<sup>TM</sup>. The platform is used in production by utilities and by researchers, and is being available through NI4AI to make it easier for a broader community of data analysts to work with large volumes of data. The University of California, Berkeley is also a collaborator, and is developing educational content and tutorials to demonstrate different techniques analysts can use to get started.</p>
+<section id="data-analytics-can-improve-every-aspect-of-the-grid">
+<h3>Data analytics can improve every aspect of the grid<a class="headerlink" href="#data-analytics-can-improve-every-aspect-of-the-grid" title="Permalink to this headline">¶</a>
+</h3>
+<p>Aging infrastructure, climate risks, cyber threats, renewables, and changing loads make situational awareness essential to maintaining a safe and reliable grid. These changes on the grid will lead to situations that operators have not experienced in the past. For example, they may introduce new dynamics and transients that conventional measurement systems like SCADA and AMI simply aren’t fast enough to capture.</p>
+<p>Real-time information and high-frequency sensor data can allow grid operators to detect and respond to emerging risks before they become problematic. Innovative solutions using AI have demonstrated that real-time data from AMI, phasor measurement units (PMUs), and new continuous point-on-wave sensors can alert decision-makers to potential issues, allowing them to take more timely and more effective actions.</p>
+<p>One barrier to extracting value from sensor data is that the volume is simply too great. Analytical and visualization tools are necessary to synthesize raw data into information about the system that can help decision-makers figure out how to respond. But analyzing terabytes of data poses a computational challenge for most researchers and practitioners. The NI4AI platform was built by computer scientists to make these large amounts of data easily accessible to practitioners so that they can more readily analyze data to answer questions that come up on the job.</p>
+</section>
+<section id="three-pillars-of-ni4ai-data-platform-and-community">
+<h3>Three pillars of NI4AI: Data, Platform, and Community<a class="headerlink" href="#three-pillars-of-ni4ai-data-platform-and-community" title="Permalink to this headline">¶</a>
+</h3>
+<section id="the-data">
+<h4>
+<em>The Data</em><a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a>
+</h4>
+<p>The platform provides open access data from dedicated NI4AI sensors, previously collected grid data, and anonymized utility data “scrubbed” to remove sensitive information. These data support the development of new analytical tools to address issues on the grid by connecting analysts with the data they need to detect problems.</p>
+<p>Algorithms are only as good as the data that train them, and some use cases may require more training data than a single utility possesses. Data shared via the platform can lead to higher quality solutions that benefit the industry as a whole.</p>
+<p>Open access data can also be used to compare different solutions to the same problem. Transparency in evaluating which algorithms work and which don’t can minimize duplicative work across utilities, and allows analysts to build on one another’s ideas rather than starting from scratch. Open access data can allow analysts to more readily discuss data, share code, and compare results. NI4AI will be hosting hackathons and competitions to encourage knowledge exchange and collaboration among data analysts that are using the platform.</p>
+</section>
+<section id="the-platform">
+<h4>
+<em>The Platform</em><a class="headerlink" href="#the-platform" title="Permalink to this headline">¶</a>
+</h4>
+<p>The data volume from modern sensor networks requires high-performance infrastructure and tooling. Data historians commonly in use today simply weren’t developed with AI and machine learning in mind. Also, most tools don’t address measurement data quality, such as missing or erroneous measurements. NI4AI is developing standardized and automated mechanisms to clean data and provide feedback about data quality in real time.</p>
+<p>Central to NI4AI is a novel,  high-performance platform to ingest, store, cleanse, compress, visualize, and process sensor data for AI applications. The project leverages a commercially available platform called PredictiveGridTM, which is used in production by utilities to allow decision-makers to work more effectively and efficiently with big data. The platform capitalizes on best practices established in other industries. Specifically, the platform is purpose-built for high volumes and high-resolution time series data, and is optimized to minimize computing resources to rapidly read and write data. This eliminates many of the computational barriers that have traditionally made it difficult for analysts in the industry to get the most out of time series data on a daily basis.</p>
+</section>
+<section id="the-community">
+<h4>
+<em>The Community</em><a class="headerlink" href="#the-community" title="Permalink to this headline">¶</a>
+</h4>
+<p>Anyone who works in energy appreciates the grid’s complexity. Operating the grid involves making choices that come with inevitable trade-offs. Prioritizing environmental sustainability may come at a cost to reliability. Mitigating wildfire risk may mean causing blackouts. For the industry to use data to inform better, more timely decisions about when to take one action versus another, the industry needs practitioners who really understand the system to become skilled data analysts as well.</p>
+<p>NI4AI is facilitating knowledge exchange between grid experts about results that can be achieved using data analytics. The project is hosting data competitions and hackathons focused on addressing specific challenges on the grid. The project is also offering workshops and tutorials to build awareness about new opportunities for using data, and about the solutions that have already been demonstrated.</p>
+<p>By streamlining data transfer, code-sharing, and collaboration across institutions, the platform can also streamline the process of establishing collaborations among a diverse community of experts in power systems, data science, and software development.</p>
+</section>
+</section>
+<section id="becoming-an-agent-for-change-in-the-industry">
+<h3>Becoming an agent for change in the industry<a class="headerlink" href="#becoming-an-agent-for-change-in-the-industry" title="Permalink to this headline">¶</a>
+</h3>
+<p>NI4AI will enable industry professionals to use data more effectively in their jobs. Practitioners can support this transition by using the platform, participating in training sessions, contributing data, hosting a sensor pilot, or sharing insights about analytical tools that would be valuable to them on the job. Readers can learn more by signing up at ni4ai.org, or can reach out directly to info@ni4ai.org.</p>
+<p>Experts agree that digitalization is just beginning to hit the industry. Developing the skills to work with big data will help practitioners become change agents in their organizations. NI4AI is offering professional development workshops on data visualization and analytics geared at training practitioners to use big data on the job. Look for sessions hosted by CIGRE, NASPI, and IEEE SmartGridConn this fall. Go to ni4ai.org/events to learn more.</p>
+</section>
+</section>
+</section>
+
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="language-bindings-survey.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Language Bindings</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="expertise-for-experts.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Expertise for Experts</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

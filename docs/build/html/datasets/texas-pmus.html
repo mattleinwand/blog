@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Texas Synchrophasor Network &#8212; NI4AI Blog 0.1 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../_static/tree.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+      
+      <link rel="icon" sizes="16x16" href="../_static/_static/tree.png">
+      
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/PingThings_logo_color.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog/index.html">
+  Blog Posts
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../workshops/index.html">
+  Workshops
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://btrdb.readthedocs.io/en/latest/">API Docs<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://github.com/PingThingsIO/ni4ai-notebooks/tree/main/tutorials">Tutorials<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://www.pingthings.io/">PingThings<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/PingThingsIO/ni4ai-notebooks" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.pingthings.io/" rel="noopener" target="_blank" title="PingThings">
+            <span><i class="fa"></i></span>
+            <label class="sr-only">PingThings</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Texas Synchrophasor Network
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-independent-grid-monitoring">
+   What is independent grid monitoring?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-case-for-independent-grid-monitoring">
+   The case for independent grid monitoring
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <p>NI4AI onboarded three new sensors this week.
+These sensors are part of a deployment called the <strong>Texas Synchrophasor Network</strong>, led by Professor Mack Grady out of Baylor University in Texas.</p>
+<section id="texas-synchrophasor-network">
+<h1>Texas Synchrophasor Network<a class="headerlink" href="#texas-synchrophasor-network" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.857.5454&amp;rep=rep1&amp;type=pdf">Texas Synchrophasor Network</a> is an independent grid monitoring network.
+The network consists of several PMUs which report voltage angle and magnitude in 120 volt wall outlets.
+The frequency of the grid is calculated from these measurements.
+Sensors are strategically located to measure conditions in areas where interesting dynamics can occur.</p>
+<p>The project releases reports describing interesting events and conditions on the grid.
+These reports pull in information from other data streams to draw connections between PMU data and load characteristics, renewables generation, or supply issues.</p>
+<p>Three of the sensors in the network are now streaming data into NI4AI.
+These sensors are located in White Sands, NM (WECC), Conroe, TX (Eastern Interconnect), and in Central Texas (ERCOT).</p>
+</section>
+<section id="what-is-independent-grid-monitoring">
+<h1>What is independent grid monitoring?<a class="headerlink" href="#what-is-independent-grid-monitoring" title="Permalink to this headline">¶</a></h1>
+<p>Independent grid monitoring refers to sensor networks that record grid measurements independently of the utility.
+Without access to the grid, these sensors typically can only measure voltage (not current).
+However, easy installation expands the realm of possible measurement points and eliminates the need for an electrician.</p>
+</section>
+<section id="the-case-for-independent-grid-monitoring">
+<h1>The case for independent grid monitoring<a class="headerlink" href="#the-case-for-independent-grid-monitoring" title="Permalink to this headline">¶</a></h1>
+<p>The advantage of independent grid monitoring is that the data are not subject to the same restrictions as they would be if they were collected by a utility.
+Independent grid sensors can stream directly to a central repository – regardless of which service territory they are located in.</p>
+<p>The benefit is that disturbances can easily be tracked across broad geographic areas.
+Here’s an example showing the frequency of the grid after a generator trip that happened in Florida in 2008.
+The event led to frequency deviations that spanned the entire Eastern Interconnect!</p>
+<p>Independent monitors simplify the logistics of tracking down the origin of an event like this, and monitoring the impacts on other service territories.</p>
+<iframe width="803" height="502" src="https://www.youtube.com/embed/bdBB4byrZ6U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=bdBB4byrZ6U) --></section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, PingThings.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
