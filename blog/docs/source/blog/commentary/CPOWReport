@@ -1,0 +1,93 @@
+
+**North American SynchroPhasor Initiative (NASPI) Technical Report 2020**
+
+This North American SynchroPhasor Initiative (NASPI) Technical Report 2020
+
+Continuous Point on Wave Data (CPOW) capture the highest resolution of time series data for power systems monitoring when compared to PMU or SCADA data. Power systems monitoring software often uses SCADA, sampling at 4-6 second intervals, else PMU data which samples at rates of 30-60 measurements per second. **Meanwhile, continuous point on wave (CPOW) monitoring takes measurements at a rate of 256 samples per second or faster.**
+
+The NASPI 2020 report advocates for: 
+- continuous recording of grid conditions rather than event-triggered recording of grid conditions.
+- retained data for post event analysis.
+- real time streaming ability or archive streaming. 
+
+**Furthermore, continuous point on wave must meet three characteristics: **
+
+* **Waveform sampling**– sampling of the actual waveform as opposed to fitting the measurement to a sinusoid wave form (sine wave). 
+* **High data accessibility**– even when systems may go down, data must be readily accessible.
+* **Time Synchronization**- time-stamped data should be uniformly synchronized across sensors (UTC) .Locally collected time stamps aren’t verified across wide geographic areas, which could be problematic for modeling if samples are not  synchronized. 
+* 
+
+In short, long-duration, high-resolution data allows us to understand the complexities at a level that has not been reached before. According to NASPI:  **_“The lack of high-resolution, longer-duration, archived CPOW data is limiting our ability to understand and diagnose high-speed grid conditions and events” (NASPI, p.5).  _**Below we can see the difference in resolution between CPOW and PMU data. 
+
+**	**
+
+
+
+<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+
+![alt_text](images/image1.png "image_tooltip")
+
+
+(NASPI, p. 11) 
+
+As we can see, the POW measurement is a higher resolution, capturing details  that phasor approximation misses. 
+
+**DERs**
+
+Distributed energy resources are essential for propelling the green energy transition.  The share of inverter-connected resources (distributed energy resources) is nearing 10% (p.19) and growing faster than any other energy generation source.  Both industrial sized generation operations and individual consumers seek to sell energy back to the grid.Meanwhile, monitoring devices are not capturing needed data on fast events, such as inverter-related resource behaviors that can cause faults. Understanding how inverter health relates to system health is an area ripe for further study. **Wind turbine oscillations **that cause premature wear and aerodynamic asymmetry are also potentially detectable through sensor analysis. 
+
+Notedly, Digital Fault Recorders **(DFRs) **and Dynamic Disturbance Recorders **(DDRs) **do recording high resolution data at 960 samples per second and >30 samples per second respectively, however, these measurements are event triggered meaning that they collect data in windows rather than continuously. Since they are triggered in the case of predetermined event-conditions, they are not suitable to investigate the very events in which they may need to be triggered. (p.19).  Continuous data is therefore necessary to understand transient stability failures that can occur within just a few cycles in areas with high penetration of inverted-based generation sources. 
+
+Effects of inverted based resources can include: 
+
+
+
+* **Voltage fluctuations**
+* **Reverse power flows **
+* **Low-fault currents **
+
+**Geomagnetically induced currents (GIC) **are also a possible use case. Hydro Quebec found that “fine-grained, localized analysis of geomagnetic activity within a three hour time window can be used to predict potential impact at nearby locations on the grid” and can alert operators in advance of large-scale geomagnetic disturbance (GMD)  events. Below is a chart of potential needs for POW data. 
+
+
+
+<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: error handling inline image </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+
+
+**	**
+
+While this new higher-resolution data provides new insights, it is mean to combine with other current data types (SCADA, PMU) to provide a holistic system understanding. A scada monitor can generate 21,600 records per day, while a PMU over 5 million and a CPOW 124 million (p. 31). The NASPI paper argues for streaming CPOW data to a central source, since in the event of a fault, a local system may not be capable of operating, analyzing the event, and intervening. More uses on combining data types are outlined below: 
+
+
+
+<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+
+![alt_text](images/image2.png "image_tooltip")
+
+
+Current data protocols used to stream real-time PMU data have quality issues due to data losses (UDP) and latency (TCP). The DoE has funded the Grid Protection Alliance to develop the Streaming Telemetry Transport Protocol (STTP) designed to transmit PMU or POW data with lossless compression. 
+
+STTP: 
+
+In conclusion, CPOW data are a much higher resolution than PMU data. Similarly to how PMUs did not replace SCADA immediately but instead gradually have become deployed on the grid, it is expected that CPOW sensors will complement PMUs rather than replace them. Modern solutions will require joining many types of data together to analyze system dynamics. As DER’s are rapidly integrated into the grid, inverter-specific use cases may become increasingly necessary for research. 
+
+Blog Posts: competition topic ideas
+
+—---
+
+Changing character of end-use loads; VFDs and Harmonics 
+
+STTP 
+
+
+
+<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+
+![alt_text](images/image3.png "image_tooltip")
+
+The Link to the original report can be found here:  [https://www.naspi.org/node/819](https://www.naspi.org/node/819)
+
+
