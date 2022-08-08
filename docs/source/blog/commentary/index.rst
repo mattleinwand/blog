@@ -11,4 +11,4 @@ This series of blog posts provides commentary designed to put the data into cont
    fire-season
    pmu-siting-2
    ekg-data
-   INtro to the Grid_Grid Overview
+   INtro to the Grid_ Grid Overview
