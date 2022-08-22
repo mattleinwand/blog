@@ -10,7 +10,7 @@ Quickstart
 This page provides links for users to register, access the platform, and read documentation on our docs-site and blog.
 
 .. toctree::
-   :caption: Access the PredictiveGrid
+   :caption: Access1 the PredictiveGrid
    :maxdepth: 1
 
    Register <https://ni4ai.org>
