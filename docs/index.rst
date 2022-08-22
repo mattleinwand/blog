@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 ======================================
-Welcome to the NI4AI Blog!
+Hello, and welcome to the NI4AI Blog!
 ======================================
 
 About NI4AI
